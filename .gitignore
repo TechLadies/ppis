@@ -8,14 +8,18 @@
 /.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
+/config/database.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*
-/tmp/*
 !/log/.keep
-!/tmp/.keep
+/tmp
 
-# Ignore Byebug command history file.
+.idea
+.env
+.DS_Store
 .byebug_history
+coverage
+public/uploads
+
+dump.rdb

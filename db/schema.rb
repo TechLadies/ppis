@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 20161001093501) do
     t.index ["volunteer_id"], name: "index_preferred_target_groups_on_volunteer_id", using: :btree
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "target_groups", force: :cascade do |t|
     t.string "name"
   end

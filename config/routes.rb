@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :centers
 
   root to: "pages#index"
-
+  
 end

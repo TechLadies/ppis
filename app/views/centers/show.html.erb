@@ -1,9 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h2>Details of <%= @center.name %></h2>
 
-<p>
-  <strong>Center:</strong>
-  <%= @center.name %>
-</p>
+<table border="1px">
+  <thead>
+  <tr>
+    <th>Manager Name</th>
+    <th>Email</th> 
+    <th>Contact Number</th>
+    <th>Address</th>  
+  </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_center_path(@center) %> |
-<%= link_to 'Back', centers_path %>
+  <tbody>
+  <tr>
+    <td id="data"><%= @center.manager_name %></td>
+    <td id="data"><%= @center.email %></td>
+    <td id="data"><%= @center.contact_number %></td>
+    <td id="data"><%= @center.address %></td>
+  </tr>
+</tbody>
+</table>

@@ -24,6 +24,12 @@ gem 'simple_form'
 
 # Front-end
 gem 'bootstrap-sass', '~> 3.3.6'
+
+# See https://github.com/rails/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
+gem 'devise'
+
+# Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'font-awesome-rails'

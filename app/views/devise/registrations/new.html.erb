@@ -26,8 +26,9 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div><%= f.check_box :is_female, {}, true %> <%= f.label :is_female, "Female" %> </div>
-    <div><%= f.check_box :is_female, {}, false %> <%= f.label :is_female, "Male" %> </div>
+  <div><%= f.label :gender %><br />
+        <%= f.radio_button :is_female, true%><%= f.label "Female" %></div>
+        <%= f.radio_button :is_female, false%><%= f.label "Male" %></div>
 
   <div><%= f.label :date_of_birth %><br />
         <%= f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5} %></div>

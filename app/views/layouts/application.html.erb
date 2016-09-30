@@ -11,15 +11,14 @@
   <body>
 
     <% if volunteer_signed_in?%>
-
       <%= link_to "Sign out", destroy_volunteer_session_path, method: :delete %><br>
     <% else%> 
       <%= link_to "Sign in", new_volunteer_session_path %><br>
       <%= link_to "Sign up", new_volunteer_registration_path %><br>
     <%end %>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

@@ -30,7 +30,7 @@
     <div><%= f.check_box :is_female, {}, false %> <%= f.label :is_female, "Male" %> </div>
 
   <div><%= f.label :date_of_birth %><br />
-        <%= f.date_select :date_of_birth, {order: [:day, :month, :year]}, {:start_year => Date.today.year - 80} %></div>
+        <%= f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5} %></div>
 
   <div><%= f.label :mobile %><br />
         <%= f.telephone_field :mobile %></div>

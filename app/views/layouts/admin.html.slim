@@ -1,0 +1,60 @@
+doctype html
+html
+
+  head
+
+    meta charset='UTF-8'
+    meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'
+
+    title HugProperty | Admin
+
+    = stylesheet_link_tag 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css', media: 'all'
+    = stylesheet_link_tag 'admin', media: 'all'
+
+    /! HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    /! WARNING: Respond.js doesn't work if you view the page via file://
+    /![if lt IE 9]
+      script src='https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js'
+      script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'
+
+    = csrf_meta_tags
+
+  body.skin-green.sidebar-mini.fixed*app_data class=body_css_class
+
+    .wrapper
+
+      = render partial: 'layouts/admin_lte_2/header'
+      - if current_admin
+        = render partial: 'layouts/admin_lte_2/sidebar'
+
+      .content-wrapper
+        section.content-header
+
+          h1
+            = yield 'page_header'
+            small = yield 'page_subheader'
+
+          ol.breadcrumb
+
+            li = link_to admin_root_path do
+              = fa_icon :dashboard
+              | HOME
+
+              = yield 'breadcrumbs'
+
+        section.content
+
+          = render 'layouts/flash_message'
+
+          = yield
+
+      footer.main-footer
+
+        strong Copyright &copy; 2016 #{link_to 'PPIS', '#'}. All rights reserved.
+
+      = render 'layouts/modal'
+
+      = javascript_include_tag 'admin'
+
+    javascript:
+      PPIS.init();

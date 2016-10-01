@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-<<<<<<< 96c9ed058537e6616f4a89499fa35a75da974611
 
 ruby '2.3.1'
 

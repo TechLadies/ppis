@@ -15,6 +15,25 @@ ActiveRecord::Schema.define(version: 20161001061313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "availabilities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "preferred_availabilities", force: :cascade do |t|
+    t.integer  "availability_id"
+    t.integer  "volunteer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["availability_id"], name: "index_preferred_availabilities_on_availability_id", using: :btree
+    t.index ["volunteer_id"], name: "index_preferred_availabilities_on_volunteer_id", using: :btree
+  end
+
+  create_table "target_groups", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "volunteers", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -37,25 +56,6 @@ ActiveRecord::Schema.define(version: 20161001061313) do
     t.text     "about_me"
     t.index ["email"], name: "index_volunteers_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_volunteers_on_reset_password_token", unique: true, using: :btree
-  end
-
-  create_table "availabilities", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "preferred_availabilities", force: :cascade do |t|
-    t.integer  "availability_id"
-    t.integer  "volunteer_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["availability_id"], name: "index_preferred_availabilities_on_availability_id", using: :btree
-    t.index ["volunteer_id"], name: "index_preferred_availabilities_on_volunteer_id", using: :btree
-  end
-
-  create_table "target_groups", force: :cascade do |t|
-    t.string "name"
   end
 
 end

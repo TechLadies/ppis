@@ -1,10 +1,10 @@
 class CentersController < ApplicationController
-	def index
-		@centers = Center.all
-	end
+  def index
+    @centers = Center.all
+  end
 
-	def show
+  def show
     @center = Center.find(params[:id])
-	end
+  end
 
 end

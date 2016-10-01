@@ -1,0 +1,16 @@
+nav.navbar
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed aria-expanded='false' data-target='#navbar-collapse-1' data-toggle='collapse' type='button'
+        span.sr-only Toggle Navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to '', '#', class: 'navbar-brand'
+
+    #navbar-collapse-1.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li = link_to 'Home', '#'
+
+      ul.nav.navbar-nav.navbar-right
+

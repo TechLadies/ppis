@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  target_group: one
+  volunteer: one
+
+two:
+  target_group: two
+  volunteer: two

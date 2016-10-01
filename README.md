@@ -41,6 +41,44 @@ Start the application server.
 
 Access the application at [http://localhost:3000/](http://localhost:3000/).
 
+## Testing
+
+Run the test suite with [RSpec](https://github.com/rspec/rspec-rails).
+
+    rspec spec/
+
+## Coding Style
+
+We setup some static analyzers to ensure our codes clean and readable. To run all linters, do `rake linter:all`, or individually as follow:
+
+1. Ruby - [Rubocop](https://github.com/bbatsov/rubocop)
+
+    ```bash
+    # Run rubocop
+    bundle exec rubocop
+    ```
+
+2. CoffeeScript - [CoffeeLint](http://www.coffeelint.org)
+
+    ```bash
+    # Run coffeelint
+    coffeelint .
+    ```
+
+3. Slim - [Slim-Lint](https://github.com/sds/slim-lint)
+
+    ```bash
+    # Run slim-lint
+    slim-lint .
+    ```
+
+4. SCSS - [SCSS-Lint](https://github.com/brigade/scss-lint)
+
+    ```bash
+    # Run scss-lint
+    scss-lint
+    ```
+
 ## Branch Policy
 
 Local development branch naming:

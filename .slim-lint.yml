@@ -1,0 +1,6 @@
+exclude:
+  - 'lib/templates/slim/**/*.slim'
+
+linters:
+  LineLength:
+    enabled: false

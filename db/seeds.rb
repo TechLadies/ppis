@@ -1,5 +1,5 @@
 files = [
-  
+  'availabilities'
 ]
 
 files.each do |file|

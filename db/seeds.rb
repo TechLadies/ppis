@@ -1,7 +1,7 @@
 files = [
-  'availabilities'
+  'availabilities',
+  'centers'
 ]
-
 files.each do |file|
   if file.singularize.camelize.constantize.count < 1
     puts "File: #{file}"

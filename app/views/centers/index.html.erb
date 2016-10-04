@@ -1,0 +1,11 @@
+<h2>Existing List of PPIS Centers</h2>
+<table border="1px">
+<tbody>
+<% @centers.each do |center| %>
+  <tr>
+    <td id="center_name"><%= center.name %></td>
+    <td id="details"><%= link_to 'Details', center %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>

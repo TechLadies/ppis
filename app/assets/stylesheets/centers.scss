@@ -3,11 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 a:link {
-  color: orange;
+  color: green;
 }
 
 a:visited {
-  color: grey;
+  color: orange;
 }
 
 a:hover {
@@ -31,37 +31,18 @@ h2 {
   font-family: sans-serif;
   text-align: left;
   font-size: 32px;
-  padding: 15px;
 }
 
-table, th, td {
+table, tr, th, td {
   border-collapse: collapse;
   font-family: sans-serif;
   border: 1px solid black;
-}
-
-
-th { 
   padding: 15px;
   text-align: left;
 }
 
-td {
-  width: 440px;
-  text-align: left;
-}
-
-#center_name {
-  padding: 15px;
-}
-
-#details {
-  width: 60px;
-  text-align: center;
-}
-
-#data {
-  padding: 15px;
+h2, table, button{
+  margin: 10px;
 }
 
 tr:nth-child(even) {

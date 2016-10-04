@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20161001093501) do
     t.index ["volunteer_id"], name: "index_preferred_availabilities_on_volunteer_id", using: :btree
   end
 
+  create_table "preferred_centers", force: :cascade do |t|
+    t.integer  "center_id"
+    t.integer  "volunteer_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["center_id"], name: "index_preferred_centers_on_center_id", using: :btree
+    t.index ["volunteer_id"], name: "index_preferred_centers_on_volunteer_id", using: :btree
+  end
+
   create_table "preferred_target_groups", force: :cascade do |t|
     t.integer  "target_group_id"
     t.integer  "volunteer_id"

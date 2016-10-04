@@ -1,6 +1,6 @@
 <h2>Details of <%= @center.name %></h2>
 
-<table border="1px">
+<table>
   <thead>
   <tr>
     <th>Manager Name</th>
@@ -12,10 +12,18 @@
 
   <tbody>
   <tr>
-    <td id="data"><%= @center.manager_name %></td>
-    <td id="data"><%= @center.email %></td>
-    <td id="data"><%= @center.contact_number %></td>
-    <td id="data"><%= @center.address %></td>
+    <td><%= @center.manager_name %></td>
+    <td><%= @center.email %></td>
+    <td><%= @center.contact_number %></td>
+    <td><%= @center.address %></td>
   </tr>
 </tbody>
 </table>
+
+<button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>

@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20161001093501) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "formal_educations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "preferred_availabilities", force: :cascade do |t|
     t.integer  "availability_id"
     t.integer  "volunteer_id"

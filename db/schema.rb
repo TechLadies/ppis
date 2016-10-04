@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927161252) do
+ActiveRecord::Schema.define(version: 20160927160047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,19 +50,8 @@ ActiveRecord::Schema.define(version: 20160927161252) do
     t.integer  "volunteer_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "preferred_target_groups", force: :cascade do |t|
-    t.integer  "target_group_id"
-    t.integer  "volunteer_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "target_groups", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["availability_id"], name: "index_preferred_availabilities_on_availability_id", using: :btree
+    t.index ["volunteer_id"], name: "index_preferred_availabilities_on_volunteer_id", using: :btree
   end
 
 end

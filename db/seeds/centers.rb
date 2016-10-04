@@ -15,5 +15,5 @@ centers = [
   ["PPIS Child Development Centre – Sembawang (North)", "N", "1@n.com", "63472542", "Blk N"]
 ]
 centers.each do |name, manager_name, email, contact_number, address|
-  Center.create(name: name, manager_name: manager_name, email: email, contact_number: contact_number, address: address)
+  Center.create!(name: name, manager_name: manager_name, email: email, contact_number: contact_number, address: address)
 end

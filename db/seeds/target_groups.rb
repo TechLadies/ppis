@@ -1,5 +1,4 @@
-targetGroups = [
-  "No Preference",
+target_groups = [
   "Children",
   "Youths",
   "Families",

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :volunteers
+  devise_for :volunteers, :controllers => {:registrations => "registrations"}
 
   resources :centers
 

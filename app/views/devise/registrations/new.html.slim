@@ -36,6 +36,9 @@ h2 Sign up
     = f.radio_button :gender, false
 
   div
+    = f.collection_check_boxes :target_group_ids, TargetGroup.all, :id, :name
+
+  div
     = f.label :date_of_birth
     br
     = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}

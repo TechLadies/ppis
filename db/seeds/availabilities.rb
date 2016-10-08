@@ -1,8 +1,10 @@
 availabilities = [
-  "No Constraint",
-  "During Office Hours",
-  "After Office Hours",
-  "Weekends"
+  "Weekdays: Morning",
+  "Weekdays: Afternoon",
+  "Weekdays: Evening"
+  "Weekends: Morning",
+  "Weekends: Afternoon",
+  "Weekends: Evening"
 ]
 
 availabilities.each do |availability|

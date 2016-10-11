@@ -2,7 +2,8 @@ files = [
   'availabilities',
   'centers',
   'formal_educations',
-  'skills'
+  'skills',
+  'target_groups'
 ]
 
 files.each do |file|

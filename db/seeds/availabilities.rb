@@ -1,7 +1,7 @@
 availabilities = [
   "Weekdays: Morning",
   "Weekdays: Afternoon",
-  "Weekdays: Evening"
+  "Weekdays: Evening",
   "Weekends: Morning",
   "Weekends: Afternoon",
   "Weekends: Evening"

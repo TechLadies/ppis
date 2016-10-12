@@ -16,7 +16,7 @@ h2 Edit your details
 
   - if devise_mapping.confirmable? && resource.pending_reconfirmation? 
     div
-      Currently waiting confirmation for: - resource.unconfirmed_email 
+    |  Currently waiting confirmation for: - resource.unconfirmed_email 
   
   div
     = f.label :mobile
@@ -39,7 +39,7 @@ h2 Edit your details
     = f.collection_check_boxes :skill_ids, Skill.all, :id, :name
 
   div
-    =f.label :other_talents
+    = f.label :other_talents
     br
     = f.text_area :other_talents
 
@@ -53,9 +53,9 @@ h2 Edit your details
     p 
       |(leave blank if you don't want to change it)
     = f.password_field :password, autocomplete: "off" 
-    - if @minimum_password_length 
+      - if @minimum_password_length 
     em
-        = "(#{@minimum_password_length} characters minimum)"    
+      | (#{@minimum_password_length} characters minimum)   
 
   div
     = f.label :password_confirmation 
@@ -64,7 +64,6 @@ h2 Edit your details
 
   div 
     = f.label :current_password  
-    i
     p 
       | (we need your current password to confirm your changes)
     = f.password_field :current_password, autocomplete: "off" 
@@ -72,8 +71,6 @@ h2 Edit your details
   .actions
     = f.submit "Update" 
   
-
-
 h3 Cancel my account
 
 p Unhappy? 

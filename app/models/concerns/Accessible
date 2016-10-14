@@ -1,0 +1,16 @@
+module Accessible
+  extend ActiveSupport::Concern
+
+  protected
+
+  def check_user
+    flash.clear
+    if current_admin
+      redirect_to(rails_admin.dashboard_path) && return
+    elsif current_volunteer
+      redirect_to(authenticated_volunteer_root_path) && return
+    elsif current_staff
+     redirect_to(authenticated_staff_root_path) && return
+    end
+  end
+end

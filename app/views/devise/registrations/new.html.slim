@@ -32,13 +32,18 @@ h2 Sign up
     = f.label 'Female'
     = f.radio_button :gender, true
 
-    = f.label "Male"
+    = f.label 'Male'
     = f.radio_button :gender, false
 
   div
     = f.label :date_of_birth
     br
     = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}
+
+  div
+    = f.label :'Highest Education'
+    br
+    = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true
 
   div
     = f.label :mobile

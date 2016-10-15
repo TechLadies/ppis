@@ -1,3 +1,3 @@
 class HighestEducation < ApplicationRecord
-  belongs_to :formal_education
+  belongs_to :volunteer
 end

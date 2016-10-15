@@ -11,6 +11,6 @@ class Volunteer < ApplicationRecord
   has_many :preferred_centers
   has_many :centers, through: :preferred_centers
   has_one :highest_education
-  has_many :formal_educations, through: :highest_education
+  has_one :formal_education, through: :highest_education
 
 end

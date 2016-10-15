@@ -41,11 +41,6 @@ h2 Sign up
     = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}
 
   div
-    = f.label :'Highest Education'
-    br
-    = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true
-
-  div
     = f.label :mobile
     br
     = f.telephone_field :mobile
@@ -54,6 +49,11 @@ h2 Sign up
     = f.label :profession
     br
     = f.text_field :profession
+
+  div
+    = f.label :'Highest Education'
+    br
+    = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true
 
   div
     = f.label :'Preferred Centers'

@@ -3,8 +3,8 @@
 #= require jquery-ui
 #= require jquery_ujs
 #= require bootstrap-sprockets
-#   zxczxcxcz = require bootstrap-slider
-# dfsdfsd fs  = require_tree ./common
+#= require bootstrap-slider
+#= require_tree ./common
 
 window.PPIS ||= {}
 PPIS.Views ||= {}

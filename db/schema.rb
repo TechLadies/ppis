@@ -53,15 +53,6 @@ ActiveRecord::Schema.define(version: 20161016160253) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "highest_educations", force: :cascade do |t|
-    t.integer  "volunteer_id"
-    t.integer  "formal_education_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["formal_education_id"], name: "index_highest_educations_on_formal_education_id", using: :btree
-    t.index ["volunteer_id"], name: "index_highest_educations_on_volunteer_id", using: :btree
-  end
-
   create_table "preferred_availabilities", force: :cascade do |t|
     t.integer  "availability_id"
     t.integer  "volunteer_id"

@@ -1,0 +1,39 @@
+= form_for(center) do |f|
+  - if center.errors.any?
+    #error_explanation
+      h2
+        = pluralize(center.errors.count, "error")
+        | prohibited this center from being saved:
+
+      ul
+        - center.errors.full_messages.each do |message|
+          li= message
+
+  .field
+    = f.label :name
+    br
+    = f.text_field :name
+
+  .field
+    = f.label :manager_name
+    br
+    = f.text_field :manager_name
+
+  .field
+    = f.label :email
+    br
+    = f.text_field :email
+
+  .field
+    = f.label :contact_number
+    br
+    = f.telephone_field :contact_number
+
+  .field
+    = f.label :address
+    br
+    = f.text_area :address
+
+  .actions
+    = f.submit
+

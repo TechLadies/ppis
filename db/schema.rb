@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016160253) do
+ActiveRecord::Schema.define(version: 20161014113051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "email",              default: "", null: false
+    t.string   "encrypted_password", default: "", null: false
+    t.integer  "sign_in_count",      default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.integer  "failed_attempts",    default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
 
   create_table "availabilities", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +51,15 @@ ActiveRecord::Schema.define(version: 20161016160253) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "highest_educations", force: :cascade do |t|
+    t.integer  "volunteer_id"
+    t.integer  "formal_education_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["formal_education_id"], name: "index_highest_educations_on_formal_education_id", using: :btree
+    t.index ["volunteer_id"], name: "index_highest_educations_on_volunteer_id", using: :btree
   end
 
   create_table "preferred_availabilities", force: :cascade do |t|
@@ -95,6 +119,11 @@ ActiveRecord::Schema.define(version: 20161016160253) do
     t.string   "profession"
     t.text     "other_talents"
     t.text     "about_me"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_volunteers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_volunteers_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_volunteers_on_reset_password_token", unique: true, using: :btree
   end

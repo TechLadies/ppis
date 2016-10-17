@@ -14,6 +14,4 @@ files.each do |file|
   else
     puts "Skipping File: #{file}"
   end
-
-
 end

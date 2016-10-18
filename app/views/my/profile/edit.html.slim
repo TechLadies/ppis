@@ -31,7 +31,8 @@ h2 Edit your details #{current_volunteer.name}
   div
     = f.label :'Highest Education'
     br
-    = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true
+
+    = f.collection_select :highest_education_ids, FormalEducation.all, :id, :name, prompt: true
 
   div
     = f.label :'Preferred Center(s)'
@@ -45,6 +46,7 @@ h2 Edit your details #{current_volunteer.name}
 
   div
     = f.label :'Preferred Availability(s)'
+    br
     = f.collection_check_boxes :availability_ids, Availability.all, :id, :name
 
 
@@ -63,26 +65,6 @@ h2 Edit your details #{current_volunteer.name}
     br
     = f.text_area :about_me
 
-  div
-    = f.label :password 
-    p 
-      |(leave blank if you don't want to change it)
-    = f.password_field :password, autocomplete: "off" 
-      - if @minimum_password_length 
-    em
-      | (#{@minimum_password_length} characters minimum)   
-
-  div
-    = f.label :password_confirmation 
-    br
-    = f.password_field :password_confirmation, autocomplete: "off" 
-
-  div 
-    = f.label :current_password  
-    p 
-      | (we need your current password to confirm your changes)
-    = f.password_field :current_password, autocomplete: "off" 
-  
   .actions
     = f.submit "Update" 
   

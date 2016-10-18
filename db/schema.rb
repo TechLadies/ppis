@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 20161018113305) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "certifications_volunteers", force: :cascade do |t|
+    t.integer  "certification_id"
+    t.integer  "volunteer_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["certification_id"], name: "index_certifications_volunteers_on_certification_id", using: :btree
+    t.index ["volunteer_id"], name: "index_certifications_volunteers_on_volunteer_id", using: :btree
+  end
+
   create_table "formal_educations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

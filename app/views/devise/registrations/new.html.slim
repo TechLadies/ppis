@@ -56,6 +56,11 @@ h2 Sign up
     = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true
 
   div
+    = f.label :'Certifications'
+    br
+    = f.collection_select :certification_ids, Certification.all, :id, :name, prompt: true
+
+  div
     = f.label :'Preferred Center(s)'
     br
     = f.collection_check_boxes :center_ids, Center.all, :id, :name

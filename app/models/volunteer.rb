@@ -14,5 +14,6 @@ class Volunteer < ApplicationRecord
   has_many :availabilities, through: :preferred_availabilities
   has_one :highest_education
   has_one :formal_education, through: :highest_education
+  has_many :certifications, through: :certifications_volunteers
 
 end

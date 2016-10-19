@@ -1,7 +1,7 @@
 files = [
   'availabilities',
   'centers',
-  'certifications'
+  'certifications',
   'formal_educations',
   'skills',
   'target_groups',

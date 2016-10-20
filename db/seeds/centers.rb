@@ -18,7 +18,7 @@ centers = [
     "Blk 1 Eunos Crescent #01-2509 Singapore 400001"],
   ["PPIS Vista Sakinah", "Fazlinda Faroo (CM)", "vistasakinah@ppis.sg", "6891 3090", "6891 3295",
     "Blk 549 Woodlands Drive 44 #01-86 Singapore 730549"],
-  ["PPIS Child Development Centre – Bedok Reservoir", "-", "brc@ppis.sg", "6243 3468", "6243 1558"
+  ["PPIS Child Development Centre – Bedok Reservoir", "-", "brc@ppis.sg", "6243 3468", "6243 1558",
     "Blk 709 Bedok Reservoir Road #01-3854 Singapore 470709"],
   ["PPIS Child Development Centre – Bukit Batok", "Zulaihabe Talip (Snr P)", "bbc@ppis.sg", "6467 8958", "6466 7514",
     "21 Bukit Batok East Ave 6 Singapore 659759"],
@@ -28,7 +28,7 @@ centers = [
     "Blk 557 Pasir Ris St 51 #01-201 Singapore 510557"],
   ["PPIS Child Development Centre – Pasir Ris 2", "Noor Jamariah (P)", "prc2@ppis.sg", "6582 0697", "6581 4829", 
     "Blk 187 Pasir Ris St 11 #01-88 Singapore 510187"],
-  ["PPIS Child Development Centre – Sembawang", "Nur Hidayah Jamari (P)", "sbv@ppis.sg", "63472542", "6754 3071"
+  ["PPIS Child Development Centre – Sembawang", "Nur Hidayah Jamari (P)", "sbv@ppis.sg", "6347 2542", "6754 3071",
     "Blk 316 Sembawang Vista #01-191 Singapore 750316"]
 ]
 centers.each do |name, manager_name, email, contact_number, fax_number, address|

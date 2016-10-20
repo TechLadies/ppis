@@ -11,4 +11,11 @@ header.main-header
       span.sr-only Toggle navigation
 
     .navbar-custom-menu
-      ul.nav.navbar-nav
+      ul.nav.navbar-nav.navbar-right
+        - if volunteer_signed_in?
+          li = link_to "Sign out", destroy_volunteer_session_path, method: :delete
+        - elsif admin_signed_in?
+          li = link_to "Sign out", destroy_admin_session_path, method: :delete
+        -  else
+          li = link_to "Sign in", new_volunteer_session_path
+          li = link_to "Sign up", new_volunteer_registration_path

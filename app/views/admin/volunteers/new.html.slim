@@ -1,6 +1,6 @@
 h2 Sign up
 
-= form_for :volunteer do |f|
+= form_for [:admin, @volunteer] do |f|
   div
     = f.label :name
     br

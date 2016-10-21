@@ -8,9 +8,6 @@ Rails.application.routes.draw do
 
     resources :volunteers
 
-    get :admin_volunteers_new, to: 'admin/volunteers#new'
-    get :admin_volunteer, to: 'admin/volunteers#show'
-
     root to: 'dashboard#index'
   end
 

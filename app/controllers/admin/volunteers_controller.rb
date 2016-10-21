@@ -1,9 +1,8 @@
 class Admin::VolunteersController < Admin::BaseController
-  
-  def show
-    @volunteer = Volunteer.find(params[:id])
-  end
 
+  def index
+    @volunteer = Volunteer.all
+  
   def new
     @volunteer = Volunteer.new
   end
@@ -12,11 +11,35 @@ class Admin::VolunteersController < Admin::BaseController
     @volunteer = Volunteer.new(params[:id])
 
     if @volunteer.save
-        redirect_to admin_volunteer_path
+        redirect_to admin_volunteer_show_path
     else
       render :action =>'new'
     end
   end
+
+  def edit
+    @volunteer = Volunteer.find(params[:id])
+  end
+
+  def update
+    @volunteer = Volunteer.find(params[:id])
+    if @volunteer.update_attributes(params [:post])
+      redirect_to admin_volunteer_path
+    else
+      render :action => :edit
+    end
+  end
+
+  def destory
+    @volunteer = Volunteer.find(params[:id])
+    @volunteer.destroy
+    redirect_to admin_volunteer_path
+  end
+
+  def show
+    @volunteer = Volunteer.find(params[:id])
+  end
+  
 
   def Volunteer_params
     params.require(:volunteer).permit(:name, :gender, :"date_of_birth(3i)", :"date_of_birth(2i)", :"date_of_birth(1i)",

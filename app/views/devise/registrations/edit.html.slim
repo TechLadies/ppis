@@ -29,12 +29,27 @@ h2 Edit your details #{current_volunteer.name}
     = f.text_field :profession
 
   div
-    = f.label :'Preferred Taget Group'
+    = f.label :'Highest Education'
+    br
+    = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true
+
+  div
+    = f.label :'Preferred Center(s)'
+    br
+    = f.collection_check_boxes :center_ids, Center.all, :id, :name
+
+  div
+    = f.label :'Preferred Target Group(s)'
     br
     = f.collection_check_boxes :target_group_ids, TargetGroup.all, :id, :name
 
   div
-    = f.label :'Skills you can offer'
+    = f.label :'Preferred Availability(s)'
+    = f.collection_check_boxes :availability_ids, Availability.all, :id, :name
+
+
+  div
+    = f.label :'Skill(s) you can offer'
     br
     = f.collection_check_boxes :skill_ids, Skill.all, :id, :name
 

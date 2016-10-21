@@ -2,6 +2,7 @@ class Admin::VolunteersController < Admin::BaseController
 
   def index
     @volunteer = Volunteer.all
+  end
   
   def new
     @volunteer = Volunteer.new
@@ -11,7 +12,7 @@ class Admin::VolunteersController < Admin::BaseController
     @volunteer = Volunteer.new(params[:id])
 
     if @volunteer.save
-        redirect_to admin_volunteer_show_path
+      redirect_to admin_volunteer_show_path
     else
       render :action =>'new'
     end
@@ -46,5 +47,4 @@ class Admin::VolunteersController < Admin::BaseController
       :mobile, :profession, :other_talents, :about_me, :email, :password, :password_confirmation,
       target_group_ids: [], availability_ids: [], skill_ids: [], center_ids: [], formal_education_ids: [])
   end
-
 end

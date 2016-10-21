@@ -1,0 +1,91 @@
+h2 Sign up
+
+= form_for :volunteer do |f|
+  div
+    = f.label :name
+    br
+    = f.text_field :name, autofocus: true
+
+  .field
+    = f.label :email
+    br
+    = f.email_field :email
+
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      em
+        = "(#{@minimum_password_length} characters minimum)"
+    br
+    = f.password_field :password, autocomplete: "off"
+
+  .field
+    = f.label :password_confirmation
+    br
+    = f.password_field :password_confirmation, autocomplete: "off"
+
+  div
+    = f.label :gender
+    br
+    = f.label 'Female'
+    = f.radio_button :gender, true
+
+    = f.label 'Male'
+    = f.radio_button :gender, false
+
+  div
+    = f.label :date_of_birth
+    br
+    = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}
+
+  div
+    = f.label :mobile
+    br
+    = f.telephone_field :mobile
+
+  div
+    = f.label :profession
+    br
+    = f.text_field :profession
+
+  div
+    = f.label :'Highest Education'
+    br
+    = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true
+
+  div
+    = f.label :'Preferred Centers'
+    br
+    = f.collection_check_boxes :center_ids, Center.all, :id, :name
+
+  div
+    = f.label :'Preferred Target Group'
+    br
+    = f.collection_check_boxes :target_group_ids, TargetGroup.all, :id, :name
+
+  div
+    = f.label :'Preferred Availability'
+    = f.collection_check_boxes :availability_ids, Availability.all, :id, :name
+
+  div
+    = f.label :'Skills you can offer'
+    br
+    = f.collection_check_boxes :skill_ids, Skill.all, :id, :name
+
+  div
+    =f.label :other_talents
+    br
+    = f.text_area :other_talents
+
+  div
+    =f.label :about_me
+    br
+    = f.text_area :about_me
+
+
+  -if @volunteer.new_record?
+    = f.submit "Create Account"
+  -else
+    = f.submit "Update Account"
+      
+  = link_to "Cancel", admin_root_path

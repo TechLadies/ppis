@@ -110,6 +110,15 @@ ActiveRecord::Schema.define(version: 20161018113305) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "skills_volunteers", force: :cascade do |t|
+    t.integer  "skill_id"
+    t.integer  "volunteer_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["skill_id"], name: "index_skills_volunteers_on_skill_id", using: :btree
+    t.index ["volunteer_id"], name: "index_skills_volunteers_on_volunteer_id", using: :btree
+  end
+
   create_table "target_groups", force: :cascade do |t|
     t.string "name"
   end

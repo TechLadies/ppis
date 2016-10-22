@@ -32,6 +32,12 @@ centers = [
     "Blk 316 Sembawang Vista #01-191 Singapore 750316"]
 ]
 centers.each do |name, manager_name, email, contact_number, fax_number, address|
-  Center.create!(name: name, manager_name: manager_name, email: email, contact_number: contact_number, 
-    fax_number: fax_number, address: address)
+  Center.create!(
+    name: name,
+    manager_name: manager_name,
+    email: email,
+    contact_number: contact_number,
+    fax_number: fax_number,
+    address: address
+  )
 end

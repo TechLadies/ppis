@@ -1,5 +1,5 @@
 class CentersController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update]
+
   before_action :authenticate_user!
 
   def index
@@ -7,7 +7,7 @@ class CentersController < ApplicationController
   end
 
   def show
-    @center = Center.find(params[:id])
+    @center = find_center
   end
 
   def new
@@ -18,16 +18,17 @@ class CentersController < ApplicationController
     @center = Center.new(center_params)
     if @center.save
       redirect_to @center
-
     else
       render 'new'
     end
   end
 
   def edit
+    @center = find_center
   end
 
   def update
+    @center = find_center
     if @center.update(center_params)
       redirect_to @center
     else
@@ -38,7 +39,7 @@ class CentersController < ApplicationController
   private
 
   def find_center
-    @center = Center.find(params[:id])
+    Center.find(params[:id])
   end
 
   def center_params

@@ -64,9 +64,29 @@ h2 Edit your details #{current_volunteer.name}
     =f.label :about_me
     br
     = f.text_area :about_me
+    
+  div
+    = f.label :password
+    p
+     |(leave blank if you don't want to change it)
+    = f.password_field :password, autocomplete: "off"
+       - if @minimum_password_length
+    em
+     | (#{@minimum_password_length} characters minimum)
+
+   div
+     = f.label :password_confirmation
+     br
+     = f.password_field :password_confirmation, autocomplete: "off"
+
+   div
+     = f.label :current_password
+     p
+       | (we need your current password to confirm your changes)
+     = f.password_field :current_password, autocomplete: "off"
 
   .actions
-    = f.submit "Update" 
+    = f.submit "Update"
   
 h3 Cancel my account
 

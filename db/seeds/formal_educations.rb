@@ -12,5 +12,5 @@ formal_educations = [
 ]
 
 formal_educations.each do |education|
-  FormalEducation.create(name: education)
+  FormalEducation.create!(name: education)
 end

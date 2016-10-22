@@ -23,5 +23,5 @@ skills = [
   "Other"
 ]
 skills.each do |name|
-  Skill.create(name: name)
+  Skill.create!(name: name)
 end

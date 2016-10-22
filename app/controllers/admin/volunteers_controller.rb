@@ -11,7 +11,7 @@ class Admin::VolunteersController < Admin::BaseController
   def create
     @volunteer = Volunteer.new(volunteer_params)
 
-    if @volunteer.save
+    if @volunteer.save(@volunteer)
       redirect_to admin_volunteer_path
     else
       render :action =>'new'

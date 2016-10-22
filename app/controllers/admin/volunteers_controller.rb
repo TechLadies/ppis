@@ -19,11 +19,11 @@ class Admin::VolunteersController < Admin::BaseController
   end
 
   def edit
-    @volunteer = Volunteer.find_volunteer
+    @volunteer = find_volunteer
   end
 
   def update
-    @volunteer = Volunteer.find_volunteer
+    @volunteer = find_volunteer
     if @volunteer.update_attributes(params [:post])
       redirect_to admin_volunteer_path
     else
@@ -32,7 +32,7 @@ class Admin::VolunteersController < Admin::BaseController
   end
 
   def show
-    @volunteer = Volunteer.find_volunteer
+    @volunteer = find_volunteer
   end
   
   private

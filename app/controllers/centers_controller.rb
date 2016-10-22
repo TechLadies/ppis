@@ -3,11 +3,11 @@ class CentersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-   @centers = Center.all
+    @centers = Center.all
   end
 
   def show
-   @center = Center.find(params[:id])
+    @center = Center.find(params[:id])
   end
 
   def new
@@ -35,7 +35,7 @@ class CentersController < ApplicationController
     end
   end
 
-  private 
+  private
 
   def find_center
     @center = Center.find(params[:id])

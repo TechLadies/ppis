@@ -13,10 +13,11 @@ nav.navbar
         li = link_to 'Home', '#'
 
       ul.nav.navbar-nav.navbar-right
+        - if admin_signed_in?
+          li = link_to "Sign out", destroy_admin_session_path, method: :delete
+
         - if volunteer_signed_in?
           li = link_to "Sign out", destroy_volunteer_session_path, method: :delete
-        - elsif admin_signed_in?
-          li = link_to "Sign out", destroy_admin_session_path, method: :delete
         -  else
           li = link_to "Sign in", new_volunteer_session_path
           li = link_to "Sign up", new_volunteer_registration_path

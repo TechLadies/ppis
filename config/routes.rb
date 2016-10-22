@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :admins
-  devise_for :volunteers, :controllers => {:registrations => "registrations"}
+  devise_for :volunteers, :controllers => { :registrations => "registrations" }
 
   namespace :admin do
     get :dashboard, to: 'dashboard#index'

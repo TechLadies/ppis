@@ -6,6 +6,7 @@ html lang='en'
     meta name='viewport' content='width=device-width, initial-scale=1'
     title PPIS
     = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
 
   body*app_data class=body_css_class
     #messages

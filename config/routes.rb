@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
+    get :dashboard, to: 'dashboard#index'
 
+    root to: 'dashboard#index'
   end
 
   resources :centers

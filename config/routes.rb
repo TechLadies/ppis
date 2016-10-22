@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get :dashboard, to: 'dashboard#index'
 
-    resources :volunteers
+    resources :volunteers, only: [:index, :create, :new, :edit, :show, :update]
 
     root to: 'dashboard#index'
   end

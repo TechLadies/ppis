@@ -1,5 +1,9 @@
 h2 list of volunteers
-table border="1px" 
+table.table.table-bordered.table-hover.dataTable
+  thead
+    tr
+      th.sorting_asc Name
+      
   tbody
     - @volunteer.each do |volunteer|
       tr

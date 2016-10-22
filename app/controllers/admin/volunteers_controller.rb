@@ -19,11 +19,11 @@ class Admin::VolunteersController < Admin::BaseController
   end
 
   def edit
-    @volunteer = Volunteer.find(params[:id])
+    @volunteer = Volunteer.find_volunteer
   end
 
   def update
-    @volunteer = Volunteer.find(params[:id])
+    @volunteer = Volunteer.find_volunteer
     if @volunteer.update_attributes(params [:post])
       redirect_to admin_volunteer_path
     else
@@ -32,11 +32,14 @@ class Admin::VolunteersController < Admin::BaseController
   end
 
   def show
-    @volunteer = Volunteer.find(params[:id])
+    @volunteer = Volunteer.find_volunteer
   end
   
   private
 
+  def find_volunteer
+    Volunteer.find(params[:id])
+  end
 
   def volunteer_params
     params.require(:volunteer).permit(:name, :gender, :"date_of_birth(3i)", :"date_of_birth(2i)", :"date_of_birth(1i)",

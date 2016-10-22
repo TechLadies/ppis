@@ -1,0 +1,7 @@
+= javascript_include_tag :admin
+= yield :additional_js
+
+javascript:
+  $(document).ready(function () {
+    PPIS.init()
+  });

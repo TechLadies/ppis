@@ -58,7 +58,7 @@ h2 Sign up
   div
     = f.label :'Certifications'
     br
-    = f.collection_select :certification_ids, Certification.all, :id, :name, prompt: true
+    = f.collection_check_boxes :certification_ids, Certification.all, :id, :name, prompt: true
 
   div
     = f.label :'Preferred Center(s)'

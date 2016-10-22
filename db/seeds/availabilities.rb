@@ -8,6 +8,6 @@ availabilities = [
 ]
 
 availabilities.each do |availability|
-  Availability.create(name: availability)
+  Availability.create!(name: availability)
 end
 

@@ -10,5 +10,5 @@ certifications = [
 ]
 
 certifications.each do |certification|
-  Certification.create(name: certification)
+  Certification.create!(name: certification)
 end

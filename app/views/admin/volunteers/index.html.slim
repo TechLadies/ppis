@@ -3,9 +3,19 @@ table.table.table-bordered.table-hover.dataTable
   thead
     tr
       th.sorting_asc Name
+      th email
+      th Profession
+      th Skills
+      th Certification
+      th Other Talents
       
   tbody
     - @volunteer.each do |volunteer|
       tr
         td = volunteer.name
+        td = volunteer.email
+        td = volunteer.profession
+        td = volunteer.skills_volunteer_ids
+        td = volunteer.certifications_volunteer_ids
+        td = volunteer.other_talents
       

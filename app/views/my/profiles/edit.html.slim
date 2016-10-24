@@ -1,7 +1,7 @@
 h2 Edit your details #{current_volunteer.name}
 
 
-= form_for @profile, as: :profile, url: edit_my_profile_path, method: :patch do |f| 
+= form_for @profile, as: :profile, url: my_profile_path, method: :patch do |f|
 
   div
     = f.label :name
@@ -23,7 +23,7 @@ h2 Edit your details #{current_volunteer.name}
     br
     = f.text_field :profession
 
-  divß
+  div
     = f.label :'Highest Education'
     br
     = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true

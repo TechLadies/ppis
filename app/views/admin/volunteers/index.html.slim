@@ -1,3 +1,5 @@
+h2 = link_to 'Add new volunteer', new_admin_volunteer_path
+
 h2 list of volunteers
 table.table.table-bordered.table-hover.dataTable
   thead
@@ -8,6 +10,8 @@ table.table.table-bordered.table-hover.dataTable
       th Skills
       th Certification
       th Other Talents
+      th Details
+      th Edit
       
   tbody
     - @volunteer.each do |volunteer|
@@ -18,4 +22,6 @@ table.table.table-bordered.table-hover.dataTable
         td = volunteer.skills_volunteer_ids
         td = volunteer.certifications_volunteer_ids
         td = volunteer.other_talents
+        td = link_to 'Details', admin_volunteer_path(volunteer)
+        td = link_to 'Edit', edit_admin_volunteer_path(volunteer)
       

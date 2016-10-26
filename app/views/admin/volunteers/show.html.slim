@@ -1,1 +1,26 @@
 h2 = @volunteer.name
+table.table.table-bordered.table-hover.dataTable
+  thead
+    tr
+      th Gender
+      th Date of Birth
+      th Email
+      th Mobile
+      th Profession
+      th Highest Education
+      th Certification
+      th Other Talents
+      th Edit
+      
+  tbody
+      tr
+        td = @volunteer.gender
+        td = @volunteer.date_of_birth
+        td = @volunteer.email
+        td = @volunteer.mobile
+        td = @volunteer.profession
+        td = @volunteer.skills_volunteer_ids
+        td = @volunteer.certifications_volunteer_ids
+        td = @volunteer.other_talents
+        td = link_to 'Edit', edit_admin_volunteer_path
+      

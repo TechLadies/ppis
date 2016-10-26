@@ -1,0 +1,82 @@
+h2 Edit details of @volunteer.name
+
+= form_for [:admin, @volunteer] do |f| 
+  div
+    = f.label :name
+    br
+    = f.text_field :name, autofocus: true
+
+  .field
+    = f.label :email
+    br
+    = f.email_field :email
+
+  div
+    = f.label :gender
+    br
+    = f.label 'Female'
+    = f.radio_button :gender, true
+
+    = f.label 'Male'
+    = f.radio_button :gender, false
+
+  div
+    = f.label :date_of_birth
+    br
+    = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}
+
+  div
+    = f.label :mobile
+    br
+    = f.telephone_field :mobile
+
+  div
+    = f.label :profession
+    br
+    = f.text_field :profession
+
+  div
+    = f.label :'Highest Education'
+    br
+    = f.collection_select :highest_education, FormalEducation.all, :id, :name, prompt: true
+
+  div
+    = f.label :'Preferred Centers'
+    br
+    = f.collection_check_boxes :center_ids, Center.all, :id, :name
+
+  div
+    = f.label :'Preferred Target Group'
+    br
+    = f.collection_check_boxes :target_group_ids, TargetGroup.all, :id, :name
+
+  div
+    = f.label :'Preferred Availability'
+    br
+    = f.collection_check_boxes :availability_ids, Availability.all, :id, :name
+  
+  div
+    = f.label :'Certifications'
+    br
+    = f.collection_check_boxes :certification_ids, Certification.all, :id, :name
+
+  div
+    = f.label :'Skills you can offer'
+    br
+    = f.collection_check_boxes :skill_ids, Skill.all, :id, :name
+
+  div
+    =f.label :other_talents
+    br
+    = f.text_area :other_talents
+
+  div
+    =f.label :about_me
+    br
+    = f.text_area :about_me
+
+  .actions
+    = f.submit
+  
+div
+  = link_to 'Back', :back 

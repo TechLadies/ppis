@@ -10,8 +10,7 @@ class Admin::VolunteersController < Admin::BaseController
 
   def create
     @volunteer = Volunteer.new(volunteer_params)
-
-    if @volunteer.save(@volunteer)
+    if @volunteer.save
       redirect_to admin_volunteer_path
     else
       render :action =>'new'
@@ -24,7 +23,7 @@ class Admin::VolunteersController < Admin::BaseController
 
   def update
     @volunteer = find_volunteer
-    if @volunteer.update_attributes(params [:post])
+    if @volunteer.update_attributes(volunteer_params)
       redirect_to admin_volunteer_path
     else
       render :action => :edit

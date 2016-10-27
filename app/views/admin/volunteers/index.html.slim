@@ -19,9 +19,8 @@ table.table.table-bordered.table-hover.dataTable
         td = volunteer.name
         td = volunteer.email
         td = volunteer.profession
-        td = volunteer.skills_volunteer_ids
-        td = volunteer.certifications_volunteer_ids
+        td = volunteer.skills.map(&:name).to_sentence
+        td = volunteer.certifications.map(&:name).to_sentence
         td = volunteer.other_talents
         td = link_to 'Details', admin_volunteer_path(volunteer)
         td = link_to 'Edit', edit_admin_volunteer_path(volunteer)
-      

@@ -3,7 +3,7 @@ class Admin::VolunteersController < Admin::BaseController
   def index
     @volunteer = Volunteer.all
   end
-  
+
   def new
     @volunteer = Volunteer.new
   end
@@ -28,6 +28,7 @@ class Admin::VolunteersController < Admin::BaseController
     if @volunteer.update_attributes(volunteer_params)
       redirect_to admin_volunteers_path
     else
+      flash[:error] = @volunteer.errors.full_messages.to_sentence
       render 'edit'
     end
   end
@@ -35,7 +36,7 @@ class Admin::VolunteersController < Admin::BaseController
   def show
     @volunteer = find_volunteer
   end
-  
+
   private
 
   def find_volunteer

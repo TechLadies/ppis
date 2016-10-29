@@ -22,4 +22,6 @@ class Volunteer < ApplicationRecord
   has_many :skills_volunteers
   has_many :skills, through: :skills_volunteers
 
+  validates :name, presence: true
+
 end

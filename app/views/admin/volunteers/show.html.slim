@@ -1,26 +1,33 @@
 h2 = @volunteer.name
-table.table.table-bordered.table-hover.dataTable
-  thead
-    tr
-      th Gender
-      th Date of Birth
-      th Email
-      th Mobile
-      th Profession
-      th Highest Education
-      th Certification
-      th Other Talents
-      th Edit
-      
-  tbody
-      tr
-        td = @volunteer.gender
-        td = @volunteer.date_of_birth
-        td = @volunteer.email
-        td = @volunteer.mobile
-        td = @volunteer.profession
-        td = @volunteer.skills.map(&:name).to_sentence
-        td = @volunteer.certifications.map(&:name).to_sentence
-        td = @volunteer.other_talents
-        td = link_to 'Edit', edit_admin_volunteer_path
-      
+
+ul.nav.nav-tabs
+  li.active
+    a Personal Details
+  li
+    a Events
+
+- decorate(@volunteer) do |decorated_volunteer|
+  dl.volunteer-details
+    dt Gender
+    dd = decorated_volunteer.gender
+    dt Date of Birth
+    dd = decorated_volunteer.date_of_birth
+    dt Email
+    dd = decorated_volunteer.email
+    dt Mobile
+    dd = decorated_volunteer.mobile
+    dt Profession
+    dd = decorated_volunteer.profession
+    dt Highest Education
+    dd = decorated_volunteer.formal_education
+    dt Skills
+    dd = decorated_volunteer.skills
+    dt Certification
+    dd = decorated_volunteer.certifications
+    dt Target Groups
+    dd = decorated_volunteer.target_groups
+    dt Other Talents
+    dd = decorated_volunteer.other_talents
+
+
+= link_to 'Edit', edit_admin_volunteer_path

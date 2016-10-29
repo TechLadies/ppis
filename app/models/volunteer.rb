@@ -24,4 +24,6 @@ class Volunteer < ApplicationRecord
 
   validates :name, presence: true
 
+  enum gender: [:male, :female]
+
 end

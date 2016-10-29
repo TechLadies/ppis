@@ -1,11 +1,4 @@
 class My::ProfilesController < My::BaseController
- before_action :authenticate_volunteer!
-
-  def index
-  end
-
-  def show
-  end
 
   def edit
     @profile = current_volunteer

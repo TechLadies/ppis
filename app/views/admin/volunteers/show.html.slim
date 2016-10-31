@@ -1,0 +1,33 @@
+h2 = @volunteer.name
+
+ul.nav.nav-tabs
+  li.active
+    a Personal Details
+  li
+    a Events
+
+- decorate(@volunteer) do |decorated_volunteer|
+  dl.volunteer-details
+    dt Gender
+    dd = decorated_volunteer.gender
+    dt Date of Birth
+    dd = decorated_volunteer.date_of_birth
+    dt Email
+    dd = decorated_volunteer.email
+    dt Mobile
+    dd = decorated_volunteer.mobile
+    dt Profession
+    dd = decorated_volunteer.profession
+    dt Highest Education
+    dd = decorated_volunteer.formal_education
+    dt Skills
+    dd = decorated_volunteer.skills
+    dt Certification
+    dd = decorated_volunteer.certifications
+    dt Target Groups
+    dd = decorated_volunteer.target_groups
+    dt Other Talents
+    dd = decorated_volunteer.other_talents
+
+
+= link_to 'Edit', edit_admin_volunteer_path

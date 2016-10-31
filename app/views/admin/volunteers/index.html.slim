@@ -1,0 +1,25 @@
+.pull-right
+  = link_to 'Add new volunteer', new_admin_volunteer_path, class: 'btn btn-primary'
+
+h2 list of volunteers
+table.table.table-bordered.table-hover
+  thead
+    tr
+      th Name
+      th email
+      th Profession
+      th Skills
+      th Certification
+      th Other Talents
+      th
+
+  tbody
+    - @volunteer.each do |volunteer|
+      tr
+        td = link_to volunteer.name, admin_volunteer_path(volunteer)
+        td = volunteer.email
+        td = volunteer.profession
+        td = volunteer.skills.map(&:name).to_sentence
+        td = volunteer.certifications.map(&:name).to_sentence
+        td = volunteer.other_talents
+        td = link_to 'Edit', edit_admin_volunteer_path(volunteer), class: 'btn btn-primary'

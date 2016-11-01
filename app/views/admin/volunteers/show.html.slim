@@ -1,3 +1,6 @@
+h1 = if @volunteer.deleted_at
+    Account Inactive
+
 h2 = @volunteer.name
 
 ul.nav.nav-tabs
@@ -34,6 +37,5 @@ ul.nav.nav-tabs
     dd = decorated_volunteer.other_talents
     dt About me
     dd = decorated_volunteer.about_me
-
 
 = link_to 'Edit', edit_admin_volunteer_path

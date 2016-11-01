@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< cdebb771376f37ddc926d14be1a36fae6102db84
-ActiveRecord::Schema.define(version: 20161029023210) do
-=======
 ActiveRecord::Schema.define(version: 20161031090144) do
->>>>>>> Remove table highest_educations from volunteers, add highest_education_id to volunteers, change association between volunteer and formal_education
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,14 +137,16 @@ ActiveRecord::Schema.define(version: 20161031090144) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "formal_education_id"
     t.integer  "gender",                 default: 1
-    t.string   "highest_education_id"
     t.index ["confirmation_token"], name: "index_volunteers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_volunteers_on_email", unique: true, using: :btree
+    t.index ["formal_education_id"], name: "index_volunteers_on_formal_education_id", using: :btree
     t.index ["reset_password_token"], name: "index_volunteers_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "certifications_volunteers", "certifications"
   add_foreign_key "certifications_volunteers", "volunteers"
   add_foreign_key "preferred_target_groups", "target_groups"
+  add_foreign_key "volunteers", "formal_educations"
 end

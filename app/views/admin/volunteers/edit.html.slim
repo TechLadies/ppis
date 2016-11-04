@@ -15,10 +15,10 @@ h2 Edit volunteer details
     = f.label :gender
     br
     = f.label 'Female'
-    = f.radio_button :gender, 1
+    = f.radio_button :gender, true
 
     = f.label 'Male'
-    = f.radio_button :gender, 0
+    = f.radio_button :gender, false
 
   div
     = f.label :date_of_birth

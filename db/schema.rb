@@ -115,18 +115,18 @@ ActiveRecord::Schema.define(version: 20161031090144) do
   end
 
   create_table "volunteers", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "name"
     t.date     "date_of_birth"
     t.integer  "mobile"
@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(version: 20161031090144) do
     t.string   "unconfirmed_email"
     t.integer  "formal_education_id"
     t.integer  "gender",                 default: 1
+    t.boolean  "email_notification",     default: true
+    t.boolean  "adhoc"
     t.index ["confirmation_token"], name: "index_volunteers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_volunteers_on_email", unique: true, using: :btree
     t.index ["formal_education_id"], name: "index_volunteers_on_formal_education_id", using: :btree

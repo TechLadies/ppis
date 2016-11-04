@@ -19,7 +19,7 @@ class Volunteer < ApplicationRecord
   has_many :target_groups, through: :preferred_target_groups
 
   has_many :skills_volunteers
-  has_many :skills, through: :skills_volunteers
+  has_many :skills, through: :skills_volunteers, :source=>"skill"
 
   validates :name, presence: true
 

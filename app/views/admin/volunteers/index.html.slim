@@ -24,6 +24,6 @@ table.table.table-bordered.table-hover
         td = volunteer.skills.map(&:name).to_sentence
         td = volunteer.certifications.map(&:name).to_sentence
         td = volunteer.other_talents
-        td = volunteer.emailNotification
+        td = volunteer.email_notification
         td = volunteer.adhoc
         td = link_to 'Edit', edit_admin_volunteer_path(volunteer), class: 'btn btn-primary'

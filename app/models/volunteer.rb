@@ -34,4 +34,12 @@ class Volunteer < ApplicationRecord
     update_attribute(:deleted_at, nil)
   end
 
+  def active_for_authentication?
+    super && !deleted_at
+  end
+ 
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
+
 end

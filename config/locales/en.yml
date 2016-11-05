@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin:
+    volunteers:
+      index:
+        value_true: 'yes'
+        value_false: 'no'
+        value_: 'N/A'

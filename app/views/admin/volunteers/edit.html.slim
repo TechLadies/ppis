@@ -59,10 +59,10 @@ h2 Edit volunteer details
     =f.label :'Would you like to volunteer on a regular bases?'
     br
     = f.label 'Yes'
-    = f.radio_button :adhoc, 'false'
+    = f.radio_button :adhoc, '0'
 
     = f.label 'No'
-    = f.radio_button :adhoc, 'true'
+    = f.radio_button :adhoc, '1'
   
   div
     = f.label :'Certifications'

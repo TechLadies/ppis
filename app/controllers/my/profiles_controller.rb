@@ -9,6 +9,7 @@ class My::ProfilesController < My::BaseController
   def update
     @profile = current_volunteer
     if @profile.update_with_password(profile_params)
+      sign_in(@profile, bypass: true)
       redirect_to my_root_path, notice: 'Your profile has been updated'
     else
       flash[:error] = @profile.errors.full_messages.to_sentence

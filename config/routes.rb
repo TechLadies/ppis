@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
-    get :dashboard, to: 'dashboard#index'
+    resource :profile
 
     root to: 'dashboard#index'
   end

@@ -17,6 +17,7 @@ nav.navbar
           li = link_to "Sign out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }
 
         - if volunteer_signed_in?
+          li = link_to "Edit Profile", edit_my_profile_path
           li = link_to "Sign out", destroy_volunteer_session_path, method: :delete, data: { confirm: 'Are you sure?' }
         -  else
           li = link_to "Sign in", new_volunteer_session_path

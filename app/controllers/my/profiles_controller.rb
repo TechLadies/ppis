@@ -1,5 +1,7 @@
 class My::ProfilesController < My::BaseController
 
+  before_action :skip_password_attribute, only: :update
+
   def edit
     @profile = current_volunteer
   end
@@ -23,5 +25,14 @@ class My::ProfilesController < My::BaseController
       target_group_ids: [], availability_ids: [], skill_ids: [], center_ids: [], formal_education_ids: [],
       certification_ids: []
     )
+  end
+
+  private
+
+  def skip_password_attribute
+    if params[:profile][:password].blank? && params[:profile][:password_confirmation].blank?
+      params[:profile].delete(:password)
+      params[:profile].delete(:password_confirmation)
+    end
   end
 end

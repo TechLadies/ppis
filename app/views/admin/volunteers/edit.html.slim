@@ -54,6 +54,15 @@ h2 Edit volunteer details
     = f.label :'Preferred Availability'
     br
     = f.collection_check_boxes :availability_ids, Availability.all, :id, :name
+
+  div
+    = f.label 'Would you like to volunteer on a regular bases?'
+    br
+    = f.label 'Yes'
+    = f.radio_button :adhoc, '0'
+
+    = f.label 'No'
+    = f.radio_button :adhoc, '1'
   
   div
     = f.label :'Certifications'
@@ -66,7 +75,7 @@ h2 Edit volunteer details
     = f.collection_check_boxes :skill_ids, Skill.all, :id, :name
 
   div
-    =f.label :other_talents
+    = f.label :other_talents
     br
     = f.text_area :other_talents
 
@@ -74,6 +83,15 @@ h2 Edit volunteer details
     =f.label :about_me
     br
     = f.text_area :about_me
+
+  div
+    = f.label 'Would you like to recieve email notifications?'
+    br
+    = f.label 'Yes'
+    = f.radio_button :email_notification, '1'
+
+    = f.label 'No'
+    = f.radio_button :email_notification, '0'
 
   .actions
     = f.submit

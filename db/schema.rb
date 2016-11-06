@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029023210) do
+ActiveRecord::Schema.define(version: 20161031090144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,15 +66,6 @@ ActiveRecord::Schema.define(version: 20161029023210) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "highest_educations", force: :cascade do |t|
-    t.integer  "volunteer_id"
-    t.integer  "formal_education_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["formal_education_id"], name: "index_highest_educations_on_formal_education_id", using: :btree
-    t.index ["volunteer_id"], name: "index_highest_educations_on_volunteer_id", using: :btree
   end
 
   create_table "preferred_availabilities", force: :cascade do |t|
@@ -146,13 +137,16 @@ ActiveRecord::Schema.define(version: 20161029023210) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "formal_education_id"
     t.integer  "gender",                 default: 1
     t.index ["confirmation_token"], name: "index_volunteers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_volunteers_on_email", unique: true, using: :btree
+    t.index ["formal_education_id"], name: "index_volunteers_on_formal_education_id", using: :btree
     t.index ["reset_password_token"], name: "index_volunteers_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "certifications_volunteers", "certifications"
   add_foreign_key "certifications_volunteers", "volunteers"
   add_foreign_key "preferred_target_groups", "target_groups"
+  add_foreign_key "volunteers", "formal_educations"
 end

@@ -23,9 +23,9 @@ h2 Sign up
   .row
     .form-group
       .col-xs-4
-       = f.label :password
-       - if @minimum_password_length
-        = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "(minimum #{@minimum_password_length} characters)"
+        = f.label :password
+        - if @minimum_password_length
+          = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "(minimum #{@minimum_password_length} characters)"
       .col-xs-4
         = f.label :confirm_password
         = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "please re-enter"
@@ -38,7 +38,7 @@ h2 Sign up
         = f.text_field :profession, class: "form-control", placeholder: "what do you work as?"
       .col-xs-4
         = f.label :highest_education
-        = f.collection_select :highest_education_id, FormalEducation.all, :id, :name, { prompt: true }, class: "form-control"
+        = f.collection_select :formal_education_id, FormalEducation.all, :id, :name, { prompt: true }, class: "form-control"
   br
 
   .form-group
@@ -52,7 +52,7 @@ h2 Sign up
       | Male
 
   .form-inline
-     .form-group
+    .form-group
       = f.label :date_of_birth
       br
       = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}, class: "form-control"
@@ -64,16 +64,13 @@ h2 Sign up
       .checkbox
         = b.check_box
         = b.label
-
+        
   .form-group
     = f.label :'Preferred Center(s)'
     = f.collection_check_boxes :center_ids, Center.all, :id, :name do |b|
       .checkbox
-        / = b.check_box
-        / = b.label 
         = b.check_box
         = b.label
-
 
   .form-group
     = f.label :'Preferred Target Group(s)'

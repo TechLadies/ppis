@@ -4,8 +4,7 @@ class Volunteer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_one :highest_education
-  has_one :formal_education, through: :highest_education
+  belongs_to :formal_education
 
   has_many :certifications_volunteers
   has_many :certifications, through: :certifications_volunteers

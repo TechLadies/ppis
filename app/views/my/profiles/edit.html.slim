@@ -62,11 +62,11 @@ h2 Edit your details #{current_volunteer.name}
   div
     = f.label :password
     p
-     |(leave blank if you don't want to change it)
+      | (leave blank if you don't want to change it)
     = f.password_field :password, autocomplete: "off"
-       - if @minimum_password_length
-    em
-     | (#{@minimum_password_length} characters minimum)
+    - if @minimum_password_length
+      em
+        | (#{@minimum_password_length} characters minimum)
 
   div
     = f.label :password_confirmation
@@ -83,4 +83,4 @@ h2 Edit your details #{current_volunteer.name}
     = f.submit "Update"
   
 div
-  = link_to 'Back', :back 
+  = link_to 'Back', :back

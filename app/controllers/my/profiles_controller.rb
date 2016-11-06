@@ -7,9 +7,10 @@ class My::ProfilesController < My::BaseController
   def update
     @profile = current_volunteer
     if @profile.update(profile_params)
-      redirect_to @profile
+      redirect_to my_root_path, notice: 'Your profile has been updated'
     else
-      render 'edit'
+      flash[:error] = @profile.errors.full_messages.to_sentence
+      render :edit
     end
   end
 

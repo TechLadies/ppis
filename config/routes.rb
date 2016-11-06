@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   namespace :my do
     resource :profile
+
+    root to: 'dashboard#index'
   end
 
   resources :centers

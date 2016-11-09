@@ -62,6 +62,19 @@ ActiveRecord::Schema.define(version: 20161101013854) do
     t.index ["volunteer_id"], name: "index_certifications_volunteers_on_volunteer_id", using: :btree
   end
 
+  create_table "events", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "center_id"
+    t.string   "event_name"
+    t.integer  "number_of_volunteers"
+    t.text     "location"
+    t.text     "description"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
+  end
+
   create_table "formal_educations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -137,8 +150,8 @@ ActiveRecord::Schema.define(version: 20161101013854) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "formal_education_id"
     t.integer  "gender",                 default: 1
+    t.integer  "formal_education_id"
     t.boolean  "email_notification",     default: true
     t.boolean  "adhoc"
     t.datetime "deleted_at"

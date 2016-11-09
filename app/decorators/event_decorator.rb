@@ -1,0 +1,2 @@
+class EventDecorator < SimpleDelegator
+end

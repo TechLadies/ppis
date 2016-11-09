@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :centers
+  resources :events, only: [:index, :create, :new, :edit, :show, :update]
   
   root to: "pages#index"
 

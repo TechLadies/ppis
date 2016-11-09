@@ -61,6 +61,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'webmock'
+  gem 'rails-controller-testing'
 end
 
 group :production, :staging do

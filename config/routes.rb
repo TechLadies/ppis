@@ -14,6 +14,13 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
+
+    resources :events, only: [] do
+      get 'new_events', on: :collection
+      get 'upcoming_events', on: :collection
+      get 'past_events', on: :collection
+    end
+
     resource :profile
 
     root to: 'dashboard#index'

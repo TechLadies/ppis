@@ -26,7 +26,7 @@ class Volunteer < ApplicationRecord
 
   enum gender: [:male, :female]
 
-  def soft_delete
+  def destroy
     update_attribute(:deleted_at, Time.current)
   end
 

@@ -22,7 +22,24 @@ class Volunteer < ApplicationRecord
   has_many :skills, through: :skills_volunteers
 
   validates :name, presence: true
+  validates :email, uniqueness: true, presence: true
 
   enum gender: [:male, :female]
+
+  def destroy
+    update_attribute(:deleted_at, Time.current)
+  end
+
+  def reactivate_volunteer
+    update_attribute(:deleted_at, nil)
+  end
+
+  def active_for_authentication?
+    super && !deleted_at
+  end
+ 
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
 
 end

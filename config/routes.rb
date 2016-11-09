@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
   devise_for :admins
-  devise_for :volunteers, :controllers => { :registrations => "registrations" }
+  devise_for :volunteers, :controllers => { :registrations => "my/registrations" }
 
   namespace :admin do
     get :dashboard, to: 'dashboard#index'
 
-    resources :volunteers, only: [:index, :create, :new, :edit, :show, :update]
+    resources :volunteers, only: [:index, :create, :new, :edit, :show, :update] do 
+        patch 'reactivate', on: :member
+      end
 
     root to: 'dashboard#index'
   end

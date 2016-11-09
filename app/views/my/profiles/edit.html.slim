@@ -82,5 +82,14 @@ h2 Edit your details #{current_volunteer.name}
   .actions
     = f.submit "Update"
   
+
+
+h3 Cancel my account
+  
+p Unhappy? 
+  
+div
+  = link_to 'Cancel my account', volunteer_registration_path, data: { confirm: "Are you sure?" }, method: :delete 
+   
 div
   = link_to 'Back', :back

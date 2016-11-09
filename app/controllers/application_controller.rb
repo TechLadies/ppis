@@ -7,12 +7,12 @@ class ApplicationController < ActionController::Base
     if resource.is_a? Admin
       admin_root_path
     else
-      root_path
+      my_root_path
     end
   end
 
   def after_sign_up_path_for(_resource)
-    root_path
+    my_root_path
   end
 
 end

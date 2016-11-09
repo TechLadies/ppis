@@ -13,6 +13,7 @@ table.table.table-bordered.table-hover
       th Other Talents
       th Receive Email Notifications
       th Adhoc Volunteer?
+      th Account Closed
       th
 
   tbody
@@ -26,4 +27,5 @@ table.table.table-bordered.table-hover
         td = volunteer.other_talents
         td = t(:"admin.volunteers.index.value_#{volunteer.email_notification}")
         td = t(:"admin.volunteers.index.value_#{volunteer.adhoc}")
+        td = volunteer.deleted_at
         td = link_to 'Edit', edit_admin_volunteer_path(volunteer), class: 'btn btn-primary'

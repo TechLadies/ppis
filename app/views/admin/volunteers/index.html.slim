@@ -17,7 +17,7 @@ table.table.table-bordered.table-hover
       th
 
   tbody
-    - @volunteer.each do |volunteer|
+    - @volunteers.each do |volunteer|
       tr
         td = link_to volunteer.name, admin_volunteer_path(volunteer)
         td = volunteer.email

@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20161108084026) do
-  
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -156,7 +155,6 @@ ActiveRecord::Schema.define(version: 20161108084026) do
     t.integer  "formal_education_id"
     t.boolean  "email_notification",     default: true
     t.boolean  "adhoc"
-    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_volunteers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_volunteers_on_email", unique: true, using: :btree
     t.index ["formal_education_id"], name: "index_volunteers_on_formal_education_id", using: :btree

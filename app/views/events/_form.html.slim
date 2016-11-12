@@ -29,7 +29,10 @@
   .form-inline
     .form-group
       = f.label :'Date: '
-      = f.text_field :date,  data: { provide: 'datepicker' }
+      .input-group.date.datetimepicker
+        = f.text_field :date,  class: 'form-control'
+        span.input-group-addon
+          = fa_icon 'calendar'
   br
   .form-inline
     .form-group

@@ -1,7 +1,11 @@
 class EventDecorator < SimpleDelegator
 
   def when
-    start_time.strftime('%H:%M') + '-' + end_time.strftime('%H:%M') + ' on ' + date.strftime('%d %b %Y')
+    date.strftime('%d %b %Y')
+  end
+
+  def time
+    start_time.strftime('%H:%M') + ' - ' + end_time.strftime('%H:%M')
   end
 
   def duration

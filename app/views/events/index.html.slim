@@ -4,10 +4,24 @@
   br
   br
     table.table.table-hover
+      thead
+        tr
+          th Event Name
+          th 
+          th Center
+          th Date
+          th Time
+          th Status
       tbody
         - @events.each do |event|
-          tr
-          td= link_to event.event_name, event_path(event)
-          td= link_to 'Edit', edit_event_path(event), class: 'btn btn-default'
+          - decorate(event) do |decorated_event|
+            tr
+              td= link_to event.event_name, event_path(event)
+              td= link_to 'Edit', edit_event_path(event), class: 'btn btn-default'
+              td= event.center.name
+              td= event.date
+              td= decorated_event.time
+              td= 'Draft'
+
 
   br

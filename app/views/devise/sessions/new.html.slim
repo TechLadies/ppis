@@ -1,20 +1,26 @@
   
-h1.text-center Log in.
-br
+h1.text-center Log in
+
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
 
   .form-horizonal
-    .form-group
-      .col-xs-12
+    .form-group.row
+      .col-sm-8.col-sm-offset-2
         .sr-only = f.label :email
-        = f.email_field :email, class: "form-control", placeholder: "Email"
+        .input-group
+          .input-group-addon
+            = fa_icon 'user'
+          = f.email_field :email, class: "form-control", placeholder: "Email"
 
         
-    .form-group
-      .col-xs-12
+    .form-group.row
+      .col-sm-8.col-sm-offset-2
         .sr-only = f.label :password
-        = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
+        .input-group
+          .input-group-addon
+            = fa_icon 'key'
+          = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
 
 
     - if devise_mapping.rememberable?
@@ -26,8 +32,8 @@ br
     div 
       .actions
         .button.text-center
-          input.btn.btn-default type="submit" value=("Log In")
-    br
+          input.btn.btn-success type="submit" value=("Log In")
 
-
-h3 = render "devise/shared/links"
+    h4 
+      .text-center
+        = render "devise/shared/links"

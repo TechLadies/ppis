@@ -3,6 +3,7 @@
 #= require jquery-ui
 #= require jquery_ujs
 #= require bootstrap-sprockets
+#= require bootstrap-datepicker
 
 window.PPIS ||= {}
 PPIS.Views ||= {}

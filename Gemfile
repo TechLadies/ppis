@@ -23,6 +23,7 @@ gem 'slim-rails'
 gem 'simple_form'
 
 # Front-end
+gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes

@@ -34,10 +34,10 @@
   .form-inline
     .form-group
       = f.label :'Start at'
-      = f.time_select :start_time, {order: [:hours, :minutes]}, class: "form-control"
+      = f.time_select :start_time, { :minute_step => 15, order: [:hours, :minutes] }, class: "form-control" 
     .form-group
       = f.label :'End by '
-      = f.time_select :end_time, {order: [:hours, :minutes]}, class: "form-control"
+      = f.time_select :end_time, { :minute_step => 15, order: [:hours, :minutes] }, class: "form-control"
   br
   .row
     .form-group

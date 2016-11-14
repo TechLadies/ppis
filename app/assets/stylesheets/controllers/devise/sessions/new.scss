@@ -1,0 +1,39 @@
+.devise-sessions-new {
+  background: #fff;
+
+  input[type=checkbox]{
+    margin-right: 5px;
+  }
+
+  a,
+  a:hover,
+  a:focus,
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  .login-header {
+    background-color: #afeeee;
+    border-radius: 5px 5px 0px 0px;
+    margin: 0 0 40px 0;
+    padding: 10px 10px;
+
+    h1 {
+      color: #1e90ff;
+      font-size: 2rem;
+    }
+  }
+
+  .login-container {
+    border-radius: 5px;
+    background: #fff;
+    position: relative;
+    margin: 20px auto 50px;
+    padding: 0;
+    width: 660px;
+    border-style: solid;
+    border-width: 2px; 
+    border-color: #afeeee;
+  }
+}

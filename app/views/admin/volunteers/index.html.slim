@@ -1,6 +1,11 @@
 .pull-right
   = link_to 'Add new volunteer', new_admin_volunteer_path, class: 'btn btn-primary'
 
+h3 Search by name or email
+= form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
+  = text_field_tag :search, params[:search], placeholder: "Search Volunteers"
+  = submit_tag "Search", :name => nil
+
 h2 list of volunteers
 table.table.table-bordered.table-hover
   thead

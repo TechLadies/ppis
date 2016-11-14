@@ -2,14 +2,19 @@ class Admin::VolunteersController < Admin::BaseController
 
 
   def index
-    #if params[:skill_ids]
-      #@volunteers = Volunteer.where(:skill_ids => params [:skill_ids])
-    #else
-      @volunteers = Volunteer.all.order('LOWER(name)')
-    #end
-    #@volunteers = Volunteer.all.select(volunteer.skills).joins(:skills).where(volunteer.skills)
-    #@volunteers = Volunteer.joins(:skills)
+      @volunteers = Volunteer.all
+    if params[:search]
+      @volunteers = Volunteer.search(params[:search])
+    else
+      @volunteers = Volunteer.all
+    end
   end
+    #if params[:skill_ids]
+    #@volunteers = Volunteer.joins(:skills).where({skills:{name:'IT'}})
+    #else
+      #@volunteers = Volunteer.all.order('LOWER(name)')
+    
+  #end
 
   def new
     @volunteer = Volunteer.new

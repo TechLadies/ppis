@@ -42,8 +42,12 @@ class Volunteer < ApplicationRecord
     !deleted_at ? super : :deleted_account
   end
 
-  def self.search(search)
+  def self.search(search)  
     where("name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%")
+  end
+  
+  def self.filter(skill)
+    Volunteer.joins(:skills).where({skills: {name:"#{skill}"}})
   end
 
 end

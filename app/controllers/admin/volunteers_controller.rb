@@ -2,9 +2,10 @@ class Admin::VolunteersController < Admin::BaseController
 
 
   def index
-      @volunteers = Volunteer.all
     if params[:search]
       @volunteers = Volunteer.search(params[:search])
+    elsif params[:filter]
+      @volunteers = Volunteer.filter(params[:filter])
     else
       @volunteers = Volunteer.all
     end

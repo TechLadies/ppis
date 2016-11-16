@@ -1,7 +1,13 @@
 class Admin::VolunteersController < Admin::BaseController
 
   def index
-    @volunteer = Volunteer.all
+    if params[:search]
+      @volunteers = Volunteer.search(params[:search])
+    elsif params[:filter]
+      @volunteers = Volunteer.filter(params[:filter])
+    else
+      @volunteers = Volunteer.all.order('LOWER(name)')
+    end
   end
 
   def new

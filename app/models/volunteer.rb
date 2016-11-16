@@ -1,5 +1,5 @@
 class Volunteer < ApplicationRecord
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -37,17 +37,17 @@ class Volunteer < ApplicationRecord
   def active_for_authentication?
     super && !deleted_at
   end
- 
+
   def inactive_message
     !deleted_at ? super : :deleted_account
   end
 
-  def self.search(search)  
-    where("name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%")
+  def self.search(search)
+    where('name LIKE ? OR email LIKE ?', "%#{search}%", "%#{search}%")
   end
-  
+
   def self.filter(skill)
-    Volunteer.joins(:skills).where({skills: {name:"#{skill}"}})
+    Volunteer.joins(:skills).where(skills: { id: "#{skill}" })
   end
 
 end

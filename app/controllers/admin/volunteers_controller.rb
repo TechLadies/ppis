@@ -1,21 +1,14 @@
 class Admin::VolunteersController < Admin::BaseController
 
-
   def index
     if params[:search]
       @volunteers = Volunteer.search(params[:search])
     elsif params[:filter]
       @volunteers = Volunteer.filter(params[:filter])
     else
-      @volunteers = Volunteer.all
+      @volunteers = Volunteer.all.order('LOWER(name)')
     end
   end
-    #if params[:skill_ids]
-    #@volunteers = Volunteer.joins(:skills).where({skills:{name:'IT'}})
-    #else
-      #@volunteers = Volunteer.all.order('LOWER(name)')
-    
-  #end
 
   def new
     @volunteer = Volunteer.new

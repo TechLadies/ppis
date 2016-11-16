@@ -8,7 +8,8 @@ h3 Search by name or email
 
 h3 Search by Skills
 = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
-  = text_field_tag :filter, params[:skills], placeholder: "Search by skills"
+  = hidden_field_tag :filter, params[:search]
+  = select_tag "filter", options_from_collection_for_select(Skill.all,"id","name",)
   = submit_tag "Search", :name => nil
 
 h2 list of volunteers

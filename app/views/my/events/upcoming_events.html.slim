@@ -1,13 +1,22 @@
-h2 Events
+= render 'tabs', current_tab: 'Upcoming'
 
-ul.nav.nav-tabs
-  li
-    a = link_to 'New Events', new_events_my_events_path
+.container
+  .row
+    .col-xs-12 
+      h2 Upcoming Events 
 
-  li.active
-    a = link_to 'Upcoming Events', upcoming_events_my_events_path
-
-  li
-    a = link_to 'Past Events', past_events_my_events_path
-
-h2 Upcoming events
+      table.table.table-hover
+        thead
+          tr
+            th Event Name
+            th Center
+            th Date
+            th Time
+        tbody
+          - @events.each do |event|
+            - decorate(event) do |decorated_event|
+              tr
+                td= link_to event.event_name, event_path(event)
+                td= event.center.name
+                td= event.date
+                td= decorated_event.time    

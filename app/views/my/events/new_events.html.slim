@@ -1,13 +1,3 @@
-h2 Events
-
-ul.nav.nav-tabs
-  li.active
-    a = link_to 'New Events', new_events_my_events_path
-
-  li
-    a = link_to 'Upcoming Events', upcoming_events_my_events_path
-
-  li
-    a = link_to 'Past Events', past_events_my_events_path
+= render 'tabs', current_tab: 'New'
 
 h2 New events

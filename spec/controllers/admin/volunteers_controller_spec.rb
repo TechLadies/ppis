@@ -10,12 +10,13 @@ RSpec.describe Admin::VolunteersController, type: :controller do
 
     context 'when params is valid' do
 
-      let(:volunteer_attributes) { attributes_for(:volunteer) }
+      let(:formal_education) { create(:formal_education) }
+      let(:volunteer_attributes) { attributes_for(:volunteer, formal_education_id: formal_education.id) }
 
       before { post :create, params: { volunteer: volunteer_attributes } }
 
       it { expect(response.status).to eq(302) }
-      it { expect(response).to redirect_to(volunteer_path(assigns(:volunteer))) }
+      it { expect(response).to redirect_to(admin_volunteers_path) }
     end
 
     context 'when params is invalid' do
@@ -28,3 +29,5 @@ RSpec.describe Admin::VolunteersController, type: :controller do
       it { expect(response).to render_template(:new) }
     end
   end
+
+end

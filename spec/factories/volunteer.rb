@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :volunteer do
+    formal_education
+
     name 'John Doe'
     email 'john.doe@gmail.com'
     password 'Abc123'

@@ -1,4 +1,4 @@
-class PPIS.Views.Events.Common
+class PPIS.Views.Admin_Events.Common
   render: ->
     $('.datetimepicker').datetimepicker
       format: 'Do MMMM YYYY'

@@ -1,6 +1,4 @@
-class EventsController < ApplicationController
-
-  before_action :authenticate_admin!
+class Admin::EventsController < Admin::BaseController
 
   def index
     @events = Event.all
@@ -17,7 +15,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      redirect_to @event
+      redirect_to [:admin, @event]
     else
       render 'new'
     end
@@ -30,7 +28,7 @@ class EventsController < ApplicationController
   def update
     @event = find_event
     if @event.update(event_params)
-      redirect_to @event
+      redirect_to [:admin, @event]
     else
       render 'edit'
     end

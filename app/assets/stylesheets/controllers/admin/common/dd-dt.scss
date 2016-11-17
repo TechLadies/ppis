@@ -1,0 +1,12 @@
+dt {
+  float: left;
+  margin-right: 5px;
+
+  &:after {
+    content: ':'
+  }
+}
+
+dd {
+  margin-bottom: 10px;
+}

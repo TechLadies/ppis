@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get :dashboard, to: 'dashboard#index'
 
     resources :events, only: [:index, :create, :new, :edit, :show, :update]
+    resources :centers, only: [:index, :create, :new, :edit, :show, :update]
     resources :volunteers, only: [:index, :create, :new, :edit, :show, :update] do
       patch 'reactivate', on: :member
     end
@@ -26,8 +27,6 @@ Rails.application.routes.draw do
 
     root to: 'dashboard#index'
   end
-
-  resources :centers
 
   root to: "pages#index"
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CentersController, type: :controller do
+RSpec.describe Admin::CentersController, type: :controller do
 
   let(:admin) { create(:admin) }
 
@@ -15,7 +15,7 @@ RSpec.describe CentersController, type: :controller do
       before { post :create, params: { center: center_attributes } }
 
       it { expect(response.status).to eq(302) }
-      it { expect(response).to redirect_to(center_path(assigns(:center))) }
+      it { expect(response).to redirect_to(admin_center_path(assigns(:center))) }
     end
 
     context 'when params is invalid' do

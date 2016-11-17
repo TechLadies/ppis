@@ -1,8 +1,0 @@
-h2 Existing List of PPIS Centers
-table border="1px" 
-  tbody
-    - @centers.each do |center|
-      tr
-        td = center.name
-        td = link_to 'Details', center_path(center)
-

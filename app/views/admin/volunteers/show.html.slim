@@ -2,12 +2,13 @@
 - if @volunteer.deleted_at
     h2.inactive Account Inactive
 
-    p Name: #{@volunteer.name}
-
-    p Email: #{@volunteer.email}
+    dl.volunteer-details
+      dt Name
+      dd = @volunteer.name
+      dt Email
+      dd = @volunteer.email
 
     = link_to 'Reactivate account', reactivate_admin_volunteer_path, method: :patch, class: 'btn btn-primary'
-
 
 - else
 

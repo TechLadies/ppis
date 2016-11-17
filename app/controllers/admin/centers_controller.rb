@@ -1,6 +1,4 @@
-class CentersController < ApplicationController
-
-  before_action :authenticate_admin!
+class Admin::CentersController < Admin::BaseController
 
   def index
     @centers = Center.all
@@ -17,7 +15,7 @@ class CentersController < ApplicationController
   def create
     @center = Center.new(center_params)
     if @center.save
-      redirect_to @center
+      redirect_to [:admin, @center]
     else
       render 'new'
     end
@@ -30,7 +28,7 @@ class CentersController < ApplicationController
   def update
     @center = find_center
     if @center.update(center_params)
-      redirect_to @center
+      redirect_to [:admin, @center]
     else
       render 'edit'
     end

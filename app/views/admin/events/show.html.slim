@@ -28,7 +28,7 @@
       dd = decorated_event.number_of_volunteers
 
 .container
-  = link_to 'Edit', edit_event_path(@event), class: 'btn btn-default'
-  = link_to 'All Events', events_path, class: 'btn btn-default'
+  = link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-default'
+  = link_to 'All Events', admin_events_path, class: 'btn btn-default'
 
 br

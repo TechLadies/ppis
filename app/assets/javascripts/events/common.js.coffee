@@ -1,5 +1,14 @@
 class PPIS.Views.Events.Common
   render: ->
     $('.datetimepicker').datetimepicker
-      format: 'DD/MM/YYYY'
+      format: 'Do MMMM YYYY'
+      extraFormats: [ 'DD.MM.YYYY', 'DD.MM.YY' ]
+      calendarWeeks: true
+      showClose: true
+      allowInputToggle: true
 
+    $('.datetimepicker3').datetimepicker
+      format: 'HH:mm'
+      stepping: 15
+      showClose: true
+      allowInputToggle: true

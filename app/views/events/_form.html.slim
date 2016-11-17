@@ -26,21 +26,26 @@
         = f.label :'Number of Volunteers '
         = f.number_field :number_of_volunteers, class: "form-control", placeholder: "total number of volunteers required"
   br
-  .form-inline
+  .row
     .form-group
-      = f.label :'Date: '
-      .input-group.date.datetimepicker
-        = f.text_field :date,  class: 'form-control'
-        span.input-group-addon
-          = fa_icon 'calendar'
-  br
-  .form-inline
-    .form-group
-      = f.label :'Start at'
-      = f.time_select :start_time, { :minute_step => 15, order: [:hours, :minutes] }, class: "form-control" 
-    .form-group
-      = f.label :'End by '
-      = f.time_select :end_time, { :minute_step => 15, order: [:hours, :minutes] }, class: "form-control"
+      .col-xs-4
+        = f.label :date
+        .input-group.date.datetimepicker
+          = f.text_field :date, class: 'form-control'
+          span.input-group-addon
+            = fa_icon 'calendar'
+      .col-xs-2
+        = f.label :start_time
+        .input-group.time.datetimepicker3
+          = f.text_field :start_time, class: 'form-control'
+          span.input-group-addon
+            = fa_icon 'clock-o'
+      .col-xs-2
+        = f.label :end_time
+        .input-group.time.datetimepicker3
+          = f.text_field :end_time, class: 'form-control'
+          span.input-group-addon
+            = fa_icon 'clock-o'
   br
   .row
     .form-group
@@ -52,3 +57,12 @@
     .button
       input.btn.btn-default type="submit" value=("Save") 
   br
+/!  br
+  .form-inline
+    .form-group
+      = f.label :'Start at'
+      = f.time_select :start_time, { :minute_step => 15, order: [:hours, :minutes] }, class: "form-control" 
+    .form-group
+      = f.label :'End by '
+      = f.time_select :end_time, { :minute_step => 15, order: [:hours, :minutes] }, class: "form-control"
+

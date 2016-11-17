@@ -1,0 +1,11 @@
+h1 Events
+
+ul.nav.nav-tabs
+  li class="#{'active' if current_tab == 'New'}"
+    = link_to 'New Events', new_events_my_events_path
+
+  li class="#{'active' if current_tab == 'Upcoming'}"
+    = link_to 'Upcoming Events', upcoming_events_my_events_path
+
+  li class="#{'active' if current_tab == 'Past'}"
+    = link_to 'Past Events', past_events_my_events_path

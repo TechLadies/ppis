@@ -23,6 +23,8 @@ gem 'slim-rails'
 gem 'simple_form'
 
 # Front-end
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes

@@ -3,9 +3,13 @@
 #= require jquery-ui
 #= require jquery_ujs
 #= require bootstrap-sprockets
+#= require moment
+#= require bootstrap-datetimepicker
+#= require_tree ./events
 
 window.PPIS ||= {}
 PPIS.Views ||= {}
+PPIS.Views.Events ||= {}
 
 PPIS.init = ->
   appData = $('body').data()

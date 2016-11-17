@@ -9,43 +9,51 @@
         - event.errors.full_messages.each do |message|
           li= message
   .row
-    .form-group
-      .col-xs-4
+    .col-xs-12.col-sm-6
+      .form-group
         = f.label :'Event Name '
         = f.text_field :event_name, class: "form-control", placeholder: "name of the event"
-      .col-xs-4
+    .col-xs-12.col-sm-6
+      .form-group
         = f.label :'Location '
         = f.text_field :location, class: "form-control", placeholder: "location of the event (including postal code)"
-  br
   .row
-    .form-group
-      .col-xs-4
+    .col-xs-12.col-sm-6
+      .form-group
         = f.label :center
         = f.collection_select :center_id, Center.all, :id, :name, { prompt: true }, class: "form-control"
-      .col-xs-4
+    .col-xs-12.col-sm-6
+      .form-group
         = f.label :'Number of Volunteers '
         = f.number_field :number_of_volunteers, class: "form-control", placeholder: "total number of volunteers required"
-  br
-  .form-inline
-    .form-group
-      = f.label :'Date: '
-      = f.date_select :date, {order: [:day, :month, :year], :start_year => Date.today.year , :end_year => Date.today.year + 50}, class: "form-control"
-  br
-  .form-inline
-    .form-group
-      = f.label :'Start at'
-      = f.time_select :start_time, { :minute_step => 15, order: [:hours, :minutes] }, class: "form-control" 
-    .form-group
-      = f.label :'End by '
-      = f.time_select :end_time, { :minute_step => 15, order: [:hours, :minutes] }, class: "form-control"
-  br
   .row
-    .form-group
-      .col-xs-8
+    .col-xs-12.col-sm-4
+      .form-group
+        = f.label :date
+        .input-group.date.datetimepicker
+          = f.text_field :date, class: 'form-control'
+          span.input-group-addon
+            = fa_icon 'calendar'
+    .col-xs-12.col-sm-4
+      .form-group
+        = f.label :start_time
+        .input-group.time.datetimepicker3
+          = f.text_field :start_time, class: 'form-control'
+          span.input-group-addon
+            = fa_icon 'clock-o'
+    .col-xs-12.col-sm-4
+      .form-group
+        = f.label :end_time
+        .input-group.time.datetimepicker3
+          = f.text_field :end_time, class: 'form-control'
+          span.input-group-addon
+            = fa_icon 'clock-o'
+  .row
+    .col-xs-12.col-sm-12
+      .form-group
         = f.label :description
         = f.text_area :description, class: "form-control", placeholder: "a short introduction of the event"
-  br
+
   .actions
     .button
-      input.btn.btn-default type="submit" value=("Save") 
-  br
+      input.btn.btn-default type="submit" value=("Save")

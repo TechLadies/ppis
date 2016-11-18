@@ -1,42 +1,44 @@
 .pull-right
-  = link_to 'Add new volunteer', new_admin_volunteer_path, class: 'btn btn-primary'
+  .form-inline
+    .form-group
+      h4 Search name/email
+      = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
+        = text_field_tag :search, params[:search], placeholder: "Search Volunteers"
+        = submit_tag "Search", :name => nil
+    .form-group
+      h4 Search skill
+      = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
+        = hidden_field_tag :filter, params[:search]
+        = select_tag "filter", options_from_collection_for_select(Skill.all,"id","name",)
+        = submit_tag "Search", :name => nil
 
-h3 Search by name or email
-= form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
-  = text_field_tag :search, params[:search], placeholder: "Search Volunteers"
-  = submit_tag "Search", :name => nil
-
-h3 Search by Skills
-= form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
-  = hidden_field_tag :filter, params[:search]
-  = select_tag "filter", options_from_collection_for_select(Skill.all,"id","name",)
-  = submit_tag "Search", :name => nil
-
-h2 list of volunteers
-table.table.table-bordered.table-hover
-  thead
-    tr
-      th Name
-      th email
-      th Profession
-      th Skills
-      th Certification
-      th Other Talents
-      th Receive Email Notifications
-      th Adhoc Volunteer?
-      th Account Closed
-      th
-
-  tbody
-    - @volunteers.each do |volunteer|
+.container
+  h1 Volunteers
+  = link_to 'Add new', new_admin_volunteer_path, class: 'btn btn-primary'
+  table.table.table-hover.table-striped
+    thead
       tr
-        td = link_to volunteer.name, admin_volunteer_path(volunteer)
-        td = volunteer.email
-        td = volunteer.profession
-        td = volunteer.skills.map(&:name).to_sentence
-        td = volunteer.certifications.map(&:name).to_sentence
-        td = volunteer.other_talents
-        td = t(:"admin.volunteers.index.value_#{volunteer.email_notification}")
-        td = t(:"admin.volunteers.index.value_#{volunteer.adhoc}")
-        td = volunteer.deleted_at
-        td = link_to 'Edit', edit_admin_volunteer_path(volunteer), class: 'btn btn-primary'
+        th Name
+        th Email
+        th Profession
+        th Skill(s)
+        th Certification(s)
+        th Other Talent(s)
+        th Receive Email Notifications
+        th Adhoc Volunteer?
+        th Status
+        th
+
+    tbody
+      - @volunteers.each do |volunteer|
+        tr
+          td = link_to volunteer.name, admin_volunteer_path(volunteer)
+          td = volunteer.email
+          td = volunteer.profession
+          td = volunteer.skills.map(&:name).to_sentence
+          td = volunteer.certifications.map(&:name).to_sentence
+          td = volunteer.other_talents
+          td = t(:"admin.volunteers.index.value_#{volunteer.email_notification}")
+          td = t(:"admin.volunteers.index.value_#{volunteer.adhoc}")
+          td = volunteer.deleted_at
+          td = link_to 'Edit', edit_admin_volunteer_path(volunteer), class: 'btn btn-primary'

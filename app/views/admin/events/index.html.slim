@@ -1,27 +1,23 @@
 .container
-  h2 Events 
-  = link_to 'Create New', new_admin_event_path, class: 'btn btn-default'
-  br
-  br
-    table.table.table-hover
-      thead
-        tr
-          th Event Name
-          th 
-          th Center
-          th Date
-          th Time
-          th Status
-      tbody
-        - @events.each do |event|
-          - decorate(event) do |decorated_event|
-            tr
-              td= link_to event.event_name, admin_event_path(event)
-              td= link_to 'Edit', edit_admin_event_path(event), class: 'btn btn-default'
-              td= event.center.name
-              td= event.date
-              td= decorated_event.time
-              td= 'Draft'
+  h1 Events 
+  = link_to 'Add new', new_admin_event_path, class: 'btn btn-primary'
 
-
-  br
+  table.table.table-hover.table-striped
+    thead
+      tr
+        th Event Name
+        th Center
+        th Date
+        th Time
+        th Status
+        th
+    tbody
+      - @events.each do |event|
+        - decorate(event) do |decorated_event|
+          tr
+            td= link_to event.event_name, admin_event_path(event)
+            td= event.center.name
+            td= event.date
+            td= decorated_event.time
+            td= 'Draft'
+            td= link_to 'Edit', edit_admin_event_path(event), class: 'btn btn-default'

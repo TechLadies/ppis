@@ -1,15 +1,17 @@
-h2 Details of #{@center.name}
+.container
+  h2 Details of #{@center.name}
 
-dl
-  dt Manager Name
-  dd= @center.manager_name
-  dt Email
-  dd= @center.email
-  dt Contact Number
-  dd= @center.contact_number
-  dt Fax Number
-  dd= @center.fax_number
-  dt Address
-  dd= @center.address
+  dl.center-details
+    dt Manager Name
+    dd= @center.manager_name
+    dt Email
+    dd= @center.email
+    dt Contact Number
+    dd= @center.contact_number
+    dt Fax Number
+    dd= @center.fax_number
+    dt Address
+    dd= @center.address
 
-= link_to 'Go Back', admin_centers_path
+  = link_to 'Edit', edit_admin_center_path(@center), class: 'btn btn-primary'
+  = link_to 'View all centers', admin_centers_path, class: 'btn btn-default'

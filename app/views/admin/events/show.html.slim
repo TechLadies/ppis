@@ -1,34 +1,22 @@
 .container
-  h2 #{@event.event_name} Details
-  br
+  h2 Details of #{@event.event_name}
   - decorate(@event) do |decorated_event|
     dl.event-details
       dt Center Name
       dd = decorated_event.center.name
-      br
       dt Event Name
       dd = decorated_event.event_name
-      br
       dt Description
       dd = decorated_event.description
-      br
       dt When
       dd = decorated_event.when
-      br
       dt Time
       dd = decorated_event.time
-      br
       dt Approx. Duration
       dd = decorated_event.duration
-      br
       dt Location
       dd = decorated_event.location
-      br
       dt Number of Volunteers
       dd = decorated_event.number_of_volunteers
-
-.container
-  = link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-default'
-  = link_to 'All Events', admin_events_path, class: 'btn btn-default'
-
-br
+  = link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-primary'
+  = link_to 'View all events', admin_events_path, class: 'btn btn-default'

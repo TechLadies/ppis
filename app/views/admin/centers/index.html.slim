@@ -1,8 +1,13 @@
-h2 Existing List of PPIS Centers
-table.table.table-striped
-  tbody
-    - @centers.each do |center|
-      tr
-        td = link_to center.name, admin_center_path(center)
-        td = link_to 'Edit', edit_admin_center_path(center), class: 'btn btn-default'
+.container
+  h1 Centers
+  = link_to 'Add new', new_admin_center_path, class: 'btn btn-primary'
 
+  table.table.table-hover.table-striped
+    thead
+      tr
+        th Center Name
+    tbody
+      - @centers.each do |center|
+        tr
+          td = link_to center.name, admin_center_path(center)
+          td = link_to 'Edit', edit_admin_center_path(center), class: 'btn btn-default'

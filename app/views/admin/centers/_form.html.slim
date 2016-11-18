@@ -8,32 +8,34 @@
       ul
         - center.errors.full_messages.each do |message|
           li= message
-
-  .field
-    = f.label :name
-    br
-    = f.text_field :name
-
-  .field
-    = f.label :manager_name
-    br
-    = f.text_field :manager_name
-
-  .field
-    = f.label :email
-    br
-    = f.text_field :email
-
-  .field
-    = f.label :contact_number
-    br
-    = f.telephone_field :contact_number
-
-  .field
-    = f.label :address
-    br
-    = f.text_area :address
-
+  .row
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :'Center Name'
+        = f.text_field :name, class: "form-control", placeholder: "name of the center"
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :'Manager Name'
+        = f.text_field :manager_name, class: "form-control", placeholder: "full name as per NRIC"
+  .row
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :'Contact Number'
+        = f.telephone_field :contact_number, class: "form-control", placeholder: "+65 ???? ????"
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :'Fax Number'
+        = f.telephone_field :fax_number, class: "form-control", placeholder: "+65 ???? ????"
+  .row   
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :'Email'
+        = f.text_field :email, class: "form-control", placeholder: "valid email address"      
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :'Address'
+        = f.text_area :address, class: "form-control", placeholder: "including postal code"
   .actions
-    = f.submit
+    .button
+      input.btn.btn-default type="submit" value=("Save")
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119053048) do
+ActiveRecord::Schema.define(version: 20161119061153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20161119053048) do
     t.datetime "locked_at"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "center_id"
+    t.index ["center_id"], name: "index_admins_on_center_id", using: :btree
   end
 
   create_table "admins_roles", id: false, force: :cascade do |t|
@@ -178,6 +180,7 @@ ActiveRecord::Schema.define(version: 20161119053048) do
     t.index ["reset_password_token"], name: "index_volunteers_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "admins", "centers"
   add_foreign_key "certifications_volunteers", "certifications"
   add_foreign_key "certifications_volunteers", "volunteers"
   add_foreign_key "preferred_target_groups", "target_groups"

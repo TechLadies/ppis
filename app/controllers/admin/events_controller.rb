@@ -34,6 +34,11 @@ class Admin::EventsController < Admin::BaseController
     end
   end
 
+  def publish
+    @event = find_event
+    @event.publish!
+    redirect_to admin_events_path, notice: "Succesfully publish event: #{@event.event_name}"
+  end
   private
 
   def find_event

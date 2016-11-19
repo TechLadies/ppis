@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get :dashboard, to: 'dashboard#index'
 
-    resources :events, only: [:index, :create, :new, :edit, :show, :update]
+    resources :events, only: [:index, :create, :new, :edit, :show, :update] do
+      patch 'publish', on: :member
+    end
     resources :centers, only: [:index, :create, :new, :edit, :show, :update]
     resources :volunteers, only: [:index, :create, :new, :edit, :show, :update] do
       patch 'reactivate', on: :member

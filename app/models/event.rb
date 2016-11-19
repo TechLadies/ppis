@@ -1,5 +1,9 @@
 class Event < ApplicationRecord
+
+  include AASM
+
   belongs_to :center
+
   validates :center, presence: true
   validates :event_name, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true
@@ -11,6 +15,20 @@ class Event < ApplicationRecord
   validates :duration, presence: true, numericality: { greater_than: 0 }
 
   before_validation :calculate_duration
+
+  aasm :column => 'state' do
+    state :draft, :initial => true
+    state :published
+    state :cancelled
+
+    event :publish do
+      transitions :from => :draft, :to => :published
+    end
+
+    event :cancel do
+      transitions :from => :published, :to => :cancelled
+    end
+  end
 
   private
 

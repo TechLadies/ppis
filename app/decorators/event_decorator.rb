@@ -12,6 +12,10 @@ class EventDecorator < SimpleDelegator
     "#{hours_for(super)} hour(s) #{minutes_in_words(super)}"
   end
 
+  def state
+    super.titleize
+  end
+
   private
 
   def minutes_in_words(seconds)

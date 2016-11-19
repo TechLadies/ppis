@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
     resources :events, only: [:index, :create, :new, :edit, :show, :update] do
       patch 'publish', on: :member
+      patch 'cancel', on: :member
     end
+
     resources :centers, only: [:index, :create, :new, :edit, :show, :update]
     resources :volunteers, only: [:index, :create, :new, :edit, :show, :update] do
       patch 'reactivate', on: :member

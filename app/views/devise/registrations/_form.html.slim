@@ -1,43 +1,9 @@
 .row
-  .col-xs-12
+  .col-xs-12.col-sm-9
     .form-group
       = f.label :name
       = f.text_field :name, autofocus: true, class: "form-control", placeholder: "full name as per NRIC/FIN"
-
-.row
-  .col-xs-8
-    .form-group
-      = f.label :email
-      = f.email_field :email, class: "form-control", placeholder: "a valid email is required for account confirmation."
-  .col-xs-4
-    .form-group
-      = f.label :mobile
-      = f.telephone_field :mobile, class: "form-control", placeholder: "include country code"
-
-- unless current_volunteer || current_admin
-  .row
-    .col-xs-4
-      .form-group
-        = f.label :password
-        - if @minimum_password_length
-          = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "(minimum #{@minimum_password_length} characters)"
-    .col-xs-4
-      .form-group
-        = f.label :confirm_password
-        = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "please re-enter"
-
-.row
-  .col-xs-4
-    .form-group
-      = f.label :profession
-      = f.text_field :profession, class: "form-control", placeholder: "what do you work as?"
-  .col-xs-4
-    .form-group
-      = f.label :highest_education
-      = f.collection_select :formal_education_id, FormalEducation.all, :id, :name, { prompt: true }, class: "form-control"
-
-.row
-  .col-xs-12
+  .col-xs-12.col-sm-3
     .form-group
       = f.label :gender
       br
@@ -47,14 +13,41 @@
       label.radio-inline
         input#male name="gender" type="radio" value="false"
         | Male
-
+- unless current_volunteer || current_admin
+  .row
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :password
+        - if @minimum_password_length
+          = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "(minimum #{@minimum_password_length} characters)"
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :confirm_password
+        = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "please re-enter"
 .row
-  .col-xs-12
+  .col-xs-12.col-sm-4
+    .form-group
+      = f.label :mobile
+      = f.telephone_field :mobile, class: "form-control", placeholder: "include country code"
+  .col-xs-12.col-sm-5
+    .form-group
+      = f.label :email
+      = f.email_field :email, class: "form-control", placeholder: "a valid email is required for account confirmation."
+.row
+  .col-xs-12.col-sm-4
+    .form-group
+      = f.label :profession
+      = f.text_field :profession, class: "form-control", placeholder: "what do you work as?"
+  .col-xs-12.col-sm-4
+    .form-group
+      = f.label :highest_education
+      = f.collection_select :formal_education_id, FormalEducation.all, :id, :name, { prompt: true }, class: "form-control"
+  .col-xs-12.col-sm-4
     .form-inline
       .form-group
         = f.label :date_of_birth
+        br
         = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}, class: "form-control"
-
 .row
   .col-xs-12
     .form-group
@@ -101,21 +94,17 @@
           = b.label
 
 .row
-  .col-xs-12
+  .col-xs-12.col-sm-6
     .form-group
-      .col-xs-8
-        =f.label :other_talents
-        = f.text_area :other_talents, class: "form-control", placeholder: "please elaborate on your other talent if you have checked the last box (Other)"
+      =f.label :other_talents
+      = f.text_area :other_talents, class: "form-control", placeholder: "please elaborate on your other talent if you have checked the last box (Other)"
+  .col-xs-12.col-sm-6
+    .form-group
+      =f.label :about_me
+      = f.text_area :about_me, class: "form-control", placeholder: "tell us more about yourself! :)"
 
 .row
-  .col-xs-12
-    .form-group
-      .col-xs-8
-        =f.label :about_me
-        = f.text_area :about_me, class: "form-control", placeholder: "tell us more about yourself! :)"
-
-.row
-  .col-xs-12
+  .col-xs-12.col-sm-12
     .form-group
       = f.label 'Would you like to recieve email notifications?'
       br

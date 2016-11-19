@@ -1,20 +1,21 @@
-h2 Edit volunteer details
+.container
+  h2 Edit volunteer details
 
-= form_for [:admin, @volunteer] do |f| 
+  = form_for [:admin, @volunteer] do |f| 
 
-  = render partial: 'devise/registrations/form', locals: { f: f }
+    = render partial: 'devise/registrations/form', locals: { f: f }
 
-  div
-    = f.label 'Would you like to volunteer on a regular bases?'
-    br
-    = f.label 'Yes'
-    = f.radio_button :adhoc, '0'
+    div
+      = f.label 'Would you like to volunteer on a regular bases?'
+      br
+      = f.label 'Yes'
+      = f.radio_button :adhoc, '0'
 
-    = f.label 'No'
-    = f.radio_button :adhoc, '1'
+      = f.label 'No'
+      = f.radio_button :adhoc, '1'
 
-  .actions
-    = f.submit
-  
-div
-  = link_to 'Back', :back 
+  .form-inline
+    .form-group
+      .actions
+        .button
+          input.btn.btn-primary type="submit" value=("Update Volunteer Details")

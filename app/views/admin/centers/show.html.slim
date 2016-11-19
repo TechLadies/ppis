@@ -13,5 +13,6 @@
     dt Address
     dd= @center.address
 
-  = link_to 'Edit', edit_admin_center_path(@center), class: 'btn btn-primary'
+  - if current_admin.has_role?(:admin)
+    = link_to 'Edit', edit_admin_center_path(@center), class: 'btn btn-primary'
   = link_to 'View all centers', admin_centers_path, class: 'btn btn-default'

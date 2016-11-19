@@ -1,5 +1,7 @@
 class Admin::CentersController < Admin::BaseController
 
+  before_action :require_admin_role!, only: [:new, :create, :edit, :update]
+
   def index
     @centers = Center.all
   end
@@ -42,6 +44,10 @@ class Admin::CentersController < Admin::BaseController
 
   def center_params
     params.require(:center).permit(:name, :manager_name, :email, :contact_number, :fax_number, :address)
+  end
+
+  def require_admin_role!
+    redirect_to admin_centers_path unless current_admin.has_role?(:admin)
   end
 
 end

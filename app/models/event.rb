@@ -4,6 +4,9 @@ class Event < ApplicationRecord
 
   belongs_to :center
 
+  has_many :volunteer_events
+  has_many :volunteers, through: :volunteer_events
+
   validates :center, presence: true
   validates :event_name, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true

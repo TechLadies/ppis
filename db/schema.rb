@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119091149) do
+ActiveRecord::Schema.define(version: 20161119091642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,8 +150,9 @@ ActiveRecord::Schema.define(version: 20161119091149) do
   create_table "volunteer_events", force: :cascade do |t|
     t.integer  "volunteer_id"
     t.integer  "event_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "state",        default: "created"
     t.index ["event_id"], name: "index_volunteer_events_on_event_id", using: :btree
     t.index ["volunteer_id"], name: "index_volunteer_events_on_volunteer_id", using: :btree
   end

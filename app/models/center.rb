@@ -1,5 +1,6 @@
 class Center < ApplicationRecord
 
+  has_many :admins
   has_many :preferred_centers
 
   validates :address, presence: true

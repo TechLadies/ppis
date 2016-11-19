@@ -11,20 +11,23 @@
   .row
     .col-xs-12.col-sm-6
       .form-group
-        = f.label :'Event Name '
+        = f.label :event_name, 'Event Name'
         = f.text_field :event_name, class: "form-control", placeholder: "name of the event"
     .col-xs-12.col-sm-6
       .form-group
-        = f.label :'Location '
+        = f.label :location, 'Location '
         = f.text_field :location, class: "form-control", placeholder: "location of the event (including postal code)"
   .row
     .col-xs-12.col-sm-6
       .form-group
-        = f.label :center
-        = f.collection_select :center_id, Center.all, :id, :name, { prompt: true }, class: "form-control"
+        = f.label :center, 'Host Center'
+        - if current_admin.has_role?(:admin)
+          = f.collection_select :center_id, Center.all, :id, :name, { prompt: true }, class: "form-control"
+        - else
+          = f.text_field :center_name, value: current_admin.center&.name, disabled: true, class: "form-control"
     .col-xs-12.col-sm-6
       .form-group
-        = f.label :'Number of Volunteers '
+        = f.label :number_of_volunteers, 'Number of Volunteers '
         = f.number_field :number_of_volunteers, class: "form-control", placeholder: "total number of volunteers required"
   .row
     .col-xs-12.col-sm-4
@@ -36,14 +39,14 @@
             = fa_icon 'calendar'
     .col-xs-12.col-sm-4
       .form-group
-        = f.label :start_time
+        = f.label :start_time, 'Start Time'
         .input-group.time.datetimepicker3
           = f.text_field :start_time, class: 'form-control'
           span.input-group-addon
             = fa_icon 'clock-o'
     .col-xs-12.col-sm-4
       .form-group
-        = f.label :end_time
+        = f.label :end_time, 'End Time'
         .input-group.time.datetimepicker3
           = f.text_field :end_time, class: 'form-control'
           span.input-group-addon
@@ -52,7 +55,7 @@
     .col-xs-12.col-sm-12
       .form-group
         = f.label :description
-        = f.text_area :description, class: "form-control", placeholder: "a short introduction of the event"
+        = f.text_area :description, class: "form-control", placeholder: "a short introduction of the event", rows: 7
 
   .actions
     .button

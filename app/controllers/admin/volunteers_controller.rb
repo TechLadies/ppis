@@ -6,7 +6,9 @@ class Admin::VolunteersController < Admin::BaseController
     elsif params[:filter]
       @volunteers = Volunteer.filter(params[:filter])
     else
-      @volunteers = Volunteer.all.order('LOWER(name)')
+      @volunteers = Volunteer.joins(:preferred_centers)
+                      .where(['preferred_centers.center_id = ?', current_admin.center_id])
+                      .order('LOWER(name)')
     end
   end
 

@@ -9,6 +9,9 @@ class Volunteer < ApplicationRecord
   has_many :certifications_volunteers
   has_many :certifications, through: :certifications_volunteers
 
+  has_many :volunteer_events
+  has_many :events, through: :volunteer_events
+
   has_many :preferred_availabilities
   has_many :availabilities, through: :preferred_availabilities
 

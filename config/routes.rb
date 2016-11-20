@@ -21,10 +21,12 @@ Rails.application.routes.draw do
 
   namespace :my do
 
-    resources :events, only: [] do
+    resources :events, only: [:show] do
       get 'new_events', on: :collection
       get 'upcoming_events', on: :collection
       get 'past_events', on: :collection
+
+      post 'register', on: :member
     end
 
     resource :profile

@@ -1,8 +1,8 @@
 class My::EventsController < My::BaseController
   def new_events
-    @events = Event.all
+    @events = Event.published.where('date > ?', Date.today)
   end
-
+  
   def show
     @event = find_event
   end

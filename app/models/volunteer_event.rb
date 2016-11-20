@@ -28,7 +28,7 @@ class VolunteerEvent < ApplicationRecord
     end
 
     event :re_register do
-      transition :from => :declined, :to => :registered
+      transitions :from => :declined, :to => :registered
     end
   end
 

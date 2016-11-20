@@ -1,5 +1,5 @@
 events = [
-  ["event 1", "Bukit Batok Street", "IINSPIRASI PPIS", "6", "14 Nov 2016", DateTime.new(2016, 11, 10,), 
+  ["event 1", "Bukit Batok Street", "IINSPIRASI PPIS", "6", DateTime.new(2016, 11, 10), 
     DateTime.new(2016, 11, 10, 9, 30), DateTime.new(2016, 11, 10, 11, 30), "Lorem ipsum dolor sit amet, consectetur
 adipiscing elit. Pellentesque nec massa odio. Nam blandit ante diam, eu ornare augue varius sed. Praesent felis erat,
 efficitur vitae urna id, imperdiet iaculis lectus. Curabitur laoreet, augue vitae consectetur tincidunt, est enim
@@ -7,7 +7,7 @@ condimentum tortor, et tempus urna lectus at massa. Vivamus vitae purus et purus
 tempus nisi. Cras sollicitudin dolor non eros lacinia, rhoncus rutrum lacus condimentum. Etiam vel libero nisi.
 Quisque ut consequat ante. In imperdiet ligula sollicitudin massa bibendum malesuada. Proin nec magna ante. Cras
 facilisis turpis a enim fermentum, eu vulputate nibh gravida. Pellentesque vulputate vulputate elementum."],
-  ["event 2 (Day 1)", "Ubi Ave 1", "PPIS As-Salaam Family Support Centre", "2", DateTime.new(2016, 11, 12 ), 
+  ["event 2 (Day 1)", "Ubi Ave 1", "PPIS As-Salaam Family Support Centre", "2", DateTime.new(2016, 11, 12), 
     DateTime.new(2016, 11, 12, 8, 15) , DateTime.new(2016, 11, 12, 18, 30) , "Donec et malesuada diam. In molestie,
 odio ac tristique varius, libero nunc sollicitudin felis, quis imperdiet turpis diam nec velit. Suspendisse porttitor
 interdum felis vulputate facilisis. Mauris at massa ante. Donec quis tortor dui. Duis fermentum felis nec ipsum tempor,

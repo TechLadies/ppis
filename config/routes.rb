@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
   end
 
+  resources :events 
+  
   root to: "pages#index"
 
 end

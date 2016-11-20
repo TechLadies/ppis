@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'past_events', on: :collection
 
       post 'register', on: :member
+      patch 'unregister', on: :member
     end
 
     resource :profile

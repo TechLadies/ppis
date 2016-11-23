@@ -1,0 +1,23 @@
+.container
+  h2 Details of #{@event.event_name}
+  - decorate(@event) do |decorated_event|
+    dl.event-details
+      dt Center Name
+      dd = decorated_event.center.name
+      dt Event Name
+      dd = decorated_event.event_name
+      dt Description
+      dd = decorated_event.description
+      dt When
+      dd = decorated_event.when
+      dt Time
+      dd = decorated_event.time
+      dt Approx. Duration
+      dd = decorated_event.duration
+      dt Location
+      dd = decorated_event.location
+      dt Number of Volunteers
+      dd = decorated_event.number_of_volunteers
+  = link_to 'View all events', events_path, class: 'btn btn-default'
+  - if @event.published?
+    = link_to 'Register', new_volunteer_registration_path, class: 'btn btn-primary', method: :get

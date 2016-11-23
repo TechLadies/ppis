@@ -18,4 +18,10 @@
       dd = decorated_event.location
       dt Number of Volunteers
       dd = decorated_event.number_of_volunteers
-  = link_to 'View all events', events_path, class: 'btn btn-default'
+  = link_to 'View all events', new_events_my_events_path, class: 'btn btn-default'
+  - if @event.published? && @event.volunteer_events.where(volunteer: current_volunteer).blank?
+    = link_to 'Register', register_my_event_path(@event), class: 'btn btn-primary', method: :post
+  - elsif @event.volunteer_events.declined.where(volunteer: current_volunteer).exists?
+    = link_to 'Register', '#', class: 'btn btn-primary', method: :patch
+  - else
+    = link_to 'Cancel Registration', unregister_my_event_path(@event), class: 'btn btn-danger', method: :patch

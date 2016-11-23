@@ -85,13 +85,16 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: ENV['APP_HOST'] }
-  ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
-    :enable_starttls_auto => true
+  config.action_mailer.delivery_method = :mail_gate
+  config.action_mailer.mail_gate_settings = {
+    :whitelist        => /(@ppis.com|anthonysherwinchua@gmail.com$)/mi,
+    :delivery_method  => :smtp,
+    :delivery_settings => {
+      :address        => 'smtp.sendgrid.net',
+      :port           => '25',
+      :authentication => :plain,
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD']
+    }
   }
 end

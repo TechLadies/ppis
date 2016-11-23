@@ -62,6 +62,10 @@ group :development do
   gem 'slim_lint', require: false
 end
 
+group :staging do
+  gem 'mail_gate'
+end
+
 group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'

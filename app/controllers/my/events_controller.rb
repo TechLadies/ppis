@@ -1,10 +1,12 @@
 class My::EventsController < My::BaseController
+
   def new_events
     @events = Event.published.where('date > ?', Date.today)
   end
   
   def show
     @event = find_event
+    @presenter = My::EventPresenter.new(current_volunteer, @event)
   end
 
   def register

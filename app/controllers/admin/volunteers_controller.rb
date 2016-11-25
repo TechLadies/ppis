@@ -1,15 +1,8 @@
 class Admin::VolunteersController < Admin::BaseController
 
   def index
-    if params[:search]
-      @volunteers = Volunteer.search(params[:search])
-    elsif params[:filter]
-      @volunteers = Volunteer.filter(params[:filter])
-    else
-      @volunteers = Volunteer.joins(:preferred_centers)
-                      .where(['preferred_centers.center_id = ?', current_admin.center_id])
-                      .order('LOWER(name)')
-    end
+    @query = VolunteerQuery.new(current_admin, params)
+    @volunteers = @query.volunteers
   end
 
   def new

@@ -3,13 +3,14 @@
     .form-group
       h4 Search name/email
       = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
-        = text_field_tag :search, params[:search], placeholder: "Search Volunteers"
+        = hidden_field_tag :filter, @query.filter
+        = text_field_tag :search, @query.search, placeholder: "Search Volunteers"
         = submit_tag "Search", :name => nil
     .form-group
       h4 Search skill
       = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
-        = hidden_field_tag :filter, params[:search]
-        = select_tag "filter", options_from_collection_for_select(Skill.all,"id","name",)
+        = hidden_field_tag :search, @query.search
+        = select_tag "filter", options_from_collection_for_select(Skill.all, "id", "name", @query.filter), include_blank: true
         = submit_tag "Search", :name => nil
 
 .container

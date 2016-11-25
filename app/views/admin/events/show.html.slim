@@ -18,5 +18,18 @@
       dd = decorated_event.location
       dt Number of Volunteers
       dd = decorated_event.number_of_volunteers
+    
+    ul.nav.nav-tabs
+
+      li
+        a = link_to 'Find Volunteers', admin_volunteer_path
+
+      li
+        a = link_to 'Pending Volunteers', admin_volunteer_path
+
+      li
+        a = link_to 'Approved Volunteers', admin_volunteer_path
+
+
   = link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-primary'
   = link_to 'View all events', admin_events_path, class: 'btn btn-default'

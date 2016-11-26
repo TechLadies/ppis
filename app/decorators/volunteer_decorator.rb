@@ -2,7 +2,7 @@ class VolunteerDecorator < SimpleDelegator
 
   def date_of_birth
     if super.blank?
-       'Not given'
+      'Not given'
     else
       super
     end
@@ -10,7 +10,7 @@ class VolunteerDecorator < SimpleDelegator
 
   def mobile
     if super.blank?
-       'Not given'
+      'Not given'
     else
       super
     end
@@ -18,7 +18,7 @@ class VolunteerDecorator < SimpleDelegator
 
   def profession
     if super.blank?
-       'Not given'
+      'Not given'
     else
       super
     end
@@ -31,10 +31,10 @@ class VolunteerDecorator < SimpleDelegator
       super.map(&:name).to_sentence
     end
   end
-  
+
   def formal_education
-    if highest_education.blank?
-       'N/A'
+    if super.blank?
+      'N/A'
     else
       super
     end
@@ -74,7 +74,7 @@ class VolunteerDecorator < SimpleDelegator
 
   def other_talents
     if super.blank?
-       'Not given'
+      'Not given'
     else
       super
     end
@@ -82,11 +82,10 @@ class VolunteerDecorator < SimpleDelegator
 
   def about_me
     if super.blank?
-       'Not completed'
+      'Not completed'
     else
       super
     end
   end
-
 
 end

@@ -4,8 +4,12 @@ class EventDecorator < SimpleDelegator
     date.strftime('%d %b %Y')
   end
 
+  def start_time
+    super.strftime('%H:%M')
+  end
+
   def time
-    start_time.strftime('%H:%M') + ' - ' + end_time.strftime('%H:%M')
+    start_time + ' - ' + end_time.strftime('%H:%M')
   end
 
   def duration

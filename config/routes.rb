@@ -37,6 +37,6 @@ Rails.application.routes.draw do
 
   resources :events 
   
-  root to: "pages#index"
+  root to: "events#index"
 
 end

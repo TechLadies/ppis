@@ -1,12 +1,9 @@
-h2 Sign up
+h1 Sign up
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+= form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
   
   = render partial: 'devise/registrations/form', locals: { f: f }
-  br      
 
-  .actions
-    .button
-      input.btn.btn-default type="submit" value=("Submit") 
-  
-= render "devise/shared/links"
+  .panel.panel-default
+    .panel-footer.text-right
+      input.btn.btn-primary type="submit" value="Register!"

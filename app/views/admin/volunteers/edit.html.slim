@@ -5,17 +5,19 @@
 
     = render partial: 'devise/registrations/form', locals: { f: f }
 
-    div
-      = f.label 'Would you like to volunteer on a regular bases?'
-      br
-      = f.label 'Yes'
-      = f.radio_button :adhoc, '0'
+    .panel.panel-primary
+      .panel-body
+        .row
+          .col-xs-12
+            = f.label 'Would you like to volunteer on a regular bases?'
+            .form-group
+              label.radio-inline
+                = f.radio_button :adhoc, false
+                | Yes
+              label.radio-inline
+                = f.radio_button :adhoc, true
+                | No
 
-      = f.label 'No'
-      = f.radio_button :adhoc, '1'
-
-    .form-inline
-      .form-group
-        .actions
-          .button
-            input.btn.btn-primary type="submit" value=("Update Volunteer Details")
+    .panel.panel-default
+      .panel-footer.text-right
+        input.btn.btn-primary type="submit" value="Update Volunteer Details"

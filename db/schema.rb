@@ -191,10 +191,10 @@ ActiveRecord::Schema.define(version: 20161126071342) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.integer  "gender",                 default: 1
-    t.integer  "formal_education_id"
     t.datetime "deleted_at"
+    t.integer  "formal_education_id"
     t.boolean  "email_notification",     default: true
-    t.boolean  "adhoc"
+    t.boolean  "adhoc",                  default: true
     t.index ["confirmation_token"], name: "index_volunteers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_volunteers_on_email", unique: true, using: :btree
     t.index ["formal_education_id"], name: "index_volunteers_on_formal_education_id", using: :btree

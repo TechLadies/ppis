@@ -3,14 +3,14 @@ class PPIS.Views.Admin_Dashboard.IndexView
     ctx = document.getElementById("myChart")
     jctx = $(ctx)
     myChart = new Chart(ctx,
-      type: 'bar'
+      type: 'pie'
       data:
         labels: [
           'Adhoc',
           'Regular'
         ]
         datasets: [ {
-          label: '# of Votes'
+          label: '# Status of volunteers'
           data: [
             jctx.data('volunteer-adhoc'),
             jctx.data('volunteer-regular')
@@ -24,5 +24,33 @@ class PPIS.Views.Admin_Dashboard.IndexView
             'rgba(54, 162, 235, 1)'
           ]
           borderWidth: 1
-        } ]
-      options: scales: yAxes: [ { ticks: beginAtZero: true } ])
+        } ])
+
+    ctx = document.getElementById("myChartAllV")
+    jctx = $(ctx)
+    myChartAllV = new Chart(ctx,
+      type: 'bar'
+      data: 
+        labels: [
+          '2 years ago'
+          'last year'
+          'Current year'
+        ]
+        datasets: [ {
+          data: [
+            jctx.data('volunteers-past3yrs-oldest-only'),
+            jctx.data('volunteers-past3yrs-exclude-current'),
+            jctx.data('volunteers-past3yrs-include-current')
+          ]
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.2)'
+            'rgba(54, 162, 235, 0.2)'
+            'rgba(54, 162, 235, 0.2)'
+          ]
+          borderColor: [
+            'rgba(54, 162, 235, 1)'
+            'rgba(54, 162, 235, 1)'
+            'rgba(54, 162, 235, 1)'
+          ]
+          borderWidth: 1
+        } ])

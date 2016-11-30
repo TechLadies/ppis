@@ -1,20 +1,14 @@
-.box
-  .box-header.with-border
-    .box-title Graphs
-  .box-body
-    .row
-      .col-xs-4
+.row
+  .col-xs-12.col-sm-4
+    .box-header.with-border
+      .box-title Status of Volunteers
+      .box-body
         .chart
           canvas#myChart width="400" height="400" data-volunteer-adhoc="#{@volunteers[true]}" data-volunteer-regular="#{@volunteers[false]}"
 
-h2 Events
-
-ul.nav.nav-tabs
-  li
-    a = link_to 'New Events', new_events_my_events_path
-
-  li
-    a = link_to 'Upcoming Events', upcoming_events_my_events_path
-
-  li
-    a = link_to 'Past Events', past_events_my_events_path
+  .col-xs-12.col-sm-4
+      .box-header.with-border
+        .box-title Number of Volunteers
+        .box.body
+          .chart
+            canvas#myChartAllV width="400" height="400" data-volunteers-past3yrs-include-current="#{@volunteers_past3yrs_include_current}" data-volunteers-past3yrs-exclude-current="#{@volunteers_past3yrs_exclude_current}" data-volunteers-past3yrs-oldest-only="#{@volunteers_past3yrs_oldest_only}"

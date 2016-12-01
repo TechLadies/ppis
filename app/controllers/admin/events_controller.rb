@@ -54,7 +54,9 @@ class Admin::EventsController < Admin::BaseController
 
   def event_params
     params.require(:event).permit(:center_id, :event_name, :description, :date, :start_time, :end_time, :location,
-      :number_of_volunteers)
+      :number_of_volunteers,
+      job_requirements_attributes: [:id, :job_title, :number_of_volunteers, :description, :_destroy]
+    )
   end
 
 end

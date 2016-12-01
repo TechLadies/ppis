@@ -57,6 +57,12 @@
         = f.label :description
         = f.text_area :description, class: "form-control", placeholder: "a short introduction of the event", rows: 7
 
+  #job_requirements
+    = f.fields_for :job_requirements do |ff|
+      = render 'job_requirement_fields', f: ff
+    .links
+      = link_to_add_association 'add job requirement', f, :job_requirements, class: 'btn btn-default'
+
   .actions
     .button
-      input.btn.btn-default type="submit" value=("Save")
+      input.btn.btn-primary type="submit" value=("Save")

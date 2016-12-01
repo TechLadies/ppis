@@ -6,6 +6,8 @@ class Event < ApplicationRecord
 
   has_many :volunteer_events
   has_many :volunteers, through: :volunteer_events
+  has_many :job_requirements, class_name: 'EventJobRequirement'
+  accepts_nested_attributes_for :job_requirements, reject_if: :all_blank, allow_destroy: true
 
   validates :center, presence: true
   validates :event_name, presence: true, uniqueness: { case_sensitive: false }

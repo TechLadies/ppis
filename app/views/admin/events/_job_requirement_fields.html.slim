@@ -1,0 +1,16 @@
+.nested-fields
+  .row
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :job_title
+        = f.text_field :job_title, class: 'form-control'
+    .col-xs-12.col-sm-6
+      .form-group
+        = f.label :number_of_volunteers
+        = f.number_field :number_of_volunteers, class: 'form-control'
+    .col-xs-12
+      .form-group
+        = f.label :description
+        = f.text_field :description, class: 'form-control'
+    .col-xs-12
+      = link_to_remove_association "remove job requirement", f, class: 'btn btn-default'

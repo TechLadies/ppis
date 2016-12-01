@@ -29,6 +29,7 @@ gem 'aasm'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "cocoon"
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

@@ -11,15 +11,25 @@ class My::EventsController < My::BaseController
 
   def register
     @event = find_event
-    volunteer_event = @event.volunteer_events.create(volunteer: current_volunteer)
-    volunteer_event.register!
+    volunteer_event = @event.volunteer_events.find_or_initialize_by(volunteer: current_volunteer)
+    if volunteer_event.new_record?
+      volunteer_event.register!
+    else
+      volunteer_event.re_register!
+    end
+    redirect_to my_event_path(@event)
+  rescue AASM::InvalidTransition => e
+    flash[:error] = 'Something went wrong, please contact the administrators.'
     redirect_to my_event_path(@event)
   end
 
   def unregister
     @event = find_event
     volunteer_event = @event.volunteer_events.where(volunteer: current_volunteer).first
-    volunteer_event.decline!
+    volunteer_event.cancel!
+    redirect_to my_event_path(@event)
+  rescue AASM::InvalidTransition => e
+    flash[:error] = 'Something went wrong, please contact the administrators.'
     redirect_to my_event_path(@event)
   end
 

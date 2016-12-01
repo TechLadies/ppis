@@ -6,11 +6,13 @@
 #= require moment
 #= require bootstrap-datetimepicker
 #= require cocoon
+#= require Chart
 #= require_tree ./admin
 
 window.PPIS ||= {}
 PPIS.Views ||= {}
 PPIS.Views.Admin_Events ||= {}
+PPIS.Views.Admin_Dashboard ||= {}
 
 PPIS.init = ->
   appData = $('body').data()

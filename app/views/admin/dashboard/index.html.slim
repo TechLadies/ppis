@@ -1,3 +1,12 @@
+.box
+  .box-header.with-border
+    .box-title Graphs
+  .box-body
+    .row
+      .col-xs-4
+        .chart
+          canvas#myChart width="400" height="400" data-volunteer-adhoc="#{@volunteers[true]}" data-volunteer-regular="#{@volunteers[false]}"
+
 h2 Events
 
 ul.nav.nav-tabs

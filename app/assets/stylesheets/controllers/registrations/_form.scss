@@ -1,0 +1,21 @@
+#volunteer-form {
+
+  .checkboxes {
+    margin: 10px 0 20px 0px;
+  }
+  .checkbox {
+    margin: 5px 0 5px;
+  }
+
+  .checkbox label {
+    padding-left: 0;
+  }
+
+  .checkbox input[type="checkbox"],
+  .checkbox-inline input[type="checkbox"] {
+    margin-left: 0;
+    margin-right: 10px;
+    position: relative;
+  }
+
+}

@@ -21,10 +21,10 @@ class My::ProfilesController < My::BaseController
 
   def profile_params
     params.require(:profile).permit(
-      :name, :mobile, :profession, :other_talents, :about_me, :email, :password, :password_confirmation,
-      :current_password,
-      target_group_ids: [], availability_ids: [], skill_ids: [], center_ids: [], formal_education_ids: [],
-      certification_ids: []
+      :email, :password, :password_confirmation, :current_password,
+      :name, :gender, :"date_of_birth(3i)", :"date_of_birth(2i)", :"date_of_birth(1i)", :mobile, :about_me,
+      :profession, :highest_education, :other_talents, :email_notification, :formal_education_id,
+      certification_ids: [], skill_ids: [], center_ids: [], target_group_ids: [], availability_ids: []
     )
   end
 

@@ -1,41 +1,16 @@
-h2 Edit your details #{current_volunteer.name}
-
+h1 Edit your details #{current_volunteer.name}
 
 = form_for @profile, as: :profile, url: my_profile_path, method: :patch do |f|
 
   = render partial: 'devise/registrations/form', locals: { f: f }
 
-  div
-    = f.label :password
-    p
-      | (leave blank if you don't want to change it)
-    = f.password_field :password, autocomplete: "off"
-    - if @minimum_password_length
-      em
-        | (#{@minimum_password_length} characters minimum)
+  .panel.panel-primary
+    .panel-footer.text-right
+      input.btn.btn-primary.btn-lg type="submit" value="Update Profile"
 
-  div
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
+  .panel.panel-default
+    .panel-heading Unhappy?
 
-  div
-    = f.label :current_password
-    p
-      | (we need your current password to confirm your changes)
-    = f.password_field :current_password, autocomplete: "off"
+    .panel-body
+      = link_to 'Cancel my account', volunteer_registration_path, data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-sm'
 
-  .actions
-    = f.submit "Update"
-  
-
-
-h3 Cancel my account
-  
-p Unhappy? 
-  
-div
-  = link_to 'Cancel my account', volunteer_registration_path, data: { confirm: "Are you sure?" }, method: :delete 
-   
-div
-  = link_to 'Back', :back

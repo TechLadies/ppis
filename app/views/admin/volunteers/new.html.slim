@@ -4,6 +4,6 @@ h2 Register new volunteer
 
   = render partial: 'devise/registrations/form', locals: { f: f }
 
-  = f.submit "Create Account"
-
-  = link_to "Cancel", admin_root_path
+  .panel.panel-default
+    .panel-footer.text-right
+      input.btn.btn-primary type="submit" value="Create Account"

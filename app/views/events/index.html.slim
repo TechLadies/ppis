@@ -1,6 +1,6 @@
 .container
   .row
-    - [@events.first, @events.first, @events.first, @events.first].each do |event|
+    - @events.each do |event|
       .col-sm-6
         - decorate(event) do |decorated_event|
           .panel.panel-info

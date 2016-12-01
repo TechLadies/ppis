@@ -1,20 +1,12 @@
 .container
   .row
-    .col-xs-12 
-      h2 Events 
-
-      table.table.table-hover
-        thead
-          tr
-            th Event Name
-            th Center
-            th Date
-            th Time
-        tbody
-          - @events.each do |event|
-            - decorate(event) do |decorated_event|
-              tr
-                td= link_to event.event_name, event_path(event)
-                td= event.center.name
-                td= event.date
-                td= decorated_event.time    
+    - [@events.first, @events.first, @events.first, @events.first].each do |event|
+      .col-sm-6
+        - decorate(event) do |decorated_event|
+          .panel.panel-info
+            = link_to event_path(event) do
+              .panel-body
+                h5 = decorated_event.when + " @ " + decorated_event.start_time
+                h2 = event.event_name
+                h4 = event.location
+                p = event.description

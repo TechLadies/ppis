@@ -1,0 +1,32 @@
+.events-index {
+
+  a,
+  a:hover,
+  a:focus,
+  a:visited {
+    color: $gray-dark;
+    text-decoration: none
+  }
+
+  a:hover .panel-body{
+    background-color: $beige;
+  }
+
+  .panel-body {
+
+    h2, h3, h4, h5 {
+      margin-top: 0;
+    }
+
+    h5 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+}

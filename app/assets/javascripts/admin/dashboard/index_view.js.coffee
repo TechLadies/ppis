@@ -28,9 +28,19 @@ class PPIS.Views.Admin_Dashboard.IndexView
 
     ctx = document.getElementById("myChartAllV")
     jctx = $(ctx)
+
+    options = scales: yAxes: [{
+      display: true
+      ticks:
+        suggestedMin: 0
+        beginAtZero: true
+        stepSize: 1
+    }]
+
     myChartAllV = new Chart(ctx,
       type: 'bar'
-      data: 
+      options: options
+      data:
         labels: [
           '2 years ago'
           'last year'

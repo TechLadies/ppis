@@ -1,22 +1,21 @@
 class My::EventsController < My::BaseController
 
-  def new_events
-    @events = Event.published.where('date > ?', Date.today)
-  end
-
-  def upcoming_events
+  def index
     @registered_events = current_volunteer.volunteer_events.registered.map(&:event)
     @approved_events = current_volunteer.volunteer_events.approved.map(&:event)
-
-  end
-  
-  def past_events
-    @events = current_volunteer.volunteer_events.attended.map(&:event)
   end
 
   def show
     @event = find_event
     @presenter = My::EventPresenter.new(current_volunteer, @event)
+  end
+
+  def new_events
+    @events = Event.published.where('date > ?', Date.today)
+  end
+
+  def past_events
+    @events = current_volunteer.volunteer_events.attended.map(&:event)
   end
 
   def register

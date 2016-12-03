@@ -1,3 +1,2 @@
 = render 'tabs', current_tab: 'Past'
-
-h2 Past events
+= render partial: "events", locals: { title: "Past Events", events: @events }

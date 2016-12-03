@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-xs-12 
+      h2 =title
+
+      table.table.table-hover
+        thead
+          tr
+            th Event Name
+            th Center
+            th Date
+            th Time
+        tbody
+          - events.each do |event|
+            - decorate(event) do |decorated_event|
+              tr
+                td= link_to event.event_name, my_event_path(event)
+                td= event.center.name
+                td= event.date
+                td= decorated_event.time    

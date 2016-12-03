@@ -14,7 +14,7 @@
     .col-sm-3
       .text-center
         - if current_volunteer.blank? && @event.published?
-          = link_to 'Volunteer!', new_volunteer_registration_path, class: 'btn btn-primary'
+          = link_to 'Volunteer!', new_volunteer_registration_path(event_id: @event.id), class: 'btn btn-primary'
 
         - elsif @presenter.volunteer_cancelled?
           = link_to 'Register', register_my_event_path(@event), class: 'btn btn-primary', method: :post

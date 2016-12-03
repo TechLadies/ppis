@@ -10,7 +10,8 @@ nav.navbar
 
     #navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav
-        li = link_to 'Home', '#'
+        li = link_to 'Home', my_root_path
+        li = link_to 'Events', events_path
 
       ul.nav.navbar-nav.navbar-right
         - if admin_signed_in?

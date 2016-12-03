@@ -21,8 +21,7 @@ Rails.application.routes.draw do
 
   namespace :my do
 
-    resources :events, only: [:index, :show] do
-      get 'new_events', on: :collection
+    resources :events, only: [:index] do
       get 'past_events', on: :collection
 
       post 'register', on: :member
@@ -31,7 +30,7 @@ Rails.application.routes.draw do
 
     resource :profile
 
-    root to: 'dashboard#index'
+    root to: 'events#index'
   end
 
   resources :events 

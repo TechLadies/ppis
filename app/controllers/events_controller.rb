@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.published.find(params[:id])
+    @presenter = My::EventPresenter.new(current_volunteer, @event)
   end
 
 end

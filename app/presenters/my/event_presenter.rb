@@ -9,7 +9,7 @@ class My::EventPresenter
 
   def volunteer_registered_before?
     event.published? &&
-      event.volunteer_events.exists?
+      event.volunteer_events.where(volunteer: volunteer).exists?
   end
 
   def volunteer_registered?

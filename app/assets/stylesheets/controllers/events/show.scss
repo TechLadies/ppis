@@ -13,7 +13,10 @@
 
   .panel-body {
 
-    h2, h3, h4, h5 {
+    h2,
+    h3,
+    h4,
+    h5 {
       margin-top: 0;
     }
 
@@ -22,10 +25,15 @@
     }
   }
 
-  .btn-primary {
+  .btn-primary,
+  .btn-danger {
     font-size: 36px;
     width: 100%;
     margin: 30px 0 20px 0;
+  }
+
+  .btn-danger {
+    font-size: 24px;
   }
 
 }

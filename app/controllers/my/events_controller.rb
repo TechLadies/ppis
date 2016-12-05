@@ -1,22 +1,12 @@
 class My::EventsController < My::BaseController
 
-  def new_events
-    @events = Event.published.where('date > ?', Date.today)
-  end
-
-  def upcoming_events
+  def index
     @registered_events = current_volunteer.volunteer_events.registered.map(&:event)
     @approved_events = current_volunteer.volunteer_events.approved.map(&:event)
-
   end
-  
+
   def past_events
     @events = current_volunteer.volunteer_events.attended.map(&:event)
-  end
-
-  def show
-    @event = find_event
-    @presenter = My::EventPresenter.new(current_volunteer, @event)
   end
 
   def register
@@ -27,20 +17,20 @@ class My::EventsController < My::BaseController
     else
       volunteer_event.re_register!
     end
-    redirect_to my_event_path(@event)
+    redirect_to event_path(@event)
   rescue AASM::InvalidTransition => e
     flash[:error] = 'Something went wrong, please contact the administrators.'
-    redirect_to my_event_path(@event)
+    redirect_to event_path(@event)
   end
 
   def unregister
     @event = find_event
     volunteer_event = @event.volunteer_events.where(volunteer: current_volunteer).first
     volunteer_event.cancel!
-    redirect_to my_event_path(@event)
+    redirect_to event_path(@event)
   rescue AASM::InvalidTransition => e
     flash[:error] = 'Something went wrong, please contact the administrators.'
-    redirect_to my_event_path(@event)
+    redirect_to event_path(@event)
   end
 
   private

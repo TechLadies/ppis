@@ -20,12 +20,13 @@ class My::ProfilesController < My::BaseController
   private
 
   def profile_params
-    params.require(:profile).permit(
-      :email, :password, :password_confirmation, :current_password,
-      :name, :gender, :"date_of_birth(3i)", :"date_of_birth(2i)", :"date_of_birth(1i)", :mobile, :about_me,
-      :profession, :highest_education, :other_talents, :email_notification, :formal_education_id,
-      certification_ids: [], skill_ids: [], center_ids: [], target_group_ids: [], availability_ids: []
-    )
+    params.require(:volunteer).permit(
+      :name, :gender, :"date_of_birth(3i)", :"date_of_birth(2i)", :"date_of_birth(1i)",
+      :mobile, :profession, :other_talents, :about_me, :email, :password, :password_confirmation, :formal_education_id,
+      :marital_status, :address, :home_phone_number, :language_spoken, :past_experience, :NRIC_No,
+      target_group_ids: [], availability_ids: [], skill_ids: [], center_ids: [], certification_ids: [],
+      email_notification: [true, false], adhoc: [true, false]
+      )
   end
 
   private

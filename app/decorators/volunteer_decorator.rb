@@ -1,5 +1,53 @@
 class VolunteerDecorator < SimpleDelegator
 
+  def NRIC_No
+    if super.blank?
+      'Not given'
+    else
+      super
+    end
+  end
+
+  def marital_status
+    if super.blank?
+      'Not given'
+    else
+      super
+    end
+  end
+
+  def address
+    if super.blank?
+      'Not given'
+    else
+      super
+    end
+  end
+
+  def home_phone_number
+    if super.blank?
+      'Not given'
+    else
+      super
+    end
+  end
+
+  def language_spoken
+    if super.blank?
+      'Not given'
+    else
+      super
+    end
+  end
+
+  def past_experience
+    if super.blank?
+      'Not given'
+    else
+      super
+    end
+  end
+
   def date_of_birth
     if super.blank?
       'Not given'

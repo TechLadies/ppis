@@ -29,6 +29,8 @@ class Volunteer < ApplicationRecord
 
   enum gender: [:male, :female]
 
+  enum marital_status: [:Single, :Married, :Divorced, :Widowed]
+
   def destroy
     update_attribute(:deleted_at, Time.current)
   end

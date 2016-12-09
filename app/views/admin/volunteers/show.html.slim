@@ -48,11 +48,18 @@
         dd = decorated_volunteer.skills
         dt Certification
         dd = decorated_volunteer.certifications
-        dt Target Groups
-        dd = decorated_volunteer.target_groups
         dt Other Talents
         dd = decorated_volunteer.other_talents
+        dt Target Groups
+        dd = decorated_volunteer.target_groups
+        dt Preferred availability
+        dd = decorated_volunteer.availabilities
         dt Past volunteer experience
         dd = decorated_volunteer.past_experience
+        dt About me
+        dd = decorated_volunteer.about_me
+        dt Happy to recieve email notifications?
+        dd = decorated_volunteer.email_notification
+
 
     = link_to 'Edit', edit_admin_volunteer_path, class: 'btn btn-primary'

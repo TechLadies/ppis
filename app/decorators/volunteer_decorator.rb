@@ -40,6 +40,14 @@ class VolunteerDecorator < SimpleDelegator
     end
   end
 
+  def about_me
+    if super.blank?
+      'Not given'
+    else
+      super
+    end
+  end
+
   def past_experience
     if super.blank?
       'Not given'
@@ -129,6 +137,14 @@ class VolunteerDecorator < SimpleDelegator
   end
 
   def about_me
+    if super.blank?
+      'Not completed'
+    else
+      super
+    end
+  end
+
+  def email_notification
     if super.blank?
       'Not completed'
     else

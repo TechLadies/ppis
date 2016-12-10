@@ -1,5 +1,17 @@
 class Admin::VolunteerEventsController < Admin::BaseController
 
+  def find
+    @event = find_event
+    @find_volunteers = Volunteer.joins(:volunteer_events).where(volunteer_events: { state:"nil"})
+  end
+
+  def invite
+    @event = find_event
+    @volunteer_event = volunteer_event.create!
+    @volunteer_event.invite!
+    redirect_to admin_event_path(@event)
+  end
+
   def pending
     @event = find_event
     @pending_volunteer_events = @event.volunteer_events.registered

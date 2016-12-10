@@ -13,11 +13,9 @@
           th
 
         tbody
-          - @find_volunteers.each do |find_volunteer|
+          - @find_volunteers.each do |volunteer|
             tr
               td = link_to volunteer.email, admin_volunteer_path(volunteer)
               td = volunteer.name
               td = volunteer.gender
               td
-          
-                

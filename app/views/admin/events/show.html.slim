@@ -1,22 +1,41 @@
 .container
-  h2 Details of #{@event.event_name}
-  - decorate(@event) do |decorated_event|
-    dl.event-details
-      dt Center Name
-      dd = decorated_event.center.name
-      dt Event Name
-      dd = decorated_event.event_name
-      dt Description
-      dd = decorated_event.description
-      dt When
-      dd = decorated_event.when
-      dt Time
-      dd = decorated_event.time
-      dt Approx. Duration
-      dd = decorated_event.duration
-      dt Location
-      dd = decorated_event.location
-      dt Number of Volunteers
-      dd = decorated_event.number_of_volunteers
-  = link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-primary'
-  = link_to 'View all events', admin_events_path, class: 'btn btn-default'
+  .row
+    .col-xs-12
+      h2 Details of #{@event.event_name}
+      - decorate(@event) do |decorated_event|
+        dl.event-details
+          dt Center Name
+          dd = decorated_event.center.name
+          dt Event Name
+          dd = decorated_event.event_name
+          dt Description
+          dd = decorated_event.description
+          dt When
+          dd = decorated_event.when
+          dt Time
+          dd = decorated_event.time
+          dt Approx. Duration
+          dd = decorated_event.duration
+          dt Location
+          dd = decorated_event.location
+          dt Number of Volunteers
+          dd = decorated_event.number_of_volunteers
+
+  .row
+    .col-xs-12
+      ul#volunteer-tabs.nav.nav-tabs
+        li#volunteer-tab-find.active
+          = link_to 'Find Volunteers', admin_volunteer_path
+        li#volunteer-tab-pending
+          = link_to 'Pending Volunteers', pending_admin_event_volunteer_events_path(@event), remote: true
+        li#volunteer-tab-approved
+          = link_to 'Approved Volunteers', admin_volunteer_path
+
+      #tab-content
+        | hello
+
+
+  .row
+    .col-xs-12
+      = link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-primary'
+      = link_to 'View all events', admin_events_path, class: 'btn btn-default'

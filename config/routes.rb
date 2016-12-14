@@ -9,6 +9,13 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :create, :new, :edit, :show, :update] do
       patch 'publish', on: :member
       patch 'cancel', on: :member
+
+      resources :volunteer_events, only: [] do
+        get :pending, on: :collection
+
+        patch 'approve', on: :member
+        patch 'decline', on: :member
+      end
     end
 
     resources :centers, only: [:index, :create, :new, :edit, :show, :update]

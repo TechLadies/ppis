@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-xs-12
+      h2 = title
+
+  .row
+    .col-xs-12
+      table.table.table-striped.tabled-bordered
+        thead
+          th Email
+          th Name
+          th Gender
+          th
+
+        tbody
+          - volunteer_events.each do |volunteer_event|
+            - volunteer = volunteer_event.volunteer
+            tr
+              td = link_to volunteer.email, admin_volunteer_path(volunteer)
+              td = volunteer.name
+              td = volunteer.gender
+              td
+                = link_to 'Approve', approve_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), class: 'btn btn-primary', method: :patch
+                = link_to 'Decline', decline_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }, method: :patch

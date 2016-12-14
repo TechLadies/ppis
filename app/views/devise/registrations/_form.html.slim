@@ -37,7 +37,11 @@
           .form-group
             = f.label :name
             = f.text_field :name, autofocus: true, class: "form-control", placeholder: "full name as per NRIC/FIN"
-        .col-xs-12.col-sm-2
+        .col-xs-12.col-sm-4
+          .form-group
+            = f.label :NIRC_No, "NRIC or FIN No."
+            = f.text_field :nric_no, class: "form-control", placeholder: "full NIRC/FIN Number"
+        .col-xs-12.col-sm-4
           = f.label :gender
           .form-group
             label.radio-inline
@@ -46,16 +50,44 @@
             label.radio-inline
               = f.radio_button :gender, :male
               | Male
-        .col-xs-12.col-sm-3
+      .row
+        .col-xs-12.col-sm-4
           = f.label :date_of_birth
           .form-inline
             .form-group
               = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}, class: "form-control"
-        .col-xs-12.col-sm-3
+        .col-xs-12.col-sm-4
           .form-group
             = f.label :mobile
             = f.telephone_field :mobile, class: "form-control", placeholder: "include country code"
-        .col-xs-12
+        .col-xs-12.col-sm-4
+          .form-group
+            = f.label :home_phone_number
+            = f.telephone_field :home_phone_number, class: "form-control", placeholder: "include country code"
+        .col-xs-12.col-sm-4
+            = f.label :marital_status
+            .form-group
+            label.radio-inline
+              = f.radio_button :marital_status, :Single
+              | Single
+            label.radio-inline
+              = f.radio_button :marital_status, :Married
+              | Married
+            label.radio-inline
+              = f.radio_button :marital_status, :Divorced
+              | Divorced
+            label.radio-inline
+              = f.radio_button :marital_status, :Widowed
+              | Widowed
+        .col-xs-12.col-sm-8
+          .form-group
+            = f.label :language_spoken
+            = f.text_field :language_spoken, class: "form-control", placeholder: "list languages you speak"
+        .col-xs-4
+          .form-group
+            =f.label :address
+            = f.text_area :address, class: "form-control", placeholder: "your current residential address"
+        .col-xs-8
           .form-group
             =f.label :about_me
             = f.text_area :about_me, class: "form-control", placeholder: "tell us more about yourself! :)"
@@ -97,7 +129,11 @@
           .form-group
             =f.label :other_talents
             = f.text_area :other_talents, class: "form-control", placeholder: "please elaborate on your other talent if you have checked the last box (Other)"
-
+      .row
+        .col-xs-12
+          .form-group
+            =f.label :past_experience, "Past volunteer experience"
+            = f.text_area :past_experience, class: "form-control", placeholder: "tell us about any past volunteering or relevant experience you have"
   .panel.panel-success
     .panel-heading Preferences
     .panel-body

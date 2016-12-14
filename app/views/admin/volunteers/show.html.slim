@@ -22,6 +22,8 @@
 
     - decorate(@volunteer) do |decorated_volunteer|
       dl.volunteer-details
+        dt NRIC/FIN No.
+        dd = decorated_volunteer.nric_no
         dt Gender
         dd = decorated_volunteer.gender
         dt Date of Birth
@@ -30,6 +32,14 @@
         dd = decorated_volunteer.email
         dt Mobile
         dd = decorated_volunteer.mobile
+        dt Home phone number
+        dd = decorated_volunteer.home_phone_number
+        dt Marital status
+        dd = decorated_volunteer.marital_status
+        dt Language spoken
+        dd = decorated_volunteer.language_spoken
+        dt Address
+        dd = decorated_volunteer.address
         dt Profession
         dd = decorated_volunteer.profession
         dt Highest Education
@@ -38,9 +48,18 @@
         dd = decorated_volunteer.skills
         dt Certification
         dd = decorated_volunteer.certifications
-        dt Target Groups
-        dd = decorated_volunteer.target_groups
         dt Other Talents
         dd = decorated_volunteer.other_talents
+        dt Target Groups
+        dd = decorated_volunteer.target_groups
+        dt Preferred availability
+        dd = decorated_volunteer.availabilities
+        dt Past volunteer experience
+        dd = decorated_volunteer.past_experience
+        dt About me
+        dd = decorated_volunteer.about_me
+        dt Happy to recieve email notifications?
+        dd = decorated_volunteer.email_notification
+
 
     = link_to 'Edit', edit_admin_volunteer_path, class: 'btn btn-primary'

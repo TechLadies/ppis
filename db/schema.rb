@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126071342) do
+ActiveRecord::Schema.define(version: 20161208203704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,10 +191,16 @@ ActiveRecord::Schema.define(version: 20161126071342) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.integer  "gender",                 default: 1
-    t.datetime "deleted_at"
     t.integer  "formal_education_id"
+    t.datetime "deleted_at"
     t.boolean  "email_notification",     default: true
-    t.boolean  "adhoc",                  default: true
+    t.boolean  "adhoc"
+    t.string   "nric_no"
+    t.integer  "marital_status"
+    t.text     "address"
+    t.integer  "home_phone_number"
+    t.string   "language_spoken"
+    t.text     "past_experience"
     t.index ["confirmation_token"], name: "index_volunteers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_volunteers_on_email", unique: true, using: :btree
     t.index ["formal_education_id"], name: "index_volunteers_on_formal_education_id", using: :btree

@@ -29,13 +29,16 @@ class PPIS.Views.Admin_Dashboard.IndexView
     ctx = document.getElementById("myChartAllV")
     jctx = $(ctx)
 
-    options = scales: yAxes: [{
-      display: true
-      ticks:
-        suggestedMin: 0
-        beginAtZero: true
-        stepSize: 5
-    }]
+    options = {
+      scales: yAxes: [{
+        display: true
+        ticks:
+          suggestedMin: 0
+          beginAtZero: true
+          stepSize: 5
+      }]
+      legend: display: false
+    }
 
     myChartAllV = new Chart(ctx,
       type: 'bar'
@@ -78,6 +81,8 @@ class PPIS.Views.Admin_Dashboard.IndexView
 
     myChartAllE = new Chart(ctx,
       type: 'bar'
+      options:
+        legend: display: false
       data:
         labels: [
           '2 years ago'
@@ -85,7 +90,6 @@ class PPIS.Views.Admin_Dashboard.IndexView
           'Current year'
         ]
         datasets: [ {
-          label: 'please remove me'
           data: [
             jctx.data('events-past3yrs-oldest-only'),
             jctx.data('events-past3yrs-exclude-current'),
@@ -103,7 +107,7 @@ class PPIS.Views.Admin_Dashboard.IndexView
           ]
           borderWidth: 1
         } ]
-        options: scales: yAxes: [ { ticks: beginAtZero: true, stepSize: 5 } ])
+        options:
+          scales: yAxes: [ { ticks: beginAtZero: true, stepSize: 5 } ])
         
-      
       

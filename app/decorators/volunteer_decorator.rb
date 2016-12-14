@@ -1,6 +1,6 @@
 class VolunteerDecorator < SimpleDelegator
 
-  def NRIC_No
+  def nric_no
     if super.blank?
       'Not given'
     else

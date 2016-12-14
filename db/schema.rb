@@ -191,11 +191,11 @@ ActiveRecord::Schema.define(version: 20161208203704) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.integer  "gender",                 default: 1
-    t.datetime "deleted_at"
     t.integer  "formal_education_id"
+    t.datetime "deleted_at"
     t.boolean  "email_notification",     default: true
-    t.boolean  "adhoc",                  default: true
-    t.string   "NRIC_No"
+    t.boolean  "adhoc"
+    t.string   "nric_no"
     t.integer  "marital_status"
     t.text     "address"
     t.integer  "home_phone_number"

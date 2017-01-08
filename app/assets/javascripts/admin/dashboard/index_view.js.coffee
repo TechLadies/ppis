@@ -68,21 +68,23 @@ class PPIS.Views.Admin_Dashboard.IndexView
           borderWidth: 1
         } ])
 
-    ctx = document.getElementById('myChartAllE')
+    ctx = document.getElementById("myChartAllE")
     jctx = $(ctx)
 
-    options = scales: yAxes: [{
-      display: true
-      ticks:
-        suggestedMin: 0
-        beginAtZero: true
-        stepSize: 5
-    }]
+    options = {
+      scales: yAxes: [{
+        display: true
+        ticks:
+          suggestedMin: 0
+          beginAtZero: true
+          stepSize: 5
+      }]
+      legend: display: false
+    }
 
     myChartAllE = new Chart(ctx,
       type: 'bar'
-      options:
-        legend: display: false
+      options: options
       data:
         labels: [
           '2 years ago'

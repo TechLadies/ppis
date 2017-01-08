@@ -19,4 +19,4 @@
               td = volunteer.name
               td = volunteer.gender
               td
-                = link_to 'Invite', invite_admin_event_volunteer_event_path, class: 'btn btn-primary', method: :patch
+                = link_to 'Invite', invite_admin_event_volunteer_event_path(@event, volunteer), class: 'btn btn-primary', method: :patch

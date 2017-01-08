@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-xs-12
+      h2 = title
+
+  .row
+    .col-xs-12
+      table.table.table-striped.tabled-bordered
+        thead
+          th Email
+          th Name
+          th Gender
+          th
+
+        tbody
+          - @find_volunteers.each do |volunteer|
+            tr
+              td = link_to volunteer.email, admin_volunteer_path(volunteer)
+              td = volunteer.name
+              td = volunteer.gender
+              td
+                = link_to 'Invite', invite_admin_event_volunteer_event_path(@event, volunteer), class: 'btn btn-primary', method: :patch

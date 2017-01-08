@@ -15,10 +15,10 @@
         tbody
           - volunteer_events.each do |volunteer_event|
             - volunteer = volunteer_event.volunteer
-            tr
+            tr id="volunteer-#{volunteer_event.id}"
               td = link_to volunteer.email, admin_volunteer_path(volunteer)
               td = volunteer.name
               td = volunteer.gender
               td
-                = link_to 'Approve', approve_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), class: 'btn btn-primary', method: :patch
+                = link_to 'Approve', approve_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), class: 'btn btn-primary', method: :patch, remote: true
                 = link_to 'Decline', decline_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }, method: :patch

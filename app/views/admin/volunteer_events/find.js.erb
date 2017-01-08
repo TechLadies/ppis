@@ -1,0 +1,6 @@
+$("#volunteer-tabs li").removeClass("active");
+$("#volunteer-tab-find").addClass("active");
+
+var content = "<%= j render 'admin/volunteer_events/find', title: 'Potential Volunteers', volunteers: @find_volunteers %>";
+
+$("#tab-content").html(content);

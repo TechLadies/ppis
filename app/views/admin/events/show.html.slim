@@ -25,14 +25,13 @@
     .col-xs-12
       ul#volunteer-tabs.nav.nav-tabs
         li#volunteer-tab-find.active
-          = link_to 'Find Volunteers', admin_volunteer_path
+          = link_to 'Find Volunteers', find_admin_event_volunteer_events_path(@event), remote: true
         li#volunteer-tab-pending
           = link_to 'Pending Volunteers', pending_admin_event_volunteer_events_path(@event), remote: true
         li#volunteer-tab-approved
           = link_to 'Approved Volunteers', admin_volunteer_path
 
       #tab-content
-        | hello
 
 
   .row

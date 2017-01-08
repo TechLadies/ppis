@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
       resources :volunteer_events, only: [] do
         get :pending, on: :collection
+        get :find, on: :collection
 
+        patch 'invite', on: :member
         patch 'approve', on: :member
         patch 'decline', on: :member
       end

@@ -7,9 +7,9 @@ class Admin::VolunteerEventsController < Admin::BaseController
 
   def invite
     @event = find_event
-    @volunteer_event = volunteer_event.create!
+    @volunteer = find_volunteer
+    Volunteer_event.new
     @volunteer_event.invite!
-    redirect_to admin_event_path(@event)
   end
 
   def pending
@@ -36,6 +36,10 @@ class Admin::VolunteerEventsController < Admin::BaseController
 
   def find_event
     Event.find(params[:event_id])
+  end
+
+  def find_volunteer
+    Volunteer.find(params[:id])
   end
 
   def find_volunteer_event

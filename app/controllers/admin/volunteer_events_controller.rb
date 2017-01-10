@@ -29,7 +29,6 @@ class Admin::VolunteerEventsController < Admin::BaseController
     @event = find_event
     @volunteer_event = find_volunteer_event
     @volunteer_event.decline!
-    redirect_to admin_event_path(@event)
   end
 
   private

@@ -31,6 +31,17 @@ class Admin::VolunteerEventsController < Admin::BaseController
     @volunteer_event.decline!
   end
 
+  def approved
+    @event = find_event
+    @approved_volunteer_events = @event.volunteer_events.approved
+  end
+
+  def attended
+    @event = find_event
+    @volunteer_event = find_volunteer_event
+    @volunteer_event.attended!
+  end
+
   private
 
   def find_event

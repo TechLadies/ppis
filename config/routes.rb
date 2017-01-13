@@ -11,12 +11,14 @@ Rails.application.routes.draw do
       patch 'cancel', on: :member
 
       resources :volunteer_events, only: [] do
+        get :approved, on: :collection
         get :pending, on: :collection
         get :find, on: :collection
 
         patch 'invite', on: :member
         patch 'approve', on: :member
         patch 'decline', on: :member
+        patch 'attended', on: :member
       end
     end
 

@@ -2,8 +2,9 @@
 class NewEventPreview < ActionMailer::Preview
 
   def notify_volunteer
-    event = Event.last
-    NewEventMailer.notify_volunteer(event)
+    @event = Event.last
+    volunteer = Volunteer.last
+    NewEventMailer.notify_volunteer(@event, volunteer)
   end
 
 end

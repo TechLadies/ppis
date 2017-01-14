@@ -36,8 +36,11 @@ class Admin::EventsController < Admin::BaseController
 
   def publish
     @event = find_event
+    @volunteers = Volunteer.all
     @event.publish!
-    NewEventMailer.notify_volunteer(@event).deliver
+    @volunteers.each do |volunteer|
+      NewEventMailer.notify_volunteer(@event, volunteer).deliver
+    end
     redirect_to admin_events_path, notice: "Succesfully publish event: #{@event.event_name}"
   end
 

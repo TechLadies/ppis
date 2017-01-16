@@ -1,4 +1,5 @@
 = render 'tabs', current_tab: 'Upcoming'
+= render partial: "events", locals: { title: "Invited Events", events: @invited_events}
 = render partial: "events", locals: { title: "Registered Events", events: @registered_events }
 = render partial: "events", locals: { title: "Approved Events", events: @approved_events }
 

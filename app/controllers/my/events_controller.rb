@@ -2,6 +2,7 @@ class My::EventsController < My::BaseController
 
   def index
     @registered_events = current_volunteer.volunteer_events.registered.map(&:event)
+    @invited_events = current_volunteer.volunteer_events.invited.map(&:event)
     @approved_events = current_volunteer.volunteer_events.approved.map(&:event)
   end
 

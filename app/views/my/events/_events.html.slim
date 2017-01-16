@@ -10,11 +10,16 @@
             th Center
             th Date
             th Time
+            th
         tbody
-          - events.each do |event|
-            - decorate(event) do |decorated_event|
+          - volunteer_events.each do |volunteer_event|
+            - decorate(volunteer_event.event) do |decorated_event|
               tr
-                td= link_to event.event_name, event_path(event)
-                td= event.center.name
-                td= event.date
-                td= decorated_event.time    
+                td= link_to decorated_event.event_name, event_path(decorated_event)
+                td= decorated_event.center.name
+                td= decorated_event.date
+                td= decorated_event.time
+                td
+                  - if volunteer_event.invited?
+                    = link_to 'Approve', approve_my_event_volunteer_event_path(decorated_event, volunteer_event), class: 'btn btn-primary', method: :patch
+                    = link_to 'Decline', decline_my_event_volunteer_event_path(decorated_event, volunteer_event), class: 'btn btn-danger btn-sm', data: {confirm: 'Are you sure?'}, method: :patch

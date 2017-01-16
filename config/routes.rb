@@ -37,6 +37,12 @@ Rails.application.routes.draw do
 
       post 'register', on: :member
       patch 'unregister', on: :member
+
+      resources :volunteer_events, only: [] do
+        patch 'approve', on: :member
+        patch 'decline', on: :member
+      end
+
     end
 
     resource :profile

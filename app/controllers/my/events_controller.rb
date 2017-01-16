@@ -1,13 +1,13 @@
 class My::EventsController < My::BaseController
 
   def index
-    @registered_events = current_volunteer.volunteer_events.registered.map(&:event)
-    @invited_events = current_volunteer.volunteer_events.invited.map(&:event)
-    @approved_events = current_volunteer.volunteer_events.approved.map(&:event)
+    @registered_events = current_volunteer.volunteer_events.registered
+    @invited_events = current_volunteer.volunteer_events.invited
+    @approved_events = current_volunteer.volunteer_events.approved
   end
 
   def past_events
-    @events = current_volunteer.volunteer_events.attended.map(&:event)
+    @events = current_volunteer.volunteer_events.attended
   end
 
   def register

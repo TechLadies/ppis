@@ -39,8 +39,22 @@ class Admin::VolunteerEventsController < Admin::BaseController
   def attended
     @event = find_event
     @volunteer_event = find_volunteer_event
-    @volunteer_event.attended!
+    if params[:volunteer_event][:attend] == '1'
+    @attended_volunteer_events = @approved_volunteer_events
+    elsif params[:volunteer_event][:attend] == '0'
+    @noshow_volunteer_events = @approved_volunteer_events
+    end
   end
+
+    def create
+      @event = Event.new(event_params)
+      if @event.save
+        redirect_to [:admin, @event]
+      else
+        render 'new'
+      end
+    end
+
 
   private
 

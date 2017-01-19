@@ -40,9 +40,19 @@ class Admin::VolunteerEventsController < Admin::BaseController
     @event = find_event
     @volunteer_event = find_volunteer_event
     if params[:volunteer_event][:attend] == '1'
-    @attended_volunteer_events = @approved_volunteer_events
-    elsif params[:volunteer_event][:attend] == '0'
-    @noshow_volunteer_events = @approved_volunteer_events
+      @volunteer_event.attend!
+    else
+      @volunteer_event.approve!
+    end
+  end
+
+  def no_showed
+    @event = find_event
+    @volunteer_event = find_volunteer_event
+    if params[:volunteer_event][:attend] == '0'
+      @volunteer_event.no_show!
+    else
+      @volunteer_event.approve!
     end
   end
 

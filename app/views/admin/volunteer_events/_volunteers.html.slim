@@ -25,4 +25,4 @@
                     = link_to 'Decline', decline_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }, method: :patch, remote: true
                   - elsif volunteer_event.approved?
                     = form_for volunteer_event, url: attended_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), method: :patch, remote: true do |f|
-                      = f.check_box :attend, class: 'btn-attend'
+                      = f.check_box :attend, value: '0', checked: "unchecked", class: 'btn-attend'

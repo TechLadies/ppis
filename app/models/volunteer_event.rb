@@ -12,7 +12,7 @@ class VolunteerEvent < ApplicationRecord
     state :declined
     state :cancelled
     state :attended
-    state :noshow
+    state :no_showed
 
     event :invite do
       transitions :from => :created, :to => :invited
@@ -39,11 +39,11 @@ class VolunteerEvent < ApplicationRecord
     end
 
     event :attend do
-      transitions :from => :approved, :to => :attended
+      transitions :from => [:approved, :no_showed], :to => :attended
     end
 
-    event :noshow do
-      transitions :from => :approved, :to => :noshow
+    event :no_show do
+      transitions :from => [:approved, :attended], :to => :no_show
     end
   end
 

@@ -23,6 +23,6 @@
                   - if volunteer_event.registered?
                     = link_to 'Approve', approve_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), class: 'btn btn-primary', method: :patch, remote: true
                     = link_to 'Decline', decline_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }, method: :patch, remote: true
-                  - elsif volunteer_event.approved?
+                  - elsif volunteer_event.approved? || volunteer_event.attended? || volunteer_event.no_show?
                     = form_for volunteer_event, url: attended_admin_event_volunteer_event_path(volunteer_event.event, volunteer_event), method: :patch, remote: true do |f|
                       = check_box_tag 'attend', '1', volunteer_event.attended?, class: 'btn-attend'

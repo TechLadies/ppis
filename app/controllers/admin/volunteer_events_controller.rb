@@ -33,7 +33,7 @@ class Admin::VolunteerEventsController < Admin::BaseController
 
   def approved
     @event = find_event
-    @approved_volunteer_events = @event.volunteer_events.approved
+    @approved_volunteer_events = @event.volunteer_events.where(state: [:approved, :attended, :no_show])
   end
 
   def attended

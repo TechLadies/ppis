@@ -33,26 +33,16 @@ class Admin::VolunteerEventsController < Admin::BaseController
 
   def approved
     @event = find_event
-    @approved_volunteer_events = @event.volunteer_events.approved
+    @approved_volunteer_events = @event.volunteer_events.where(state: [:approved, :attended, :no_show])
   end
 
   def attended
     @event = find_event
     @volunteer_event = find_volunteer_event
-    if params[:volunteer_event][:attend] == '1'
+    if params[:attend] == '1'
       @volunteer_event.attend!
     else
-      @volunteer_event.approve!
-    end
-  end
-
-  def no_showed
-    @event = find_event
-    @volunteer_event = find_volunteer_event
-    if params[:volunteer_event][:attend] == '0'
-      @volunteer_event.no_show!
-    else
-      @volunteer_event.approve!
+      @volunteer_event.absent!
     end
   end
 

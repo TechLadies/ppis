@@ -92,7 +92,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super
+      super.name
     end
   end
 

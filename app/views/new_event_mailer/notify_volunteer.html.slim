@@ -1,7 +1,7 @@
-h2 We have just announced another event and need volunteers like you!
+p PPIS have announced a new event and are looking for volunteers – can you help?
 
 h2 = @event.event_name
-h4 = @event.location
-p = @event.description
+h2 = @event.date
 
-p  To sign up for this event please visit the event page
+| For more details please visit the event page at: 
+= link_to 'Event page', event_url(@event)

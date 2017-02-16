@@ -23,6 +23,11 @@ class Admin::VolunteersController < Admin::BaseController
     @volunteer = find_volunteer
   end
 
+  def reactivate
+    @volunteer = find_volunteer.reactivate_volunteer
+    redirect_to admin_volunteers_path
+  end
+
   def update
     @volunteer = find_volunteer
 

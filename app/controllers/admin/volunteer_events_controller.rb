@@ -2,7 +2,8 @@ class Admin::VolunteerEventsController < Admin::BaseController
 
   def find
     @event = find_event
-    @find_volunteers = Volunteer.left_outer_joins(:events).where( volunteer_events: {:volunteer => nil} )
+    center_volunteers = Volunteer.joins(:preferred_centers).where('preferred_centers.center_id = ?', @event.center_id)
+    @find_volunteers = center_volunteers.left_outer_joins(:events).where( volunteer_events: {:volunteer => nil} )
   end
 
   def invite

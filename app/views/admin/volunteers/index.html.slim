@@ -4,16 +4,17 @@
       h4 Search Name/Email
       = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
         = hidden_field_tag :filter, @query.filter
-        = text_field_tag :search, @query.search, placeholder: "Name/Email"
-        = submit_tag "Search", :name => nil
+        = text_field_tag :search, @query.search, placeholder: "Name/Email", class: 'text_field_tag'
+        = submit_tag "Search", :name => nil, class: 'submit_tag'
     .form-group
       h4 Search Skill
       = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
         = hidden_field_tag :search, @query.search
         = select_tag "filter", options_from_collection_for_select(Skill.all, "id", "name", @query.filter), include_blank: true
-        = submit_tag "Search", :name => nil
+        = submit_tag "Search", :name => nil, class: 'submit_tag'
     .form-group
-      =link_to 'Clear Search', admin_volunteers_path, class: 'btn btn-default'
+      h4 Clear Search
+      = link_to 'Clear Search', admin_volunteers_path, class: 'btn btn-default btn-sm'
 
 .container
   h1 Volunteers

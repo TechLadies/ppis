@@ -41,5 +41,5 @@
           td = volunteer.other_talents
           td = t(:"admin.volunteers.index.value_#{volunteer.email_notification}")
           td = t(:"admin.volunteers.index.value_#{volunteer.adhoc}")
-          td = if volunteer.deleted_at?; "Cancelled account" else; "Active" 
+          td = volunteer.deleted_at ? 'Cancelled account' : 'Active'
           td = link_to 'Edit', edit_admin_volunteer_path(volunteer), class: 'btn btn-default'

@@ -1,0 +1,13 @@
+h4 
+  | Hello 
+  = @volunteer.name
+
+p We are inviting you to volunteer at our upcoming event.  We need your skills!
+
+h2 = @event.event_name
+h2 = @event.date
+
+| For more details please visit the event page at: 
+= link_to 'Event page', event_url(@event)
+
+p Please log in and click the approved button if you wish to join us.

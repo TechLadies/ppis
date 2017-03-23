@@ -11,7 +11,7 @@ class Admin::VolunteerEventsController < Admin::BaseController
     @volunteer = find_volunteer
     @volunteer_event = @event.volunteer_events.create(volunteer: @volunteer)
     @volunteer_event.invite!
-    @volunteers_event.NewEventMailer.invite_volunteer(@volunteer_event, volunteer).deliver
+    NewEventMailer.invite_volunteer(@event, @volunteer).deliver
     redirect_to admin_event_path(@event)
   end
 

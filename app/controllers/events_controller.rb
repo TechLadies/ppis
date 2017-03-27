@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.published.where('date > ?', Date.today)
+    @events = Event.published.where('date > ?', Date.current)
   end
 
   def show

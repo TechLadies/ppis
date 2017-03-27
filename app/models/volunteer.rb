@@ -27,6 +27,12 @@ class Volunteer < ApplicationRecord
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
 
+  validate :must_have_certification
+  validate :must_have_availabilities
+  validate :must_have_centers
+  validate :must_have_target_groups
+  validate :must_have_skills
+
   enum gender: [:male, :female]
 
   enum marital_status: [:Single, :Married, :Divorced, :Widowed]
@@ -45,6 +51,28 @@ class Volunteer < ApplicationRecord
 
   def inactive_message
     !deleted_at ? super : :deleted_account
+  end
+
+  private
+
+  def must_have_certification
+    errors.add(:certification_ids, 'must have at least one') if certifications.size.zero?
+  end
+
+  def must_have_availabilities
+    errors.add(:availability_ids, 'must have at least one') if availabilities.size.zero?
+  end
+
+  def must_have_centers
+    errors.add(:center_ids, 'must have at least one') if centers.size.zero?
+  end
+
+  def must_have_target_groups
+    errors.add(:target_group_ids, 'must have at least one') if target_groups.size.zero?
+  end
+
+  def must_have_skills
+    errors.add(:skill_ids, 'must have at least one') if skills.size.zero?
   end
 
 end

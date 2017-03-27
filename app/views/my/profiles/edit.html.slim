@@ -1,6 +1,6 @@
 h1 Edit your details #{current_volunteer.name}
 
-= form_for @profile, as: :profile, url: my_profile_path, method: :patch do |f|
+= simple_form_for @profile, url: my_profile_path, method: :patch do |f|
 
   = render partial: 'devise/registrations/form', locals: { f: f }
 

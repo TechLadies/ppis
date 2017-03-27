@@ -4,10 +4,3 @@
       = fa_icon bootstrap_icon(name), class: 'pull-left'
       button.close aria-hidden='true' data-dismiss='alert' type='button'  &times;
       = content_tag :div, msg, id: "flash_#{name}"
-
-- if defined?(resource) && resource.errors.any?
-  .alert.alert-danger
-    = fa_icon bootstrap_icon('error'), class: 'pull-left'
-    button.close aria-hidden='true' data-dismiss='alert' type='button'  &times;
-    div
-      = devise_error_messages!

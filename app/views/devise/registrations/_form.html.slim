@@ -5,92 +5,49 @@
     .panel-body
       .row
         .col-xs-12.col-sm-4
-          .form-group
-            = f.label :email
-            = f.email_field :email, class: "form-control", placeholder: "a valid email is required for account confirmation."
+          = f.input :email, placeholder: "a valid email is required for account confirmation."
 
       - unless (current_admin && f.object.persisted?)
         .row
           .col-xs-12.col-sm-4
-            .form-group
-              = f.label :password
-              = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "enter password"
-              - if current_volunteer
-                .help-block leave blank if you don't want to change it
+            = f.input :password, placeholder: "enter password", hint: current_volunteer ? "leave blank if you don't want to change it" : ''
           .col-xs-12.col-sm-4
-            .form-group
-              = f.label :confirm_password
-              = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "please re-enter password"
+            = f.input :password_confirmation, placeholder: "please re-enter password", label: "Confirm Password"
 
           - if current_volunteer
             .col-xs-12.col-sm-4
-              .form-group
-                = f.label :current_password
-                = f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "please enter current password"
-                .help-block we need your current password to confirm your changes
+              = f.input :current_password, placeholder: "please enter current password", hint: "we need your current password to confirm your changes"
 
   .panel.panel-primary
     .panel-heading Personal Information
     .panel-body
       .row
         .col-xs-12.col-sm-4
-          .form-group
-            = f.label :name
-            = f.text_field :name, autofocus: true, class: "form-control", placeholder: "full name as per NRIC/FIN"
+          = f.input :name, placeholder: "full name as per NRIC/FIN"
         .col-xs-12.col-sm-4
-          .form-group
-            = f.label :NIRC_No, "NRIC or FIN No."
-            = f.text_field :nric_no, class: "form-control", placeholder: "full NIRC/FIN Number"
+          = f.input :nric_no, placeholder: "full NIRC/FIN Number", label: "NRIC or FIN No."
         .col-xs-12.col-sm-4
           = f.label :gender
-          .form-group
-            label.radio-inline
-              = f.radio_button :gender, :female
-              | Female
-            label.radio-inline
-              = f.radio_button :gender, :male
-              | Male
+          = f.input :gender, as: :radio_buttons, collection: [['Female', :female], ['Male', :male]], item_wrapper_class: 'radio-inline', label: false
       .row
         .col-xs-12.col-sm-4
-          = f.label :date_of_birth
-          .form-inline
-            .form-group
-              = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.current.year - 80, :end_year => Date.current.year - 5}, class: "form-control"
+          = f.input :date_of_birth, as: :date, start_year: Date.current.year - 80, end_year: Date.current.year - 5, order: [:day, :month, :year]
         .col-xs-12.col-sm-4
-          .form-group
-            = f.label :mobile
-            = f.telephone_field :mobile, class: "form-control", placeholder: "include country code"
+          = f.input :mobile, placeholder: "include country code"
         .col-xs-12.col-sm-4
-          .form-group
-            = f.label :home_phone_number
-            = f.telephone_field :home_phone_number, class: "form-control", placeholder: "include country code"
+          = f.input :home_phone_number, placeholder: "include country code"
         .col-xs-12.col-sm-4
           = f.label :marital_status
-          .form-group
-            label.radio-inline
-              = f.radio_button :marital_status, :Single
-              | Single
-            label.radio-inline
-              = f.radio_button :marital_status, :Married
-              | Married
-            label.radio-inline
-              = f.radio_button :marital_status, :Divorced
-              | Divorced
-            label.radio-inline
-              = f.radio_button :marital_status, :Widowed
-              | Widowed
+          = f.input :marital_status, as: :radio_buttons, collection: Volunteer.marital_statuses, item_wrapper_class: 'radio-inline', label: false
         .col-xs-12.col-sm-8
           .form-group
-            = f.label :language_spoken
-            = f.text_field :language_spoken, class: "form-control", placeholder: "list languages you speak"
+            = f.input :language_spoken, placeholder: "list languages you speak"
         .col-xs-4
           .form-group
-            =f.label :address
-            = f.text_area :address, class: "form-control", placeholder: "your current residential address"
+            = f.input :address, placeholder: "your current residential address"
         .col-xs-8
           .form-group
-            =f.label :about_me
-            = f.text_area :about_me, class: "form-control", placeholder: "tell us more about yourself! :)"
+            = f.input :about_me, placeholder: "tell us more about yourself! :)"
 
   .panel.panel-info
     .panel-heading Qualifications
@@ -98,42 +55,30 @@
       .row
         .col-xs-12.col-sm-6
           .form-group
-            = f.label :profession
-            = f.text_field :profession, class: "form-control", placeholder: "what do you work as?"
+            = f.input :profession, placeholder: "what do you work as?"
         .col-xs-12.col-sm-6
           .form-group
-            = f.label :highest_education
-            = f.collection_select :formal_education_id, FormalEducation.all, :id, :name, { prompt: true }, class: "form-control"
+            = f.association :formal_education, prompt: "Please select", label: "Highest Education"
       .checkboxes
         .row
           .col-xs-12
-            = f.label :'Certification(s)'
-          = f.collection_check_boxes :certification_ids, Certification.all, :id, :name do |b|
-            .col-xs-12.col-sm-3
-              .checkbox
-                = b.label do
-                  = b.check_box
-                  = b.text
+            = f.label "Certification(s)"
+            = f.association :certifications, as: :check_boxes, item_wrapper_class: 'col-xs-3 checkbox-inline', label: false
+
       .checkboxes
         .row
           .col-xs-12
             = f.label :'Skill(s) you can offer'
-          = f.collection_check_boxes :skill_ids, Skill.all, :id, :name do |b|
-            .col-xs-12.col-sm-3
-              .checkbox
-                = b.label do
-                  = b.check_box
-                  = b.text
+            = f.association :skills, as: :check_boxes, item_wrapper_class: 'col-xs-3 checkbox-inline', label: false
       .row
         .col-xs-12
           .form-group
-            =f.label :other_talents
-            = f.text_area :other_talents, class: "form-control", placeholder: "please elaborate on your other talent if you have checked the last box (Other)"
+            = f.input :other_talents, placeholder: "please elaborate on your other talent if you have checked the last box (Other)"
       .row
         .col-xs-12
           .form-group
-            =f.label :past_experience, "Past volunteer experience"
-            = f.text_area :past_experience, class: "form-control", placeholder: "tell us about any past volunteering or relevant experience you have"
+            = f.input :past_experience, placeholder: "tell us about any past volunteering or relevant experience you have", label: "Past volunteer experience"
+
   .panel.panel-success
     .panel-heading Preferences
     .panel-body
@@ -141,39 +86,21 @@
         .row
           .col-xs-12
             = f.label :'Preferred Center(s)'
-          = f.collection_check_boxes :center_ids, Center.all, :id, :name do |b|
-            .col-xs-12.col-sm-6
-              .checkbox
-                = b.label do
-                  = b.check_box
-                  = b.text
+            = f.association :centers, as: :check_boxes, item_wrapper_class: 'col-xs-6 checkbox-inline', label: false
+
       .checkboxes
         .row
           .col-xs-12
             = f.label :'Preferred Target Group(s)'
-          = f.collection_check_boxes :target_group_ids, TargetGroup.all, :id, :name do |b|
-            .col-xs-12.col-sm-3
-              .checkbox
-                = b.label do
-                  = b.check_box
-                  = b.text
+            = f.association :target_groups, as: :check_boxes, item_wrapper_class: 'col-xs-6 checkbox-inline', label: false
+
       .checkboxes
         .row
           .col-xs-12
             = f.label :'Preferred Availability(s)'
-          = f.collection_check_boxes :availability_ids, Availability.all, :id, :name do |b|
-            .col-xs-12.col-sm-4
-              .checkbox
-                = b.label do
-                  = b.check_box
-                  = b.text
+            = f.association :availabilities, as: :check_boxes, item_wrapper_class: 'col-xs-4 checkbox-inline', label: false
+
       .row
         .col-xs-12
-          = f.label 'Would you like to recieve email notifications?'
-          .form-group
-            label.radio-inline
-              = f.radio_button :email_notification, true
-              | Yes
-            label.radio-inline
-              = f.radio_button :email_notification, false
-              | No
+          = f.label :email_notification, 'Would you like to recieve email notifications?'
+          = f.input :email_notification, as: :radio_buttons, item_wrapper_class: 'radio-inline', label: false

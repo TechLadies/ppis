@@ -12,7 +12,6 @@ class My::ProfilesController < My::BaseController
       sign_in(@profile, bypass: true)
       redirect_to my_root_path, notice: 'Your profile has been updated'
     else
-      flash[:error] = @profile.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -32,9 +31,9 @@ class My::ProfilesController < My::BaseController
   private
 
   def skip_password_attribute
-    if params[:profile][:password].blank? && params[:profile][:password_confirmation].blank?
-      params[:profile].delete(:password)
-      params[:profile].delete(:password_confirmation)
+    if params[:volunteer][:password].blank? && params[:volunteer][:password_confirmation].blank?
+      params[:volunteer].delete(:password)
+      params[:volunteer].delete(:password_confirmation)
     end
   end
 end

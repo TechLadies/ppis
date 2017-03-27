@@ -14,7 +14,6 @@ class Admin::VolunteersController < Admin::BaseController
     if @volunteer.save
       redirect_to admin_volunteers_path
     else
-      flash[:error] = @volunteer.errors.full_messages.to_sentence
       render 'new'
     end
   end
@@ -34,7 +33,6 @@ class Admin::VolunteersController < Admin::BaseController
     if @volunteer.update_attributes(volunteer_params)
       redirect_to admin_volunteers_path
     else
-      flash[:error] = @volunteer.errors.full_messages.to_sentence
       render 'edit'
     end
   end

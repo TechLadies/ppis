@@ -1,0 +1,11 @@
+Hello <%= @volunteer.name %>
+
+We are inviting you to volunteer at our upcoming event.  We need your skills!
+
+<%= @event.event_name %>
+<%= @event.date %>
+
+For more details please visit the event page at:
+<%= event_url(@event) %>
+
+Please log in and click the approved button if you wish to join us.

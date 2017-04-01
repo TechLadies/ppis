@@ -64,7 +64,9 @@
       - else
         .nav-tabs-custom
           ul#volunteer-tabs.nav.nav-tabs
-            li#volunteer-tab-index.active
+            li#volunteer-tab-job-requirements.active
+              = link_to 'Job Requirements', job_requirements_admin_event_path(event), remote: true
+            li#volunteer-tab-index
               = link_to 'Search And Invite', admin_event_volunteer_events_path(event), remote: true
             li#volunteer-tab-invited
               = link_to 'Invited', invited_admin_event_volunteer_events_path(event), remote: true

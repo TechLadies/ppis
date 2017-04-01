@@ -1,0 +1,19 @@
+.row
+  .col-xs-12.table-responsive
+    table.table.table-striped.tabled-bordered
+      thead
+        th width='15%' Number of Volunteers
+        th width='20%' Job Title
+        th width='70%' Description
+
+      tbody
+        - if @job_requirements.size > 0
+          - @job_requirements.each do |job_requirement|
+            tr
+              td.pull-right = job_requirement.number_of_volunteers
+              td = job_requirement.job_title
+              td = job_requirement.description
+        - else
+          tr
+            td colspan=3
+              .text-center No Data

@@ -1,5 +1,5 @@
 $("#volunteer-tabs li").removeClass("active");
-$("#volunteer-tab-<%= params[:action] %>").addClass("active");
+$("#volunteer-tab-index").addClass("active");
 
 var content = "<%= j render template: 'admin/volunteer_events/index.html', locals: { volunteers: @volunteers } %>";
 

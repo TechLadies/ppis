@@ -1,11 +1,16 @@
 class Admin::EventsController < Admin::BaseController
 
+  before_action :prepare_event, only: [:show, :edit, :update, :publish, :cancel, :job_requirements]
+
   def index
     @events = Event.order(date: :desc, start_time: :desc)
   end
 
+  def job_requirements
+    @job_requirements = @event.job_requirements
+  end
+
   def show
-    @event = find_event
   end
 
   def new
@@ -22,11 +27,9 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def edit
-    @event = find_event
   end
 
   def update
-    @event = find_event
     if @event.update(event_params)
       redirect_to [:admin, @event]
     else
@@ -35,7 +38,6 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def publish
-    @event = find_event
     @volunteers = Volunteer.joins(:preferred_centers).where('preferred_centers.center_id = ?', @event.center_id)
     @event.publish!
     NewEventMailer.notify_volunteers(@event, @volunteers).deliver
@@ -43,15 +45,14 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def cancel
-    @event = find_event
     @event.cancel!
     redirect_to admin_events_path, notice: "Succesfully cancel event: #{@event.event_name}"
   end
 
   private
 
-  def find_event
-    Event.find(params[:id])
+  def prepare_event
+    @event = Event.find(params[:id])
   end
 
   def event_params

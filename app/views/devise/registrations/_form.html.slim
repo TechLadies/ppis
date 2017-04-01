@@ -55,7 +55,7 @@
           = f.label :date_of_birth
           .form-inline
             .form-group
-              = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.today.year - 80, :end_year => Date.today.year - 5}, class: "form-control"
+              = f.date_select :date_of_birth, {order: [:day, :month, :year], :start_year => Date.current.year - 80, :end_year => Date.current.year - 5}, class: "form-control"
         .col-xs-12.col-sm-4
           .form-group
             = f.label :mobile
@@ -65,8 +65,8 @@
             = f.label :home_phone_number
             = f.telephone_field :home_phone_number, class: "form-control", placeholder: "include country code"
         .col-xs-12.col-sm-4
-            = f.label :marital_status
-            .form-group
+          = f.label :marital_status
+          .form-group
             label.radio-inline
               = f.radio_button :marital_status, :Single
               | Single

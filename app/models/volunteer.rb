@@ -32,7 +32,7 @@ class Volunteer < ApplicationRecord
   enum marital_status: [:Single, :Married, :Divorced, :Widowed]
 
   def destroy
-    update_attribute(:deleted_at, Time.current)
+    update_attribute(:deleted_at, Time.zone.now)
   end
 
   def reactivate_volunteer

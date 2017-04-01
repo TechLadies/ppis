@@ -1,0 +1,17 @@
+.row
+  .col-xs-12.table-responsive
+    table.table.table-striped.tabled-bordered
+      thead
+        th Name
+        th Email
+        th Gender
+        th
+
+      tbody
+        - volunteers.each do |volunteer|
+          tr
+            td = link_to volunteer.name, admin_volunteer_path(volunteer)
+            td = volunteer.email
+            td = volunteer.gender
+            td
+              = link_to 'Invite', invite_admin_event_volunteer_event_path(@event, volunteer), class: 'btn btn-primary', method: :patch, data: { confirm: 'Are you sure?' }

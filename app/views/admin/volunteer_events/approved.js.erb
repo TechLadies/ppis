@@ -1,7 +1,0 @@
-$("#volunteer-tabs li").removeClass("active");
-$("#volunteer-tab-approved").addClass("active");
-
-var content = "<%= j render 'admin/volunteer_events/volunteers', title: 'Attendence', volunteer_events: @approved_volunteer_events %>";
-
-$("#tab-content").html(content);
-

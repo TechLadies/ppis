@@ -1,8 +1,0 @@
-$("#volunteer-tabs li").removeClass("active");
-$("#volunteer-tab-pending").addClass("active");
-
-var content = "<%= j render 'admin/volunteer_events/volunteers', title: 'Requires Approval', volunteer_events: @pending_volunteer_events %>";
-content += "<%= j render 'admin/volunteer_events/volunteers', title: 'Invited', volunteer_events: @invited_volunteer_events %>";
-
-$("#tab-content").html(content);
-

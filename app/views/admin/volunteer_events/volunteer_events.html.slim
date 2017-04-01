@@ -1,0 +1,27 @@
+.row
+  .col-xs-12.table-responsive
+    table.table.table-striped.tabled-bordered
+      thead
+        th Name
+        th Email
+        th Gender
+        th
+
+      tbody
+        - volunteer_events.each do |volunteer_event|
+          - volunteer_event.volunteer.tap do |volunteer|
+            tr
+              td = link_to volunteer.name, admin_volunteer_path(volunteer)
+              td = volunteer.email
+              td = volunteer.gender
+              td
+                - if volunteer_event.registered?
+                  = link_to 'Approve', approve_admin_event_volunteer_event_path(@event, volunteer), class: 'btn btn-primary margin-r-5', method: :patch, data: { confirm: 'Are you sure?' }
+                  = link_to 'Decline', decline_admin_event_volunteer_event_path(@event, volunteer), class: 'btn btn-danger', method: :patch, data: { confirm: 'Are you sure?' }
+                - elsif volunteer_event.approved?
+                  = link_to 'Attended', attended_admin_event_volunteer_event_path(@event, volunteer_event, attend: 1), class: 'btn btn-primary margin-r-5', method: :patch, data: { confirm: 'Are you sure?' }
+                  = link_to 'No Show', attended_admin_event_volunteer_event_path(@event, volunteer_event, attend: 0), class: 'btn btn-danger', method: :patch, data: { confirm: 'Are you sure?' }
+                - elsif volunteer_event.no_show?
+                  = link_to 'Change to Attended', attended_admin_event_volunteer_event_path(@event, volunteer_event, attend: 1), class: 'btn btn-primary margin-r-5', method: :patch, data: { confirm: 'Are you sure?' }
+                - elsif volunteer_event.attended?
+                  = link_to 'Change to No Show', attended_admin_event_volunteer_event_path(@event, volunteer_event, attend: 0), class: 'btn btn-danger margin-r-5', method: :patch, data: { confirm: 'Are you sure?' }

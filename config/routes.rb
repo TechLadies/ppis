@@ -10,10 +10,10 @@ Rails.application.routes.draw do
       patch 'publish', on: :member
       patch 'cancel', on: :member
 
-      resources :volunteer_events, only: [] do
+      resources :volunteer_events, only: [:index] do
         get :approved, on: :collection
         get :pending, on: :collection
-        get :find, on: :collection
+        get :invited, on: :collection
 
         patch 'invite', on: :member
         patch 'approve', on: :member

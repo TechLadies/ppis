@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         get :approved, on: :collection
         get :pending, on: :collection
         get :invited, on: :collection
+        get :declined, on: :collection
 
         patch 'invite', on: :member
         patch 'approve', on: :member

@@ -1,10 +1,14 @@
-- decorate(@event) do |decorated_event|
+- decorate(@event) do |event|
 
   - content_for :page_header do
-    = decorated_event.event_name
+    = event.event_name
 
   - content_for :page_subheader do
     | details
+
+  - content_for :breadcrumbs do
+    li = link_to 'Events', admin_events_path
+    li = link_to event.event_name, admin_event_path(event)
 
   .row
     .col-md-3
@@ -12,59 +16,61 @@
       .box.box-primary
         .box-body.box-profile
           h3.profile-username.text-center
-            = decorated_event.event_name
+            = event.event_name
 
           ul.list-group.list-group-unbordered
             li.list-group-item
               = fa_icon 'institution', class: 'margin-r-5'
               b Center Name
-              a.pull-right = decorated_event.center.name
+              a.pull-right = event.center.name
 
             li.list-group-item
               = fa_icon 'map-marker', class: 'margin-r-5'
               b Location
-              a.pull-right = decorated_event.location
+              a.pull-right = event.location
 
             li.list-group-item
               = fa_icon 'calendar', class: 'margin-r-5'
               b When
-              a.pull-right = decorated_event.when
+              a.pull-right = event.when
 
             li.list-group-item
               = fa_icon 'clock-o', class: 'margin-r-5'
               b Time
-              a.pull-right = decorated_event.time
+              a.pull-right = event.time
 
             li.list-group-item
               = fa_icon 'hourglass-2', class: 'margin-r-5'
               b Approx. Duration
-              a.pull-right = decorated_event.duration
+              a.pull-right = event.duration
 
             li.list-group-item
               = fa_icon 'group', class: 'margin-r-5'
               b Number of Volunteers
-              a.pull-right = decorated_event.number_of_volunteers
+              a.pull-right = event.number_of_volunteers
           strong
             = fa_icon 'file-text-o', class: 'margin-r-5'
             | Description
           p
-            = decorated_event.description
+            = event.description
 
     .col-md-9
       .nav-tabs-custom
         ul#volunteer-tabs.nav.nav-tabs
           li#volunteer-tab-index.active
-            = link_to 'Search And Invite', admin_event_volunteer_events_path(@event), remote: true
-          li#volunteer-tab-pending
-            = link_to 'Pending Approval', pending_admin_event_volunteer_events_path(@event), remote: true
+            = link_to 'Search And Invite', admin_event_volunteer_events_path(event), remote: true
           li#volunteer-tab-invited
-            = link_to 'Invited', invited_admin_event_volunteer_events_path(@event), remote: true
+            = link_to 'Invited', invited_admin_event_volunteer_events_path(event), remote: true
+          li#volunteer-tab-pending
+            = link_to 'Pending Approval', pending_admin_event_volunteer_events_path(event), remote: true
           li#volunteer-tab-approved
-            = link_to 'Attending', approved_admin_event_volunteer_events_path(@event), remote: true
+            = link_to 'Attending', approved_admin_event_volunteer_events_path(event), remote: true
+          li#volunteer-tab-declined
+            = link_to 'Declined / Cancelled', declined_admin_event_volunteer_events_path(event), remote: true
 
         #tab-content
 
   .row
     .col-xs-12
-      = link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-primary'
+      = link_to 'Edit', edit_admin_event_path(event), class: 'btn btn-primary'
       = link_to 'View all events', admin_events_path, class: 'btn btn-default'

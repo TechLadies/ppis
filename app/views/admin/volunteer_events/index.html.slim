@@ -9,9 +9,10 @@
 
       tbody
         - volunteers.each do |volunteer|
-          tr
+          tr id="volunteer-#{volunteer.id}"
             td = link_to volunteer.name, admin_volunteer_path(volunteer)
             td = volunteer.email
             td = volunteer.gender
             td
-              = link_to 'Invite', invite_admin_event_volunteer_event_path(@event, volunteer), class: 'btn btn-primary', method: :patch, data: { confirm: 'Are you sure?' }
+              = form_for volunteer, url: invite_admin_event_volunteer_event_path(@event, volunteer), method: :patch, remote: true do |f|
+                = f.submit 'Invite', class: 'btn btn-primary', data: { confirm: 'Are you sure?' }

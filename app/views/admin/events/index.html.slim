@@ -1,6 +1,8 @@
 - content_for :page_header do
   | Events
 
+- content_for :breadcrumbs do
+  li = link_to 'Events', admin_events_path
 
 .row
   .col-xs-12

@@ -1,6 +1,6 @@
 h1 Sign up
 
-= form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
   
   = render partial: 'devise/registrations/form', locals: { f: f }
 

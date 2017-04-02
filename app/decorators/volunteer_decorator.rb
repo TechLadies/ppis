@@ -1,5 +1,9 @@
 class VolunteerDecorator < SimpleDelegator
 
+  def state
+    deleted_at? ? 'Cancelled' : 'Active'
+  end
+
   def nric_no
     if super.blank?
       'Not given'

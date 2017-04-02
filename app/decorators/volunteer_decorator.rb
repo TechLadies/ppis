@@ -88,7 +88,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 
@@ -104,7 +104,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 
@@ -112,7 +112,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 
@@ -120,7 +120,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 
@@ -128,7 +128,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 

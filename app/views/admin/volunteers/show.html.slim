@@ -1,65 +1,146 @@
+- decorate(@volunteer) do |volunteer|
+  - content_for :page_header do
+    = volunteer.name
 
-- if @volunteer.deleted_at
-    h2.inactive Account Inactive
+  - content_for :page_subheader do
+    = volunteer.state
 
-    dl.volunteer-details
-      dt Name
-      dd = @volunteer.name
-      dt Email
-      dd = @volunteer.email
+  - content_for :breadcrumbs do
+    li = link_to 'Volunteers', admin_volunteers_path
+    li = link_to volunteer.name, admin_volunteer_path(volunteer)
 
-    = link_to 'Reactivate account', reactivate_admin_volunteer_path, method: :patch, class: 'btn btn-primary'
+  .row
+    .col-md-3
 
-- else
+      .box.box-primary
+        .box-body.box-profile
+          h3.profile-username.text-center
+            = volunteer.name
 
-    h2 = @volunteer.name
+          ul.list-group.list-group-unbordered
+            li.list-group-item
+              = fa_icon 'envelope-o', class: 'margin-r-5'
+              b Email
+              span.pull-right = volunteer.email
 
-    ul.nav.nav-tabs
-      li.active
-        a Personal Details
-      li
-        a Events
+            li.list-group-item
+              = fa_icon 'id-card-o', class: 'margin-r-5'
+              b NRIC / FIN No.
+              span.pull-right = volunteer.nric_no
 
-    - decorate(@volunteer) do |decorated_volunteer|
-      dl.volunteer-details
-        dt NRIC/FIN No.
-        dd = decorated_volunteer.nric_no
-        dt Gender
-        dd = decorated_volunteer.gender
-        dt Date of Birth
-        dd = decorated_volunteer.date_of_birth
-        dt Email
-        dd = decorated_volunteer.email
-        dt Mobile
-        dd = decorated_volunteer.mobile
-        dt Home phone number
-        dd = decorated_volunteer.home_phone_number
-        dt Marital status
-        dd = decorated_volunteer.marital_status
-        dt Language spoken
-        dd = decorated_volunteer.language_spoken
-        dt Address
-        dd = decorated_volunteer.address
-        dt Profession
-        dd = decorated_volunteer.profession
-        dt Highest Education
-        dd = decorated_volunteer.formal_education
-        dt Skills
-        dd = decorated_volunteer.skills
-        dt Certification
-        dd = decorated_volunteer.certifications
-        dt Other Talents
-        dd = decorated_volunteer.other_talents
-        dt Target Groups
-        dd = decorated_volunteer.target_groups
-        dt Preferred availability
-        dd = decorated_volunteer.availabilities
-        dt Past volunteer experience
-        dd = decorated_volunteer.past_experience
-        dt About me
-        dd = decorated_volunteer.about_me
-        dt Happy to recieve email notifications?
-        dd = decorated_volunteer.email_notification
+            li.list-group-item
+              = fa_icon 'transgender', class: 'margin-r-5'
+              b Gender
+              span.pull-right = volunteer.gender
 
+            li.list-group-item
+              = fa_icon 'birthday-cake', class: 'margin-r-5'
+              b Date of Birth
+              span.pull-right = volunteer.date_of_birth
 
-    = link_to 'Edit', edit_admin_volunteer_path, class: 'btn btn-primary'
+            li.list-group-item
+              = fa_icon 'mobile', class: 'margin-r-5'
+              b Mobile
+              span.pull-right = volunteer.mobile
+
+            li.list-group-item
+              = fa_icon 'phone', class: 'margin-r-5'
+              b Home Phone Number
+              span.pull-right = volunteer.home_phone_number
+
+            li.list-group-item
+              = fa_icon 'diamond', class: 'margin-r-5'
+              b Marital status
+              span.pull-right = volunteer.marital_status
+
+            li.list-group-item
+              = fa_icon 'language', class: 'margin-r-5'
+              b Language spoken
+              span.pull-right = volunteer.language_spoken
+
+            li.list-group-item
+              = fa_icon 'map-marker', class: 'margin-r-5'
+              b Address
+              span.pull-right = volunteer.address
+
+            li.list-group-item
+              = fa_icon 'briefcase', class: 'margin-r-5'
+              b Profession
+              span.pull-right = volunteer.profession
+
+            li.list-group-item
+              = fa_icon 'graduation-cap', class: 'margin-r-5'
+              b Highest Education
+              span.pull-right = volunteer.formal_education
+
+            li.list-group-item
+              = fa_icon 'envelop', class: 'margin-r-5'
+              b Happy to recieve email notifications?
+              span.pull-right = volunteer.email_notification
+
+          - if volunteer.deleted_at
+            = link_to 'Reactivate account', reactivate_admin_volunteer_path, method: :patch, class: 'btn btn-primary btn-block'
+          - else
+            = link_to 'Edit', edit_admin_volunteer_path, class: 'btn btn-primary btn-block'
+
+      .box.box-primary
+        .box-body
+
+          strong
+            = fa_icon 'certificate', class: 'margin-r-5'
+            | Certification
+          p = volunteer.certifications
+
+          strong
+            = fa_icon 'magic', class: 'margin-r-5'
+            | Other Talents
+          p = volunteer.other_talents
+
+          strong
+            = fa_icon 'history', class: 'margin-r-5'
+            | Past volunteer experience
+          p = volunteer.past_experience
+
+          strong
+            = fa_icon 'users', class: 'margin-r-5'
+            | Target Groups
+          p = volunteer.target_groups
+
+          strong
+            = fa_icon 'file-text-o', class: 'margin-r-5'
+            | About me
+          p = volunteer.about_me
+
+          strong
+            = fa_icon 'calendar-check-o', class: 'margin-r-5'
+            | Preferred availability
+          p = volunteer.availabilities
+
+          strong
+            = fa_icon 'wrench', class: 'margin-r-5'
+            | Skills
+          p = volunteer.skills
+
+    .col-xs-9
+      .nav-tabs-custom
+        ul.nav.nav-tabs
+          li = link_to 'Invited', '#invited-events', data: { toggle: 'tab' }
+          li = link_to 'Registered', '#registered-events', data: { toggle: 'tab' }
+          li = link_to 'Upcoming', '#upcoming-events', data: { toggle: 'tab' }
+          li = link_to 'Attended', '#attended-events', data: { toggle: 'tab' }
+          li = link_to 'No Show', '#no-show-events', data: { toggle: 'tab' }
+          li = link_to 'Declined / Cancelled', '#declined-events', data: { toggle: 'tab' }
+
+        .tab-content
+          .tab-pane#invited-events.active
+            = render 'events', volunteer_events: volunteer.volunteer_events.invited
+          .tab-pane#registered-events
+            = render 'events', volunteer_events: volunteer.volunteer_events.registered
+          .tab-pane#upcoming-events
+            = render 'events', volunteer_events: volunteer.volunteer_events.approved
+          .tab-pane#attended-events
+            = render 'events', volunteer_events: volunteer.volunteer_events.attended
+          .tab-pane#no-show-events
+            = render 'events', volunteer_events: volunteer.volunteer_events.approved
+          .tab-pane#declined-events
+            = render 'events', volunteer_events: volunteer.volunteer_events.where(state: [:declined, :cancelled])

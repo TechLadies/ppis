@@ -1,3 +1,10 @@
-h2 New
+- content_for :page_header do
+  | New Event
 
-= render 'form', center: @center
+- content_for :breadcrumbs do
+  li = link_to 'Centers', admin_centers_path
+  li = link_to 'New', new_admin_center_path
+
+
+= simple_form_for @center, url: admin_centers_path do |f|
+  = render 'form', f: f

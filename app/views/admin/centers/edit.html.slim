@@ -1,3 +1,10 @@
-h2 Editing Center - #{@center.name}
+- content_for :page_header do
+  = @center.name
 
-= render 'form', center: @center
+- content_for :breadcrumbs do
+  li = link_to 'Centers', admin_centers_path
+  li = link_to @center.name, admin_center_path(@center)
+  li = link_to 'Edit', edit_admin_center_path(@center)
+
+= simple_form_for @center, url: admin_center_path(@center), method: :patch do |f|
+  = render 'form', f: f

@@ -1,46 +1,52 @@
 class Admin::VolunteerEventsController < Admin::BaseController
 
-  def find
-    @event = find_event
-    center_volunteers = Volunteer.joins(:preferred_centers).where('preferred_centers.center_id = ?', @event.center_id)
-    @find_volunteers = center_volunteers.left_outer_joins(:events).where( volunteer_events: {:volunteer => nil} )
-  end
+  layout false
 
-  def invite
-    @event = find_event
-    @volunteer = find_volunteer
-    @volunteer_event = @event.volunteer_events.create(volunteer: @volunteer)
-    @volunteer_event.invite!
-    NewEventMailer.invite_volunteer(@event, @volunteer).deliver
-    redirect_to admin_event_path(@event)
+  before_action :prepare_event
+  before_action :prepare_volunteer_event, only: [:approve, :decline, :attended]
+
+  def index
+    @volunteers = @event.center.volunteers.where.not(id: @event.volunteers)
   end
 
   def pending
-    @event = find_event
-    @pending_volunteer_events = @event.volunteer_events.registered
-    @invited_volunteer_events = @event.volunteer_events.invited
+    @volunteer_events = @event.volunteer_events.registered
+    render :volunteer_events
+  end
+
+  def invited
+    @volunteer_events = @event.volunteer_events.invited
+    render :volunteer_events
+  end
+
+  def approved
+    @volunteer_events = @event.volunteer_events.where(state: [:approved, :attended, :no_show])
+    render :volunteer_events
+  end
+
+  def declined
+    @volunteer_events = @event.volunteer_events.where(state: [:declined, :cancelled])
+    render :volunteer_events
+  end
+
+  def invite
+    @volunteer = Volunteer.find(params[:id])
+    @volunteer_event = @event.volunteer_events.find_or_initialize_by(volunteer: @volunteer)
+    if @volunteer_event.persisted?
+      @volunteer_event.invite!
+      NewEventMailer.invite_volunteer(@event, @volunteer).deliver
+    end
   end
 
   def approve
-    @event = find_event
-    @volunteer_event = find_volunteer_event
     @volunteer_event.approve!
   end
 
   def decline
-    @event = find_event
-    @volunteer_event = find_volunteer_event
     @volunteer_event.decline!
   end
 
-  def approved
-    @event = find_event
-    @approved_volunteer_events = @event.volunteer_events.where(state: [:approved, :attended, :no_show])
-  end
-
   def attended
-    @event = find_event
-    @volunteer_event = find_volunteer_event
     if params[:attend] == '1'
       @volunteer_event.attend!
     else
@@ -48,28 +54,14 @@ class Admin::VolunteerEventsController < Admin::BaseController
     end
   end
 
-    def create
-      @event = Event.new(event_params)
-      if @event.save
-        redirect_to [:admin, @event]
-      else
-        render 'new'
-      end
-    end
-
-
   private
 
-  def find_event
-    Event.find(params[:event_id])
+  def prepare_event
+    @event = Event.find(params[:event_id])
   end
 
-  def find_volunteer
-    Volunteer.find(params[:id])
-  end
-
-  def find_volunteer_event
-    @event.volunteer_events.find(params[:id])
+  def prepare_volunteer_event
+    @volunteer_event = @event.volunteer_events.find(params[:id])
   end
 
 end

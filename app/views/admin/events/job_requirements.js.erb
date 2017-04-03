@@ -1,0 +1,6 @@
+$("#volunteer-tabs li").removeClass("active");
+$("#volunteer-tab-job-requirements").addClass("active");
+
+var content = "<%= j render 'admin/events/job_requirements' %>";
+
+$("#tab-content").html(content);

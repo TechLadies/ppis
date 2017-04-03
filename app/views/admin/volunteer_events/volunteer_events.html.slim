@@ -1,0 +1,39 @@
+.row
+  .col-xs-12.table-responsive
+
+    table.table.table-striped.tabled-bordered
+      thead
+        th Name
+        th Email
+        th Gender
+        th
+
+      tbody
+        - if volunteer_events.size > 0
+          - volunteer_events.each do |volunteer_event|
+            - volunteer_event.volunteer.tap do |volunteer|
+              tr id="volunteer-event-#{volunteer_event.id}"
+                td = link_to volunteer.name, admin_volunteer_path(volunteer)
+                td = volunteer.email
+                td = volunteer.gender
+                td
+                  - if volunteer_event.registered?
+                    = form_for volunteer_event, url: approve_admin_event_volunteer_event_path(@event, volunteer_event), method: :patch, remote: true, html: { class: 'pull-left' } do |f|
+                      = f.submit 'Approve', class: 'btn btn-primary margin-r-5', data: { confirm: 'Are you sure?' }
+
+                    = form_for volunteer_event, url: decline_admin_event_volunteer_event_path(@event, volunteer_event), method: :patch, remote: true do |f|
+                      = f.submit 'Decline', class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
+
+                  - if volunteer_event.approved? || volunteer_event.no_show? || volunteer_event.attended?
+                    = form_for volunteer_event, url: attended_admin_event_volunteer_event_path(@event, volunteer_event), remote: true do |f|
+                      .checkbox
+                        label
+                          = check_box_tag :attend, '1', volunteer_event.attended?
+                          | Attended?
+
+                  = 'Declined' if volunteer_event.declined?
+                  = 'Cancelled' if volunteer_event.cancelled?
+        - else
+          tr
+            td colspan=4
+              p.text-center No data

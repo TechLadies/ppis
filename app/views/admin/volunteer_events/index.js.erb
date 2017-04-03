@@ -1,0 +1,6 @@
+$("#volunteer-tabs li").removeClass("active");
+$("#volunteer-tab-index").addClass("active");
+
+var content = "<%= j render template: 'admin/volunteer_events/index.html', locals: { volunteers: @volunteers } %>";
+
+$("#tab-content").html(content);

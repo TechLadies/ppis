@@ -1,28 +1,44 @@
-.container
-  h1 Events 
-  = link_to 'Add new', new_admin_event_path, class: 'btn btn-primary'
+- content_for :page_header do
+  | Events
 
-  table.table.table-hover.table-striped
-    thead
-      tr
-        th Event Name
-        th Center
-        th Date
-        th Time
-        th Status
-        th
-    tbody
-      - @events.each do |event|
-        - decorate(event) do |decorated_event|
-          tr
-            td= link_to event.event_name, admin_event_path(event)
-            td= event.center.name
-            td= event.date
-            td= decorated_event.time
-            td= decorated_event.state
-            td
-              - if event.draft?
-                = link_to 'Edit', edit_admin_event_path(event), class: 'btn btn-default'
-                = link_to 'Publish', publish_admin_event_path(event), class: 'btn btn-primary', method: :patch, data: { confirm: 'Are you sure? Events cannot be unpublished once published.' }
-              - if event.published?
-                = link_to 'Cancel', cancel_admin_event_path(event), class: 'btn btn-danger', method: :patch, data: { confirm: 'Are you sure? Cancelled events cannot be published again.' }
+- content_for :breadcrumbs do
+  li = link_to 'Events', admin_events_path
+
+.row
+  .col-xs-12
+
+    .box
+      .box-header
+        .box-title
+
+        .box-tools
+          .no-margin.pull-right
+            = link_to 'Add new', new_admin_event_path, class: 'btn btn-primary'
+
+      .box-body.no-padding
+        table.table.table-hover.table-striped
+          thead
+            tr
+              th Status
+              th Event Name
+              th Center
+              th Date
+              th Time
+              th
+          tbody
+            - @events.each do |event|
+              - decorate(event) do |decorated_event|
+                tr
+                  td
+                    span class=event_label(event.state)
+                      = decorated_event.state
+                  td = link_to event.event_name, admin_event_path(event)
+                  td = event.center.name
+                  td = event.date
+                  td = decorated_event.time
+                  td
+                    - if event.draft?
+                      = link_to 'Edit', edit_admin_event_path(event), class: 'btn btn-default margin-r-5'
+                      = link_to 'Publish', publish_admin_event_path(event), class: 'btn btn-primary', method: :patch, data: { confirm: 'Are you sure? Events cannot be unpublished once published.' }
+                    - if event.published?
+                      = link_to 'Cancel', cancel_admin_event_path(event), class: 'btn btn-danger', method: :patch, data: { confirm: 'Are you sure? Cancelled events cannot be published again.' }

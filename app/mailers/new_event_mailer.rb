@@ -1,10 +1,8 @@
 class NewEventMailer < ApplicationMailer
 
-  def notify_volunteer(event, volunteer)
+  def notify_volunteers(event, volunteers)
     @event = event
-    @volunteer = volunteer
-
-    mail(to: @volunteer.email, subject: "New event by PPIS: #{@event.event_name}")
+    mail(bcc: volunteers.map(&:email), subject: "New event by PPIS: #{@event.event_name}")
   end
 
   def invite_volunteer(event, volunteer)

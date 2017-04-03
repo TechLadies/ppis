@@ -1,0 +1,18 @@
+.row
+  .col-xs-12.table-responsive
+    table.table.table-striped.tabled-bordered
+      thead
+        th Name
+        th Email
+        th Gender
+        th
+
+      tbody
+        - volunteers.each do |volunteer|
+          tr id="volunteer-#{volunteer.id}"
+            td = link_to volunteer.name, admin_volunteer_path(volunteer)
+            td = volunteer.email
+            td = volunteer.gender
+            td
+              = form_for volunteer, url: invite_admin_event_volunteer_event_path(@event, volunteer), method: :patch, remote: true do |f|
+                = f.submit 'Invite', class: 'btn btn-primary', data: { confirm: 'Are you sure?' }

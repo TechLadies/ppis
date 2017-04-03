@@ -1,40 +1,80 @@
-.container
-  .row
-    .col-xs-12
-      h2 Details of #{@event.event_name}
-      - decorate(@event) do |decorated_event|
-        dl.event-details
-          dt Center Name
-          dd = decorated_event.center.name
-          dt Event Name
-          dd = decorated_event.event_name
-          dt Description
-          dd = decorated_event.description
-          dt When
-          dd = decorated_event.when
-          dt Time
-          dd = decorated_event.time
-          dt Approx. Duration
-          dd = decorated_event.duration
-          dt Location
-          dd = decorated_event.location
-          dt Number of Volunteers
-          dd = decorated_event.number_of_volunteers
+- decorate(@event) do |event|
+
+  - content_for :page_header do
+    = event.event_name
+
+  - content_for :page_subheader do
+    = event.state
+
+  - content_for :breadcrumbs do
+    li = link_to 'Events', admin_events_path
+    li = link_to event.event_name, admin_event_path(event)
 
   .row
-    .col-xs-12
-      ul#volunteer-tabs.nav.nav-tabs
-        li#volunteer-tab-find.active
-          = link_to 'Find Volunteers', find_admin_event_volunteer_events_path(@event), remote: true
-        li#volunteer-tab-pending
-          = link_to 'Pending Volunteers', pending_admin_event_volunteer_events_path(@event), remote: true
-        li#volunteer-tab-approved
-          = link_to 'Approved Volunteers', approved_admin_event_volunteer_events_path(@event), remote: true
+    .col-md-3
 
-      #tab-content
+      .box.box-primary
+        .box-body.box-profile
+          h3.profile-username.text-center
+            = event.event_name
 
+          ul.list-group.list-group-unbordered
+            li.list-group-item
+              = fa_icon 'institution', class: 'margin-r-5'
+              b Center Name
+              = link_to event.center.name, admin_center_path(event.center), class: 'pull-right'
 
-  .row
-    .col-xs-12
-      = link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-primary'
-      = link_to 'View all events', admin_events_path, class: 'btn btn-default'
+            li.list-group-item
+              = fa_icon 'map-marker', class: 'margin-r-5'
+              b Location
+              span.pull-right = event.location
+
+            li.list-group-item
+              = fa_icon 'calendar', class: 'margin-r-5'
+              b When
+              span.pull-right = event.when
+
+            li.list-group-item
+              = fa_icon 'clock-o', class: 'margin-r-5'
+              b Time
+              span.pull-right = event.time
+
+            li.list-group-item
+              = fa_icon 'hourglass-2', class: 'margin-r-5'
+              b Approx. Duration
+              span.pull-right = event.duration
+
+            li.list-group-item
+              = fa_icon 'group', class: 'margin-r-5'
+              b Number of Volunteers
+              span.pull-right = event.number_of_volunteers
+          strong
+            = fa_icon 'file-text-o', class: 'margin-r-5'
+            | Description
+          p
+            = event.description
+
+          = link_to 'Edit', edit_admin_event_path(event), class: 'btn btn-primary btn-block'
+
+    .col-md-9
+      - if event.cancelled?
+        .box.box-danger
+          .box-body
+            | Event is cancelled
+      - else
+        .nav-tabs-custom
+          ul#volunteer-tabs.nav.nav-tabs
+            li#volunteer-tab-job-requirements.active
+              = link_to 'Job Requirements', job_requirements_admin_event_path(event), remote: true
+            li#volunteer-tab-index
+              = link_to 'Search And Invite', admin_event_volunteer_events_path(event), remote: true
+            li#volunteer-tab-invited
+              = link_to 'Invited', invited_admin_event_volunteer_events_path(event), remote: true
+            li#volunteer-tab-pending
+              = link_to 'Pending Approval', pending_admin_event_volunteer_events_path(event), remote: true
+            li#volunteer-tab-approved
+              = link_to 'Attending', approved_admin_event_volunteer_events_path(event), remote: true
+            li#volunteer-tab-declined
+              = link_to 'Declined / Cancelled', declined_admin_event_volunteer_events_path(event), remote: true
+
+          #tab-content

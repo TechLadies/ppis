@@ -1,68 +1,32 @@
-= form_for [:admin, event] do |f|
-  - if event.errors.any?
-    #error_explanation
-      h2
-        = pluralize(event.errors.count, "error")
-        | prohibited this event from being saved:
+.row
+  .col-xs-12
+    .box.box-primary
+      .box-header.with-border
+        h3.box-title Event Details
+      .box-body
 
-      ul
-        - event.errors.full_messages.each do |message|
-          li= message
-  .row
-    .col-xs-12.col-sm-6
-      .form-group
-        = f.label :event_name, 'Event Name'
-        = f.text_field :event_name, class: "form-control", placeholder: "name of the event"
-    .col-xs-12.col-sm-6
-      .form-group
-        = f.label :location, 'Location '
-        = f.text_field :location, class: "form-control", placeholder: "location of the event (including postal code)"
-  .row
-    .col-xs-12.col-sm-6
-      .form-group
-        = f.label :center, 'Host Center'
-        - if current_admin.has_role?(:admin)
-          = f.collection_select :center_id, Center.all, :id, :name, { prompt: true }, class: "form-control"
-        - else
-          = f.text_field :center_name, value: current_admin.center&.name, disabled: true, class: "form-control"
-    .col-xs-12.col-sm-6
-      .form-group
-        = f.label :number_of_volunteers, 'Number of Volunteers '
-        = f.number_field :number_of_volunteers, class: "form-control", placeholder: "total number of volunteers required"
-  .row
-    .col-xs-12.col-sm-4
-      .form-group
-        = f.label :date
-        .input-group.date.datetimepicker
-          = f.text_field :date, class: 'form-control'
-          span.input-group-addon
-            = fa_icon 'calendar'
-    .col-xs-12.col-sm-4
-      .form-group
-        = f.label :start_time, 'Start Time'
-        .input-group.time.datetimepicker3
-          = f.text_field :start_time, class: 'form-control'
-          span.input-group-addon
-            = fa_icon 'clock-o'
-    .col-xs-12.col-sm-4
-      .form-group
-        = f.label :end_time, 'End Time'
-        .input-group.time.datetimepicker3
-          = f.text_field :end_time, class: 'form-control'
-          span.input-group-addon
-            = fa_icon 'clock-o'
-  .row
-    .col-xs-12.col-sm-12
-      .form-group
-        = f.label :description
-        = f.text_area :description, class: "form-control", placeholder: "a short introduction of the event", rows: 7
+        .row
+          .col-xs-8
 
-  #job_requirements
-    = f.fields_for :job_requirements do |ff|
-      = render 'job_requirement_fields', f: ff
-    .links
-      = link_to_add_association 'add job requirement', f, :job_requirements, class: 'btn btn-default'
+            = f.input :event_name, label: 'Event Name', placeholder: 'name of the event'
+            = f.input :location, label: 'Location', placeholder: 'location of the event (including postal code)'
 
-  .actions
-    .button
-      input.btn.btn-primary type="submit" value=("Save")
+            - if current_admin.has_role? :admin
+              = f.association :center, label: 'Host Center', prompt: 'choose host center'
+
+            .row
+              = f.input :date, as: :date_picker, wrapper_html: { class: 'pull-left col-xs-6' }
+              = f.input :start_time, as: :time_picker, wrapper_html: { class: 'pull-left col-xs-3' }
+              = f.input :end_time, as: :time_picker, wrapper_html: { class: 'pull-left col-xs-3' }
+
+            = f.input :description, label: 'Description', placeholder: 'a short introduction of the event', input_html: { rows: 7 }
+
+          .col-xs-4
+            #job_requirements
+              = f.simple_fields_for :job_requirements do |ff|
+                = render 'job_requirement_fields', f: ff
+              .links
+                = link_to_add_association 'add job requirement', f, :job_requirements, class: 'btn btn-default btn-block'
+
+      .box-footer
+        = f.submit 'Save', class: 'btn btn-primary pull-right btn-block'

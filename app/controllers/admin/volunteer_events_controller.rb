@@ -6,7 +6,8 @@ class Admin::VolunteerEventsController < Admin::BaseController
   before_action :prepare_volunteer_event, only: [:approve, :decline, :attended]
 
   def index
-    @volunteers = @event.center.volunteers.where.not(id: @event.volunteers)
+    @query = VolunteerQuery.new(current_admin, params, @event.center.volunteers.where.not(id: @event.volunteers))
+    @volunteers = @query.volunteers
   end
 
   def pending
@@ -32,10 +33,9 @@ class Admin::VolunteerEventsController < Admin::BaseController
   def invite
     @volunteer = Volunteer.find(params[:id])
     @volunteer_event = @event.volunteer_events.find_or_initialize_by(volunteer: @volunteer)
-    if @volunteer_event.persisted?
-      @volunteer_event.invite!
-      NewEventMailer.invite_volunteer(@event, @volunteer).deliver
-    end
+    new_record = @volunteer_event.new_record?
+    @volunteer_event.invite!
+    NewEventMailer.invite_volunteer(@event, @volunteer).deliver if new_record
   end
 
   def approve

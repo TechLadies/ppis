@@ -1,4 +1,17 @@
 .row
+  .col-xs-12
+    .box.box-solid
+
+      .box-body.box-profile
+        = form_tag admin_event_volunteer_events_path(@event), method: :get, remote: true, class: 'form-inline' do
+          .form-group
+            label.margin-r-5 Skill
+            = select_tag "skill_filter", options_from_collection_for_select(Skill.all, "id", "name", @query.skill_filter), placeholder: 'choose skill', include_blank: true, class: 'form-control margin-r-5'
+            label.margin-r-5 Certification
+            = select_tag 'cert_filter', options_from_collection_for_select(Certification.all, "id", "name", @query.cert_filter), placeholder: 'choose certification', include_blank: true, class: 'form-control margin-r-5'
+
+          = submit_tag "Search", :name => nil, class: 'btn btn-primary'
+
   .col-xs-12.table-responsive
     table.table.table-striped.tabled-bordered
       thead

@@ -14,7 +14,7 @@
         = form_tag admin_volunteers_path, method: :get do
           .form-group
             label Filter by Skill
-            = select_tag "filter", options_from_collection_for_select(Skill.all, "id", "name", @query.filter), placeholder: 'choose skill', include_blank: true, class: 'form-control'
+            = select_tag "skill_filter", options_from_collection_for_select(Skill.all, "id", "name", @query.skill_filter), placeholder: 'choose skill', include_blank: true, class: 'form-control'
           .form-group
             label Search by Name / Email
             = text_field_tag :search, @query.search, placeholder: "Name/Email", class: 'form-control'

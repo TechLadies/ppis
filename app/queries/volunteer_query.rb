@@ -1,16 +1,19 @@
 class VolunteerQuery
 
-  attr_reader :search, :filter, :volunteers
+  attr_reader :search, :skill_filter, :cert_filter, :volunteers
 
-  def initialize(admin, params = {})
-    @volunteers = Volunteer.order('LOWER(volunteers.name)')
+  def initialize(admin, params = {}, volunteers = Volunteer.order('LOWER(volunteers.name)'))
+    @volunteers = volunteers
     @volunteers = query_for_preferred_center(@volunteers, admin)
 
     @search = params[:search]
     @volunteers = query_for_search(@volunteers, @search)
 
-    @filter = params[:filter]
-    @volunteers = query_for_filter(@volunteers, @filter)
+    @skill_filter = params[:skill_filter]
+    @volunteers = query_for_skill_filter(@volunteers, @skill_filter)
+
+    @cert_filter = params[:cert_filter]
+    @volunteers = query_for_cert_filter(@volunteers, @cert_filter)
   end
 
   private
@@ -25,9 +28,14 @@ class VolunteerQuery
     result.where('volunteers.name LIKE ? OR email LIKE ?', "%#{search}%", "%#{search}%")
   end
 
-  def query_for_filter(result, filter)
+  def query_for_skill_filter(result, filter)
     return result if filter.blank?
     result.joins(:skills).where(skills: { id: "#{filter}" })
+  end
+
+  def query_for_cert_filter(result, filter)
+    return result if filter.blank?
+    result.joins(:certifications).where(certifications: { id: "#{filter}" })
   end
 
 end

@@ -1,18 +1,42 @@
-.container
-  h2 Details of #{@center.name}
+- content_for :page_header do
+  = @center.name
 
-  dl.center-details
-    dt Manager Name
-    dd= @center.manager_name
-    dt Email
-    dd= @center.email
-    dt Contact Number
-    dd= @center.contact_number
-    dt Fax Number
-    dd= @center.fax_number
-    dt Address
-    dd= @center.address
+- content_for :breadcrumbs do
+  li = link_to 'Centers', admin_centers_path
+  li = link_to @center.name, admin_center_path(@center)
 
-  - if current_admin.has_role?(:admin)
-    = link_to 'Edit', edit_admin_center_path(@center), class: 'btn btn-primary'
-  = link_to 'View all centers', admin_centers_path, class: 'btn btn-default'
+.row
+  .col-md-3
+
+    .box.box-primary
+      .box-body.box-profile
+        h3.profile-username.text-center
+          = @center.name
+
+        ul.list-group.list-group-unbordered
+          li.list-group-item
+            = fa_icon 'user-md', class: 'margin-r-5'
+            b Manager Name
+            span.pull-right = @center.manager_name
+
+          li.list-group-item
+            = fa_icon 'evenlope-o', class: 'margin-r-5'
+            b Email
+            span.pull-right = @center.email
+
+          li.list-group-item
+            = fa_icon 'phone', class: 'margin-r-5'
+            b Contact Number
+            span.pull-right = @center.contact_number
+
+          li.list-group-item
+            = fa_icon 'fax', class: 'margin-r-5'
+            b Fax Number
+            span.pull-right = @center.fax_number
+
+        strong
+          = fa_icon 'map-marker', class: 'margin-r-5'
+          | Address
+        p = @center.address
+
+        = link_to 'Edit', edit_admin_center_path(@center), class: 'btn btn-primary btn-block'

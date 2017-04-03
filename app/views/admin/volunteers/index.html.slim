@@ -1,48 +1,76 @@
-.pull-right
-  .form-inline
-    .form-group
-      h4 Search Name/Email
-      = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
-        = hidden_field_tag :filter, @query.filter
-        = text_field_tag :search, @query.search, placeholder: "Name/Email", class: 'text_field_tag'
-        = submit_tag "Search", :name => nil, class: 'submit_tag'
-    .form-group
-      h4 Search Skill
-      = form_tag(admin_volunteers_path, :method => "get", id: "search-form") do
-        = hidden_field_tag :search, @query.search
-        = select_tag "filter", options_from_collection_for_select(Skill.all, "id", "name", @query.filter), include_blank: true
-        = submit_tag "Search", :name => nil, class: 'submit_tag'
-    .form-group
-      h4 Clear Search
-      = link_to 'Clear Search', admin_volunteers_path, class: 'btn btn-default btn-sm'
+- content_for :page_header do
+  | Volunteers
 
-.container
-  h1 Volunteers
-  = link_to 'Add new', new_admin_volunteer_path, class: 'btn btn-primary'
-  table.table.table-hover.table-striped
-    thead
-      tr
-        th Name
-        th Email
-        th Profession
-        th Skill(s)
-        th Certification(s)
-        th Other Talent(s)
-        th Receive Email Notifications
-        th Adhoc Volunteer?
-        th Status
-        th
+- content_for :breadcrumbs do
+  li = link_to 'Volunteers', admin_volunteers_path
 
-    tbody
-      - @volunteers.each do |volunteer|
-        tr
-          td = link_to volunteer.name, admin_volunteer_path(volunteer)
-          td = volunteer.email
-          td = volunteer.profession
-          td = volunteer.skills.map(&:name).to_sentence
-          td = volunteer.certifications.map(&:name).to_sentence
-          td = volunteer.other_talents
-          td = t(:"admin.volunteers.index.value_#{volunteer.email_notification}")
-          td = t(:"admin.volunteers.index.value_#{volunteer.adhoc}")
-          td = volunteer.deleted_at ? 'Cancelled account' : 'Active'
-          td = link_to 'Edit', edit_admin_volunteer_path(volunteer), class: 'btn btn-default'
+.row
+  .col-xs-3
+    .box.box-solid
+      .box-header.with-border
+        h4.box-title Search / Filter
+
+      .box-body.box-profile
+        = form_tag admin_volunteers_path, method: :get do
+          .form-group
+            label Filter by Skill
+            = select_tag "filter", options_from_collection_for_select(Skill.all, "id", "name", @query.filter), placeholder: 'choose skill', include_blank: true, class: 'form-control'
+          .form-group
+            label Search by Name / Email
+            = text_field_tag :search, @query.search, placeholder: "Name/Email", class: 'form-control'
+
+          = submit_tag "Search", :name => nil, class: 'btn btn-primary btn-block'
+
+  .col-xs-9
+
+    .box
+      .box-header
+        .box-title
+
+        .box-tools
+          .no-margin.pull-right
+            = link_to 'Add new', new_admin_volunteer_path, class: 'btn btn-primary'
+
+        .box-body.no-padding
+
+          table.table.table-hover.table-striped
+            thead
+              tr
+                th Status
+                th Name / Email
+                th Profession
+                th Skills / Talents
+                th Certifications
+                th
+
+            tbody
+              - @volunteers.each do |volunteer|
+                tr
+                  td
+                    - if volunteer.deleted_at
+                      span.badge.bg-red.margin-r-5
+                        | Cancelled
+                    - else
+                      span.badge.bg-green.margin-r-5
+                        | Active
+
+                    - if volunteer.adhoc?
+                      span.badge.bg-blue.margin-r-5
+                        | Regular
+                    - else
+                      span.badge.bg-yellow.margin-r-5
+                        | Ad Hoc
+
+                    - if volunteer.email_notification?
+                      span.badge.bg-purple
+                        | Email Notification
+
+                  td
+                    = link_to volunteer.name, admin_volunteer_path(volunteer)
+                    p = volunteer.email
+                  td = volunteer.profession
+                  td
+                    p = volunteer.skills.map(&:name).to_sentence
+                    p = volunteer.other_talents
+                  td = volunteer.certifications.map(&:name).to_sentence
+                  td = link_to 'Edit', edit_admin_volunteer_path(volunteer), class: 'btn btn-default'

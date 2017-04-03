@@ -1,10 +1,14 @@
-.container
-  h2 Register new volunteer
+- content_for :page_header do
+  | New Volunteer
 
-  = simple_form_for [:admin, @volunteer] do |f|
+- content_for :breadcrumbs do
+  li = link_to 'Volunteers', admin_volunteers_path
+  li = link_to 'New', new_admin_volunteer_path
 
-    = render partial: 'devise/registrations/form', locals: { f: f }
 
-    .panel.panel-default
-      .panel-footer.text-right
-        input.btn.btn-primary type="submit" value="Create Account"
+= simple_form_for @volunteer, url: admin_volunteers_path do |f|
+  .panel.panel-default
+    .panel-body
+      = render partial: 'devise/registrations/form', locals: { f: f }
+    .panel-footer
+      = f.submit 'Create Account', class: 'btn btn-primary btn-block'

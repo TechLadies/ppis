@@ -1,13 +1,22 @@
-.container
-  h2 Edit volunteer details
+- decorate(@volunteer) do |volunteer|
+  - content_for :page_header do
+    = volunteer.name
+  
+  - content_for :page_subheader do
+    = volunteer.state
+  
+  
+  - content_for :breadcrumbs do
+    li = link_to 'Volunteers', admin_volunteers_path
+    li = link_to volunteer.name, admin_volunteer_path(volunteer)
+    li = link_to 'Edit', edit_admin_volunteer_path(volunteer)
 
-  = simple_form_for [:admin, @volunteer] do |f|
-
-    = render partial: 'devise/registrations/form', locals: { f: f }
-
-    .panel.panel-primary
+  
+  = simple_form_for @volunteer, url: admin_volunteer_path(@volunteer) do |f|
+    .panel.panel-default
       .panel-body
-        .row
+        = render partial: 'devise/registrations/form', locals: {f: f}
+        row
           .col-xs-12
             = f.label 'Would you like to volunteer on a regular bases?'
             .form-group
@@ -17,7 +26,7 @@
               label.radio-inline
                 = f.radio_button :adhoc, true
                 | No
-
-    .panel.panel-default
-      .panel-footer.text-right
-        input.btn.btn-primary type="submit" value="Update Volunteer Details"
+      .panel-footer
+        = f.submit 'Update Volunteer Details', class: 'btn btn-primary btn-block'
+  
+  

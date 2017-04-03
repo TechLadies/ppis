@@ -1,22 +1,29 @@
+- content_for :page_header do
+  | Dashboard
+
+
 .row
   .col-xs-12.col-sm-4
-    .box-header.with-border
-      .box-title Status of Volunteers
+    .box.box-primary
+      .box-header.with-border
+        .box-title Status of Volunteers
       .box-body
         .chart
           canvas#myChart width="400" height="400" data-volunteer-adhoc="#{@presenter.volunteers[true]}" data-volunteer-regular="#{@presenter.volunteers[false]}"
 
   .col-xs-12.col-sm-4
+    .box.box-warning
       .box-header.with-border
         .box-title Number of Volunteers
-        .box.body
-          .chart
-            canvas#myChartAllV width="400" height="400" data-volunteers-past3yrs-include-current="#{@presenter.volunteers_past3yrs_include_current.count}" data-volunteers-past3yrs-exclude-current="#{@presenter.volunteers_past3yrs_exclude_current.count}" data-volunteers-past3yrs-oldest-only="#{@presenter.volunteers_past3yrs_oldest_only.count}"
+      .box.body
+        .chart
+          canvas#myChartAllV width="400" height="400" data-volunteers-past3yrs-include-current="#{@presenter.volunteers_past3yrs_include_current.count}" data-volunteers-past3yrs-exclude-current="#{@presenter.volunteers_past3yrs_exclude_current.count}" data-volunteers-past3yrs-oldest-only="#{@presenter.volunteers_past3yrs_oldest_only.count}"
 
   .col-xs-12.col-sm-4
-        .box-header.with-border
-          .box-title Number of Events
-          .box.body
-            .chart
-              canvas#myChartAllE width="400" height="400" data-events-past3yrs-include-current="#{@presenter.events_past3yrs_include_current.count}" data-events-past3yrs-exclude-current="#{@presenter.events_past3yrs_exclude_current.count}" data-events-past3yrs-oldest-only="#{@presenter.events_past3yrs_oldest_only.count}"
+    .box.box-success
+      .box-header.with-border
+        .box-title Number of Events
+      .box.body
+        .chart
+          canvas#myChartAllE width="400" height="400" data-events-past3yrs-include-current="#{@presenter.events_past3yrs_include_current.count}" data-events-past3yrs-exclude-current="#{@presenter.events_past3yrs_exclude_current.count}" data-events-past3yrs-oldest-only="#{@presenter.events_past3yrs_oldest_only.count}"
 

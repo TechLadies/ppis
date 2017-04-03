@@ -1,5 +1,9 @@
 class VolunteerDecorator < SimpleDelegator
 
+  def state
+    deleted_at? ? 'Cancelled' : 'Active'
+  end
+
   def nric_no
     if super.blank?
       'Not given'
@@ -84,7 +88,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 
@@ -100,7 +104,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 
@@ -108,7 +112,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 
@@ -116,7 +120,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 
@@ -124,7 +128,7 @@ class VolunteerDecorator < SimpleDelegator
     if super.blank?
       'N/A'
     else
-      super.map(&:name).to_sentence
+      super.map(&:name).sort.to_sentence
     end
   end
 

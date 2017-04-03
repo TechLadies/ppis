@@ -1,0 +1,18 @@
+.row
+  .col-xs-12.table-responsive
+    table.table.table-striped.tabled-bordered
+      thead
+        th Event Name
+        th
+
+      tbody
+        - volunteer_events.each do |volunteer_event|
+          - decorate(volunteer_event.event) do |event|
+            tr
+              td = link_to event.event_name, admin_event_path(event)
+              td = event.duration
+        tr
+          td colspan=2
+            - total = volunteer_events.sum { |ve| ve.event.duration } / 3600
+            h2.pull-right
+              = "Total: #{total} hour(s)"

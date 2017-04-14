@@ -18,7 +18,7 @@
         = render partial: 'devise/registrations/form', locals: {f: f}
         row
           .col-xs-12
-            = f.label 'Would you like to volunteer on a regular bases? (Yes for Regular; No for Adhoc)'
+            = f.label 'Would you like to volunteer on a regular bases?'
             .form-group
               label.radio-inline
                 = f.radio_button :adhoc, false

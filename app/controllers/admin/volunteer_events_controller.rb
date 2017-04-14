@@ -6,7 +6,7 @@ class Admin::VolunteerEventsController < Admin::BaseController
   before_action :prepare_volunteer_event, only: [:approve, :decline, :attended]
 
   def index
-    @query = VolunteerQuery.new(current_admin, params, @event.center.volunteers.where.not(id: @event.volunteers))
+    @query = VolunteerQuery.new(current_admin, params, @event.center.volunteers.where(adhoc: true).where.not(id: @event.volunteers))
     @volunteers = @query.volunteers
   end
 

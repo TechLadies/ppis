@@ -55,11 +55,11 @@
                         | Active
 
                     - if volunteer.adhoc?
-                      span.badge.bg-blue.margin-r-5
-                        | Regular
-                    - else
                       span.badge.bg-yellow.margin-r-5
                         | Ad Hoc
+                    - else
+                      span.badge.bg-blue.margin-r-5
+                        | Regular
 
                     - if volunteer.email_notification?
                       span.badge.bg-purple

@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(version: 20161208203704) do
     t.integer  "formal_education_id"
     t.datetime "deleted_at"
     t.boolean  "email_notification",     default: true
-    t.boolean  "adhoc"
+    t.boolean  "adhoc",                  default: true
     t.string   "nric_no"
     t.integer  "marital_status"
     t.text     "address"

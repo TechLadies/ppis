@@ -1,4 +1,4 @@
-edus = FomalEducation.all.to_a
+edus = FormalEducation.all.to_a
 certs = Certification.all.to_a
 centers = Center.all.to_a
 target_groups = TargetGroup.all.to_a

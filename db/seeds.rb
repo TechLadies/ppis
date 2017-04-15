@@ -6,8 +6,7 @@ files = [
   'formal_educations',
   'skills',
   'target_groups',
-  'admins',
-  'volunteers'
+  'admins'
 ]
 
 files.each do |file|
@@ -16,5 +15,22 @@ files.each do |file|
     require Rails.root + "db/seeds/#{file}.rb"
   else
     puts "Skipping File: #{file}"
+  end
+end
+
+
+# FOR DEVELOPMENT AND STAGING ONLY
+unless Rails.env.production?
+  files = [
+    'volunteers'
+  ]
+
+  files.each do |file|
+    if file.singularize.camelize.constantize.count < 1
+      puts "File: #{file}"
+      require Rails.root + "db/seeds/#{file}.rb"
+    else
+      puts "Skipping File: #{file}"
+    end
   end
 end

@@ -1,0 +1,12 @@
+h4 
+  | Hello 
+  = @volunteer.name
+
+p Congratulations! Your volunteer application has been approved. We will be following up with more details. Stay tuned!
+
+h2 = @event.event_name
+h2 = @event.date
+
+| Find out more about the event at: 
+= link_to 'Event page', event_url(@event)
+

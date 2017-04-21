@@ -11,4 +11,11 @@ class NewEventMailer < ApplicationMailer
 
     mail(to: @volunteer.email, subject: "Please join PPIS for #{@event.event_name}")
   end
+
+  def approve_volunteer(event, volunteer)
+    @event = event
+    @volunteer = volunteer
+
+    mail(to: @volunteer.email, subject: "See you at #{@event.event_name}")
+  end
 end

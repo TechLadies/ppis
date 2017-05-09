@@ -35,7 +35,7 @@ class Admin::VolunteerEventsController < Admin::BaseController
     @volunteer_event = @event.volunteer_events.find_or_initialize_by(volunteer: @volunteer)
     new_record = @volunteer_event.new_record?
     @volunteer_event.invite!
-    NewEventMailer.invite_volunteer(@event, @volunteer).deliver if new_record
+    NewEventMailer.invite_volunteer(@event, @volunteer).deliver_later if new_record
   end
 
   def approve

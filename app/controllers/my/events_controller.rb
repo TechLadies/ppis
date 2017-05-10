@@ -15,7 +15,7 @@ class My::EventsController < My::BaseController
     volunteer_event = @event.volunteer_events.find_or_initialize_by(volunteer: current_volunteer)
     if volunteer_event.new_record?
       volunteer_event.register!
-      NewEventMailer.register_volunteer(@event, @volunteer).deliver_later
+      NewEventMailer.register_volunteer(@event, @current_volunteer).deliver_later
     else
       volunteer_event.re_register!
       NewEventMailer.register_volunteer(@event, @current_volunteer).deliver_later

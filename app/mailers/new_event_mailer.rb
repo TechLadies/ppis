@@ -5,6 +5,11 @@ class NewEventMailer < ApplicationMailer
     mail(bcc: volunteers.map(&:email), subject: "New event by PPIS: #{@event.event_name}")
   end
 
+  def autoregister_volunteers(event, volunteers)
+    @event = event
+    mail(bcc: volunteers.map(&:email), subject: "You are registered for a New event by PPIS: #{@event.event_name}")
+  end
+
   def invite_volunteer(event, volunteer)
     @event = event
     @volunteer = volunteer

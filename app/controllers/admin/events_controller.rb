@@ -41,7 +41,7 @@ class Admin::EventsController < Admin::BaseController
     @volunteers = Volunteer.joins(:preferred_centers).where('preferred_centers.center_id = ?', @event.center_id)
     @event.publish!
     if @volunteers = regular_volunteers
-      NewEventMailer.Autoregister_volunteers(@event, @volunteers).deliver_later
+      NewEventMailer.autoregister_volunteers(@event, @volunteers).deliver_later
     else
       NewEventMailer.notify_volunteers(@event, @volunteers.to_a).deliver_later
     end

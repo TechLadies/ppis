@@ -12,11 +12,17 @@ class NewEventPreview < ActionMailer::Preview
     @volunteer = Volunteer.last
     NewEventMailer.invite_volunteer(@event, @volunteer)
   end
-
+  
   def approve_volunteer
     @event = Event.last
+    current_volunteer = Volunteer.last
+    NewEventMailer.approve_volunteer(@event, current_volunteer)
+  end
+  
+  def register_volunteer
+    @event = Event.last
     @volunteer = Volunteer.last
-    NewEventMailer.approve_volunteer(@event, @volunteer)
+    NewEventMailer.register_volunteer(@event, @volunteer)
   end
 
 end

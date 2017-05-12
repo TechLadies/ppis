@@ -39,7 +39,9 @@ class Admin::VolunteerEventsController < Admin::BaseController
   end
 
   def approve
+    @volunteer = current_volunteer
     @volunteer_event.approve!
+    NewEventMailer.approve_volunteer(@event, @current_volunteer).deliver_later
   end
 
   def decline

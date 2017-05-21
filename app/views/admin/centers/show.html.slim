@@ -40,3 +40,21 @@
         p = @center.address
 
         = link_to 'Edit', edit_admin_center_path(@center), class: 'btn btn-primary btn-block'
+
+  .col-md-9
+    .box.box-default
+      .box.body
+        table.table.table-striped
+          thead
+            th Regular?
+            th Name
+            th Email
+            th Email Subscription?
+
+          tbody
+            - @center.volunteers.each do |volunteer|
+              tr
+                td = volunteer.adhoc? ? 'No' : 'Yes'
+                td = link_to volunteer.name, admin_volunteer_path(volunteer)
+                td = volunteer.email
+                td = volunteer.email_notification? ? 'Yes' : 'No'

@@ -25,7 +25,7 @@
 
             li.list-group-item
               = fa_icon 'id-card-o', class: 'margin-r-5'
-              b NRIC / FIN No.
+              b NRIC/FIN
               span.pull-right = volunteer.nric_no
 
             li.list-group-item
@@ -45,7 +45,7 @@
 
             li.list-group-item
               = fa_icon 'phone', class: 'margin-r-5'
-              b Home Phone Number
+              b Home Phone
               span.pull-right = volunteer.home_phone_number
 
             li.list-group-item
@@ -56,22 +56,22 @@
             li.list-group-item
               = fa_icon 'language', class: 'margin-r-5'
               b Language spoken
-              span.pull-right = volunteer.language_spoken
+              p = volunteer.language_spoken
 
             li.list-group-item
               = fa_icon 'map-marker', class: 'margin-r-5'
               b Address
-              span.pull-right = volunteer.address
+              p = volunteer.address
 
             li.list-group-item
               = fa_icon 'briefcase', class: 'margin-r-5'
               b Profession
-              span.pull-right = volunteer.profession
+              p = volunteer.profession
 
             li.list-group-item
               = fa_icon 'graduation-cap', class: 'margin-r-5'
               b Highest Education
-              span.pull-right = volunteer.formal_education
+              p = volunteer.formal_education
 
             li.list-group-item
               = fa_icon 'envelop', class: 'margin-r-5'
@@ -120,6 +120,11 @@
             = fa_icon 'wrench', class: 'margin-r-5'
             | Skills
           p = volunteer.skills
+
+          strong
+            = fa_icon 'wrench', class: 'margin-r-5'
+            | Preferred Centers
+          p = volunteer.centers
 
     .col-xs-9
       .nav-tabs-custom

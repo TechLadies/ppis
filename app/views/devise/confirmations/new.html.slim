@@ -1,0 +1,23 @@
+.login-container
+  .login-header
+    h1.text-center Resend confirmation instructions
+
+  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+
+    .form-horizonal
+      .form-group.row
+        .col-sm-8.col-sm-offset-2
+          .sr-only = f.label :email
+          .input-group
+            .input-group-addon
+              = fa_icon 'user'
+            = f.email_field :email, class: "form-control", placeholder: "Email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+
+      div
+        .actions
+          .button.text-center
+            input.btn.btn-success type="submit" value=("Resend confirmation instructions")
+
+
+      .text-center
+        = render "devise/shared/links"

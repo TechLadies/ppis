@@ -40,7 +40,7 @@ class Admin::EventsController < Admin::BaseController
   def publish
     @volunteers = Volunteer.joins(:preferred_centers).where('preferred_centers.center_id = ?', @event.center_id)
     @event.publish!
-    NewEventMailer.notify_volunteers(@event, @volunteers).deliver_later
+    NewEventMailer.notify_volunteers(@event, @volunteers.to_a).deliver_later
     redirect_to admin_events_path, notice: "Succesfully publish event: #{@event.event_name}"
   end
 

@@ -1,10 +1,10 @@
 # Preview all emails at http://localhost:3000/rails/mailers/new_event
 class NewEventPreview < ActionMailer::Preview
 
-  def notify_volunteer
+  def notify_volunteers
     @event = Event.last
-    volunteer = Volunteer.last
-    NewEventMailer.notify_volunteer(@event, volunteer)
+    volunteers = Volunteer.last, Volunteer.first
+    NewEventMailer.notify_volunteers(@event, volunteers)
   end
 
   def invite_volunteer

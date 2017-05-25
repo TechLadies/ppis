@@ -9,8 +9,8 @@ class NewEventPreview < ActionMailer::Preview
 
   def autoregister_volunteers
     @event = Event.last
-    volunteer = Volunteer.last
-    NewEventMailer.autoregister_volunteers(@event, volunteer)
+    volunteers = Volunteer.last, Volunteer.first
+    NewEventMailer.autoregister_volunteers(@event, volunteers)
   end
 
   def invite_volunteer

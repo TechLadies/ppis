@@ -61,7 +61,14 @@
         .box.box-danger
           .box-body
             | Event is cancelled
-      - else
+      - elsif event.draft?
+        .nav-tabs-custom
+          ul#volunteer-tabs.nav.nav-tabs
+            li#volunteer-tab-job-requirements.active
+              = link_to 'Job Requirements', job_requirements_admin_event_path(event), remote: true
+
+          #tab-content 
+      -else
         .nav-tabs-custom
           ul#volunteer-tabs.nav.nav-tabs
             li#volunteer-tab-job-requirements.active

@@ -33,9 +33,9 @@
         .col-xs-12.col-sm-4
           = f.input :date_of_birth, as: :date, start_year: Date.current.year - 80, end_year: Date.current.year - 5, order: [:day, :month, :year]
         .col-xs-12.col-sm-4
-          = f.input :mobile, placeholder: "include country code"
+          = f.input :mobile, placeholder: "include country code but no spaces please"
         .col-xs-12.col-sm-4
-          = f.input :home_phone_number, placeholder: "include country code"
+          = f.input :home_phone_number, placeholder: "include country code but no spaces please"
         .col-xs-12.col-sm-4
           = f.label :marital_status
           = f.input :marital_status, as: :radio_buttons, collection: Volunteer.marital_statuses.keys, item_wrapper_class: 'radio-inline', label: false

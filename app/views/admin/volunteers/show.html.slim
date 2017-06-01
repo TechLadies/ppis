@@ -21,7 +21,7 @@
             li.list-group-item
               = fa_icon 'envelope-o', class: 'margin-r-5'
               b Email
-              span.pull-right = volunteer.email
+              p = volunteer.email
 
             li.list-group-item
               = fa_icon 'id-card-o', class: 'margin-r-5'
@@ -122,7 +122,7 @@
           p = volunteer.skills
 
           strong
-            = fa_icon 'wrench', class: 'margin-r-5'
+            = fa_icon 'building-o', class: 'margin-r-5'
             | Preferred Centers
           p = volunteer.centers
 
@@ -146,6 +146,6 @@
           .tab-pane#attended-events
             = render 'events', volunteer_events: volunteer.volunteer_events.attended
           .tab-pane#no-show-events
-            = render 'events', volunteer_events: volunteer.volunteer_events.approved
+            = render 'events', volunteer_events: volunteer.volunteer_events.approved + volunteer.volunteer_events.no_show
           .tab-pane#declined-events
             = render 'events', volunteer_events: volunteer.volunteer_events.where(state: [:declined, :cancelled])

@@ -30,5 +30,4 @@ class NewEventPreview < ActionMailer::Preview
     @volunteer = Volunteer.last
     NewEventMailer.register_volunteer(@event, @volunteer)
   end
-
 end

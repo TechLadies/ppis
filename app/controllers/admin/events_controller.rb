@@ -39,9 +39,14 @@ class Admin::EventsController < Admin::BaseController
 
   def publish
     @volunteers = Volunteer.joins(:preferred_centers).where('preferred_centers.center_id = ?', @event.center_id)
-    @event.publish!
-    if @volunteers = regular_volunteers
-      NewEventMailer.autoregister_volunteers(@event, @volunteers.to_a).deliver_later
+    #@event.publish!
+    if  @volunteers = regular_volunteers
+      volunteer_event = @event.volunteer_events.find_or_initialize_by()
+    #@volunteers.each do |volunteer|
+        #@event.volunteer_events.find_or_initialize_by(volunteer: volunteer)
+      #end
+      volunteer_event.approve!
+     NewEventMailer.autoregister_volunteers(@event, @volunteers.to_a).deliver_later
     else
       NewEventMailer.notify_volunteers(@event, @volunteers.to_a).deliver_later
     end
@@ -55,8 +60,10 @@ class Admin::EventsController < Admin::BaseController
 
   private
 
-  regular_volunteers = @event.center.preferred_centers.map(&:volunteer.where(adhoc: nil))
-  
+  def regular_volunteers 
+    @volunteers = @volunteers.where(adhoc: nil)
+  end
+
   def prepare_event
     @event = Event.find(params[:id])
   end
@@ -67,5 +74,4 @@ class Admin::EventsController < Admin::BaseController
       job_requirements_attributes: [:id, :job_title, :number_of_volunteers, :description, :_destroy]
     )
   end
-  
 end

@@ -23,7 +23,7 @@ class VolunteerEvent < ApplicationRecord
     end
 
     event :approve do
-      transitions :from => [:invited, :registered], :to => :approved
+      transitions :from => [:created, :invited, :registered], :to => :approved
     end
 
     event :decline do

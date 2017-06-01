@@ -38,7 +38,7 @@
           = f.input :home_phone_number, placeholder: "include country code"
         .col-xs-12.col-sm-4
           = f.label :marital_status
-          = f.input :marital_status, as: :radio_buttons, collection: Volunteer.marital_statuses, item_wrapper_class: 'radio-inline', label: false
+          = f.input :marital_status, as: :radio_buttons, collection: Volunteer.marital_statuses.keys, item_wrapper_class: 'radio-inline', label: false
         .col-xs-12.col-sm-8
           .form-group
             = f.input :language_spoken, placeholder: "list languages you speak"

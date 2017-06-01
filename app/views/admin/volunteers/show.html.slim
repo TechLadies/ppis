@@ -146,6 +146,6 @@
           .tab-pane#attended-events
             = render 'events', volunteer_events: volunteer.volunteer_events.attended
           .tab-pane#no-show-events
-            = render 'events', volunteer_events: volunteer.volunteer_events.approved
+            = render 'events', volunteer_events: volunteer.volunteer_events.approved + volunteer.volunteer_events.no_show
           .tab-pane#declined-events
             = render 'events', volunteer_events: volunteer.volunteer_events.where(state: [:declined, :cancelled])

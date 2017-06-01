@@ -38,18 +38,19 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def publish
-    @volunteers = Volunteer.joins(:preferred_centers).where('preferred_centers.center_id = ?', @event.center_id)
-    #@event.publish!
-    if  @volunteers = regular_volunteers
-      volunteer_event = @event.volunteer_events.find_or_initialize_by()
-    #@volunteers.each do |volunteer|
-        #@event.volunteer_events.find_or_initialize_by(volunteer: volunteer)
-      #end
-      volunteer_event.approve!
-     NewEventMailer.autoregister_volunteers(@event, @volunteers.to_a).deliver_later
-    else
-      NewEventMailer.notify_volunteers(@event, @volunteers.to_a).deliver_later
+    volunteers = Volunteer.joins(:preferred_centers).where('preferred_centers.center_id = ?', @event.center_id)
+    regular_volunteers = volunteers.where(adhoc: false)
+    adhoc_volunteers = volunteers.where(adhoc: true)
+     
+    Event.transaction do 
+      @event.publish!
+      regular_volunteers.each do |volunteer|
+        @event.volunteer_events.create!(volunteer: volunteer, state: :approved)
+      end
     end
+    
+    NewEventMailer.autoregister_volunteers(@event, regular_volunteers.to_a).deliver_later
+    NewEventMailer.notify_volunteers(@event, adhoc_volunteers.to_a).deliver_later
     redirect_to admin_events_path, notice: "Succesfully publish event: #{@event.event_name}"
   end
 
@@ -59,10 +60,6 @@ class Admin::EventsController < Admin::BaseController
   end
 
   private
-
-  def regular_volunteers 
-    @volunteers = @volunteers.where(adhoc: nil)
-  end
 
   def prepare_event
     @event = Event.find(params[:id])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208203704) do
+ActiveRecord::Schema.define(version: 20170602115313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20161208203704) do
     t.datetime "updated_at",                            null: false
     t.string   "name"
     t.date     "date_of_birth"
-    t.integer  "mobile"
+    t.bigint   "mobile"
     t.string   "profession"
     t.text     "other_talents"
     t.text     "about_me"
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20161208203704) do
     t.string   "nric_no"
     t.integer  "marital_status"
     t.text     "address"
-    t.integer  "home_phone_number"
+    t.bigint   "home_phone_number"
     t.string   "language_spoken"
     t.text     "past_experience"
     t.index ["confirmation_token"], name: "index_volunteers_on_confirmation_token", unique: true, using: :btree

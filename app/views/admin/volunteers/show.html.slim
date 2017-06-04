@@ -1,4 +1,4 @@
-- decorate(@volunteer) do |volunteer|
+- @presenter.volunteer.tap do |volunteer|
   - content_for :page_header do
     = volunteer.name
 
@@ -138,14 +138,14 @@
 
         .tab-content
           .tab-pane#invited-events.active
-            = render 'events', volunteer_events: volunteer.volunteer_events.invited
+            = render 'events', volunteer_events: @presenter.invited_events
           .tab-pane#registered-events
-            = render 'events', volunteer_events: volunteer.volunteer_events.registered
+            = render 'events', volunteer_events: @presenter.registered_events
           .tab-pane#upcoming-events
-            = render 'events', volunteer_events: volunteer.volunteer_events.approved
+            = render 'events', volunteer_events: @presenter.approved_events
           .tab-pane#attended-events
-            = render 'events', volunteer_events: volunteer.volunteer_events.attended
+            = render 'events', volunteer_events: @presenter.attended_events
           .tab-pane#no-show-events
-            = render 'events', volunteer_events: volunteer.volunteer_events.approved + volunteer.volunteer_events.no_show
+            = render 'events', volunteer_events: @presenter.no_show_events
           .tab-pane#declined-events
-            = render 'events', volunteer_events: volunteer.volunteer_events.where(state: [:declined, :cancelled])
+            = render 'events', volunteer_events: @presenter.cancelled_events

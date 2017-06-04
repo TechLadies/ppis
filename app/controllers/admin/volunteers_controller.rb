@@ -5,6 +5,10 @@ class Admin::VolunteersController < Admin::BaseController
     @volunteers = @query.volunteers
   end
 
+  def show
+    @presenter = Admin::VolunteerPresenter.new(find_volunteer)
+  end
+
   def new
     @volunteer = Volunteer.new
   end
@@ -35,10 +39,6 @@ class Admin::VolunteersController < Admin::BaseController
     else
       render 'edit'
     end
-  end
-
-  def show
-    @volunteer = find_volunteer
   end
 
   private
